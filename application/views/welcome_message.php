@@ -66,7 +66,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</style>
 </head>
 <body>
-<img src="index.jpg">
+<img src="./index.jpg">
 <div id="container">
 	<h1>Welcome to CorelDraw!</h1>
 
