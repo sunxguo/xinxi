@@ -27,7 +27,7 @@ class Baidu extends CI_Controller {
 			$item=new stdClass();
 			$item->title=$result[2][$i];
 			$item->link=$result[1][$i];
-			$item->description=$result[3][$i];
+			$item->introduction=$result[3][$i];
 			$item->showlink=$result[4][$i];
 			$data[]=$item;
 		}
