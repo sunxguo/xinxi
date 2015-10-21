@@ -17,7 +17,7 @@ class Baidu extends CI_Controller {
 		//print_r($html);
 
 		//preg_match('#<h3 class="(.*)">*<a.*?href *= *"(.*)".*>(.*)</a>#',$html,$result);
-		preg_match_all('#<div.*?>.*?<h3 class="t.*?">.*?<a.*?href *= *"(.*?)".*?>(.*?)</a>.*?</h3>.*?<div class="c-abstract".*?>(.*?)</div>.*?<span class="[g|c-showurl]">(.*?)</span>.*?</div>.*?</div>#si',$html,$result);
+		preg_match_all('#<div.*?>.*?<h3 class="t.*?">.*?<a.*?href *= *"(.*?)".*?>(.*?)</a>.*?</h3>.*?<div class="c-abstract.*?".*?>(.*?)</div>.*?<span class="[g|c-showurl]">(.*?)</span>.*?</div>.*?</div>#si',$html,$result);
 		//class="(.*?)"    (.*?)<a(.*?)href="(.*?)"(.*?)>(.*?)</a>
 		//echo sizeof($result);
 		//print_r($result[2]);
