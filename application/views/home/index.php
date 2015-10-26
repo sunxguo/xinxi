@@ -83,7 +83,7 @@
 					<a href="/home/productservice"><img src="/assets/images/banner_warm.jpg" width="100%"></a>	
 				</li>
 				<li class="">
-					<a href="/home/productservice"><img src="/assets/images/banner_warm1.jpg" width="100%"></a>
+					<a href="/home/product"><img src="/assets/images/banner_warm1.jpg" width="100%"></a>
 					
 				</li>
 				
@@ -93,7 +93,7 @@
 					
 				</li>
 				<li class="this">
-					<a href="/home/productservice"><img src="/assets/images/banner_warm1.jpg" width="100%">
+					<a href="/home/product"><img src="/assets/images/banner_warm1.jpg" width="100%">
 				</a>
 				</li>
 			</ul>
@@ -216,7 +216,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="/home/inside1">
+					<a href="/home/inside">
 						<img src="/assets/images/huodong1.jpg" width="100%;">
 						<img src="/assets/images/3.png" class="pngbox" width="320px;">
 						<div class="blog_info">

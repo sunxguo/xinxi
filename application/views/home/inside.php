@@ -173,10 +173,10 @@ var NTKF_PARAM = {
 						</div>
 						<div class="friendly_link">
 							<ul>
-								<li><a href="aboutus.htm">关于沛时</a></li>
-								<li><a href="contactus.htm">联系我们</a></li>
-								<li><a href="help.htm">帮助中心</a></li>
-								<li><a href="brand.htm">品牌活动</a></li>
+								<li><a href="/home/aboutus">关于沛时</a></li>
+								<li><a href="/home/contactus">联系我们</a></li>
+								<li><a href="/home/help">帮助中心</a></li>
+								<li><a href="/home/brand">品牌活动</a></li>
 								<li><a href="http://www.heyjuice.cn/Delivery/index"></a></li>
 							</ul>
 							<div class="f12 mt30 mb10" style="width:950px; margin-left:auto; margin-right:auto; margin-top:10px;">

@@ -43,11 +43,11 @@ var NTKF_PARAM = {
 				</div>
 				<div class="header_bar HeaderBar">
 					<ul>
-						<li><a class="this" href="index.htm">首页</a></li>
-							<li><a class="" href="product.htm">产品</a></li>
-							<li><a class="" href="comment.htm">论坛</a></li>
-							<li><a class="" href="brand.htm">品牌活动</a></li>
-							<li><a class="" href="service.htm">品牌理念</a></li>
+						<li><a class="this" href="/">首页</a></li>
+							<li><a class="" href="/home/productlist">产品</a></li>
+							<li><a class="" href="/home/comment">论坛</a></li>
+							<li><a class="" href="/home/brand">品牌活动</a></li>
+							<li><a class="" href="/home/service">品牌理念</a></li>
 					</ul>
 					<div class="shoping_car">
 						<a class="ShoppingCarLink" href="">
@@ -180,10 +180,10 @@ window.onload=function(){
 						</div>
 						<div class="friendly_link">
 							<ul>
-								<li><a href="aboutus.htm">关于沛时</a></li>
-								<li><a href="contact.htm">联系我们</a></li>
-								<li><a href="help.htm">帮助中心</a></li>
-								<li><a href="brand.htm">品牌活动</a></li>
+								<li><a href="/home/aboutus">关于沛时</a></li>
+								<li><a href="/home/contactus">联系我们</a></li>
+								<li><a href="/home/help">帮助中心</a></li>
+								<li><a href="/home/brand">品牌活动</a></li>
 								<li><a href="http://www.heyjuice.cn/Delivery/index"></a></li>
 							</ul>
 						</div>

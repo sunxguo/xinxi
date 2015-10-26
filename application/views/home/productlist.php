@@ -66,7 +66,7 @@
 		</div>
 		<div class="product_content_4 clearfix">
 					<ul>
-				<a href="product-35.htm">
+				<a href="/home/product">
 					<li><img src="/assets/images/product_01.png" alt="" height="146" width="266"></li>
 					<li>轻断食果蔬汁 经典款 </li>
 					<li>这是一个连续3天的清体计划，适合每个月一次。3天18瓶，帮助缓解皮肤油腻现状，促进新陈代谢，让身体感觉轻盈没负担。</li>
@@ -77,7 +77,7 @@
 				</li>
 			</ul>
 					<ul>
-				<a href="product-35.htm">
+				<a href="/home/product">
 					<li><img src="/assets/images/product_02.png" alt="" height="146" width="266"></li>
 					<li>轻断食果蔬汁 暖身款 </li>
 					<li>2015，"沛时"暖身款全新升级啦！热量低、维生素种类更丰富，为轻断食之旅增添更多机体活力。可加热婴儿奶瓶PP材质瓶身，分秒“叮”出美味，暖色调瓶搭配萌萌毛线帽，在寒冷的季节里将你萌化。</li>
@@ -88,7 +88,7 @@
 				</li>
 			</ul>
 			<ul>
-				<a href="product-35.htm">
+				<a href="/home/product">
 					<li><img src="/assets/images/product_03.png" alt="" height="146" width="266"></li>
 					<li>轻断食果蔬汁 暖身款 </li>
 					<li>2015，"沛时"暖身款全新升级啦！热量低、维生素种类更丰富，为轻断食之旅增添更多机体活力。可加热婴儿奶瓶PP材质瓶身，分秒“叮”出美味，暖色调瓶搭配萌萌毛线帽，在寒冷的季节里将你萌化。</li>
@@ -156,10 +156,10 @@
 						</div>
 						<div class="friendly_link">
 							<ul>
-								<li><a href="aboutus.htm">关于沛时</a></li>
-								<li><a href="contactus.htm">联系我们</a></li>
-								<li><a href="help.htm">帮助中心</a></li>
-								<li><a href="brand.htm">品牌活动</a></li>
+								<li><a href="/home/aboutus">关于沛时</a></li>
+								<li><a href="/home/contactus">联系我们</a></li>
+								<li><a href="/home/help">帮助中心</a></li>
+								<li><a href="/home/brand">品牌活动</a></li>
 								<li><a href="http://www.heyjuice.cn/Delivery/index"></a></li>
 							</ul>
 							<div class="f12 mt30 mb10" style="width:950px; margin-left:auto; margin-right:auto; margin-top:10px;">

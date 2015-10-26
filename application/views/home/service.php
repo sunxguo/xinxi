@@ -75,7 +75,7 @@ var NTKF_PARAM = {
 		<img src="/assets/images/details_icon_09.jpg" alt="" width="100%">
 		<h2>只有<span>纯纯的</span><br>水果和蔬菜</h2>
 		<p>蔬菜水果汁，这个星球上简单自然的食物，本该毫无保留的展现其原本、自然的味道和营养，我们做到了。这意味着你看到、喝到的"沛时"是真正的蔬菜水果汁，我们拒绝使用任何防腐剂、保鲜剂和调色剂。</p>
-		<a href="productservice.htm">了解"沛时"生产工艺</a>
+		<a href="/home/productservice">了解"沛时"生产工艺</a>
 	</div>
 	<!-- <div class="brand_content_2 clearfix">
 		<div class="brand_content_l"><img  class="lazy" data-original="/Public/Home/images/brand_icon_2.jpg" alt="" width="100%"></div>
@@ -128,10 +128,10 @@ var NTKF_PARAM = {
 						</div>
 						<div class="friendly_link">
 							<ul>
-								<li><a href="aboutus.htm">关于沛时</a></li>
-								<li><a href="contactus.htm">联系我们</a></li>
-								<li><a href="help.htm">帮助中心</a></li>
-								<li><a href="brand.htm">品牌活动</a></li>
+								<li><a href="/home/aboutus">关于沛时</a></li>
+								<li><a href="/home/contactus">联系我们</a></li>
+								<li><a href="/home/help">帮助中心</a></li>
+								<li><a href="/home/brand">品牌活动</a></li>
 								<li><a href="http://www.heyjuice.cn/Delivery/index"></a></li>
 							</ul>
 							<div class="f12 mt30 mb10" style="width:950px; margin-left:auto; margin-right:auto; margin-top:10px;">

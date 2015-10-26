@@ -64,7 +64,7 @@ var NTKF_PARAM = {
 		<img style="display: inline;" src="/assets/images/banner_ab.jpg" class="lazy" data-original="/Public/Home/images/banner_ab.jpg" width="100%">
 	</div>
 	<div class="blog_content_3 clearfix">
-				<a href="inside1.htm">
+				<a href="/home/inside">
 			<img src="/assets/images/2.png" class="pngbox" width="500px;">
 			<img src="/assets/images/5603b14bef3bf.jpg" width="500px;">
 			<div class="blog_info">
@@ -72,7 +72,7 @@ var NTKF_PARAM = {
 				<p class="blog_tit">暖身款回归! | 我没哭，只是被这个果蔬汁暖到了</p>
 			</div>	
 		</a>
-				<a href="inside1.htm">
+				<a href="/home/inside">
 			<img src="/assets/images/2.png" class="pngbox" width="500px;">
 			<img src="/assets/images/55eac25f02a5f.jpg" width="500px;">
 			<div class="blog_info">
@@ -80,7 +80,7 @@ var NTKF_PARAM = {
 				<p class="blog_tit">那个死贵的果蔬汁，到底为什么那么贵？</p>
 			</div>	
 		</a>
-				<a href="inside1.htm">
+				<a href="/home/inside">
 			<img src="/assets/images/2.png" class="pngbox" width="500px;">
 			<img src="/assets/images/55e42e77dc46b.jpg" width="500px;">
 			<div class="blog_info">
@@ -88,7 +88,7 @@ var NTKF_PARAM = {
 				<p class="blog_tit">婚纱这么美，一辈子只穿一次太可惜 | “沛时”老友记II</p>
 			</div>	
 		</a>
-				<a href="inside1.htm">
+				<a href="/home/inside">
 			<img src="/assets/images/2.png" class="pngbox" width="500px;">
 			<img src="/assets/images/55ebca36f2715.jpg" width="500px;">
 			<div class="blog_info">
@@ -96,7 +96,7 @@ var NTKF_PARAM = {
 				<p class="blog_tit">谁说婚礼才可以穿婚纱？</p>
 			</div>	
 		</a>
-				<a href="inside1.htm">
+				<a href="/home/inside">
 			<img src="/assets/images/2.png" class="pngbox" width="500px;">
 			<img src="/assets/images/55ebc9f81fcc2.jpg" width="500px;">
 			<div class="blog_info">
@@ -104,7 +104,7 @@ var NTKF_PARAM = {
 				<p class="blog_tit">两年前的“沛时”长这样？！</p>
 			</div>	
 		</a>
-				<a href="inside1.htm">
+				<a href="/home/inside">
 			<img src="/assets/images/2.png" class="pngbox" width="500px;">
 			<img src="/assets/images/55810b626172b.jpg" width="500px;">
 			<div class="blog_info">
@@ -143,10 +143,10 @@ var NTKF_PARAM = {
 						</div>
 						<div class="friendly_link">
 							<ul>
-								<li><a href="aboutus.htm">关于沛时</a></li>
-								<li><a href="contactus.htm">联系我们</a></li>
-								<li><a href="help.htm">帮助中心</a></li>
-								<li><a href="brand.htm">品牌活动</a></li>
+								<li><a href="/home/aboutus">关于沛时</a></li>
+								<li><a href="/home/contactus">联系我们</a></li>
+								<li><a href="/home/help">帮助中心</a></li>
+								<li><a href="/home/brand">品牌活动</a></li>
 								<li><a href="http://www.heyjuice.cn/Delivery/index"></a></li>
 							</ul>
 							<div class="f12 mt30 mb10" style="width:950px; margin-left:auto; margin-right:auto; margin-top:10px;">
