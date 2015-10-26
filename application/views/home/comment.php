@@ -2,8 +2,8 @@
 		<html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta content="telephone=no" name="format-detection">
-		<meta name="keywords" content="HeyJuice,轻断食果汁,纤体,冷榨蔬果汁,轻断食蔬果汁,HeyJuice轻断食蔬果汁,果汁,果蔬汁,轻断食果蔬汁,冷榨果汁">
-		<meta name="description" content="轻断食果蔬汁HeyJuice，3天变美计划。营养学家设计的冷压鲜榨果蔬汁餐单，每天6瓶连续3天，排出体内毒素，激发细胞修复力，减去多余脂肪、美颜、身体变轻盈，充满青春活力！新鲜水果与蔬菜冷压鲜榨，全程冷链免费送达。">
+		<meta name="keywords" content="沛时,轻断食果汁,纤体,冷榨蔬果汁,轻断食蔬果汁,沛时轻断食蔬果汁,果汁,果蔬汁,轻断食果蔬汁,冷榨果汁">
+		<meta name="description" content="轻断食果蔬汁沛时，3天变美计划。营养学家设计的冷压鲜榨果蔬汁餐单，每天6瓶连续3天，排出体内毒素，激发细胞修复力，减去多余脂肪、美颜、身体变轻盈，充满青春活力！新鲜水果与蔬菜冷压鲜榨，全程冷链免费送达。">
 		<title>轻断食果蔬汁沛时，3天变美计划</title>
 		<script src="index_files/v.htm" charset="utf-8"></script><script src="/assets/js/ntkfstat.js" charset="utf-8" async="" type="text/javascript"></script><script type="text/javascript" src="/assets/js/base.js"></script>
 		<script type="text/javascript" src="/assets/js/common.js"></script>
