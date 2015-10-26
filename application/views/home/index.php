@@ -125,7 +125,7 @@
 							</ul>
 						</div>
 					</a>
-											<div class="re_index_pro_btn"><a href="">查看详情</a></div>
+											<div class="re_index_pro_btn"><a href="/home/product">查看详情</a></div>
 									</div>
 							<div class="re_index_pro_list">
 					<a href="/home/product" class="re_index_pro_a">
@@ -137,7 +137,7 @@
 							</ul>
 						</div>
 					</a>
-											<div class="re_index_pro_btn"><a href="http://www.heyjuice.cn/Product/inside?sid=36">查看详情</a></div>
+											<div class="re_index_pro_btn"><a href="/home/product">查看详情</a></div>
 									</div>
 			</div>
 		</div>
