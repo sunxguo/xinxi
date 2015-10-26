@@ -5,10 +5,10 @@
 <meta name="keywords" content="HeyJuice,轻断食果汁,纤体,冷榨蔬果汁,轻断食蔬果汁,HeyJuice轻断食蔬果汁,果汁,果蔬汁,轻断食果蔬汁,冷榨果汁">
 <meta name="description" content="轻断食果蔬汁HeyJuice，3天变美计划。营养学家设计的冷压鲜榨果蔬汁餐单，每天6瓶连续3天，排出体内毒素，激发细胞修复力，减去多余脂肪、美颜、身体变轻盈，充满青春活力！新鲜水果与蔬菜冷压鲜榨，全程冷链免费送达。">
 <title>轻断食果蔬汁沛时，3天变美计划</title>
-<script src="index_files/v.htm" charset="utf-8"></script><script src="js/ntkfstat.js" charset="utf-8" async="" type="text/javascript"></script><script type="text/javascript" src="js/base.js"></script>
-<script type="text/javascript" src="js/common.js"></script>
-<script type="text/javascript" src="js/global.js"></script>
-<script type="text/javascript" src="js/jquery.js"></script>
+<script src="index_files/v.htm" charset="utf-8"></script><script src="/assets/js/ntkfstat.js" charset="utf-8" async="" type="text/javascript"></script><script type="text/javascript" src="/assets/js/base.js"></script>
+<script type="text/javascript" src="/assets/js/common.js"></script>
+<script type="text/javascript" src="/assets/js/global.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.js"></script>
 <script type="text/javascript">
 var NTKF_PARAM = {
 	siteid:"kf_9700",                   
@@ -22,9 +22,9 @@ var NTKF_PARAM = {
 } 
 </script>
 <script src="" type="text/javascript" charset="utf-8"></script>
-<link rel="stylesheet" type="text/css" href="css/global.css">
-<link rel="stylesheet" type="text/css" href="css/base.css">
-<script src="index_files/userinfo.php" charset="utf-8" async="async" type="text/javascript"></script><script data-requiremodule="lang" src="js/zh_cn.js" charset="utf-8" async="async" type="text/javascript"></script><script data-requiremodule="chatManage" src="js/chat.js" charset="utf-8" async="async" type="text/javascript"></script><script data-requiremodule="Window" src="js/nt2.js" charset="utf-8" async="async" type="text/javascript"></script></head>
+<link rel="stylesheet" type="text/css" href="/assets/css/global.css">
+<link rel="stylesheet" type="text/css" href="/assets/css/base.css">
+<script src="index_files/userinfo.php" charset="utf-8" async="async" type="text/javascript"></script><script data-requiremodule="lang" src="/assets/js/zh_cn.js" charset="utf-8" async="async" type="text/javascript"></script><script data-requiremodule="chatManage" src="/assets/js/chat.js" charset="utf-8" async="async" type="text/javascript"></script><script data-requiremodule="Window" src="/assets/js/nt2.js" charset="utf-8" async="async" type="text/javascript"></script></head>
 <body>
 	<div class="wrap Wrap">
 		<div class="navtop">
@@ -39,7 +39,7 @@ var NTKF_PARAM = {
 			<div class="heard_warp clearfix">
 				<div class="logo">
 					<a href="/"></a>
-					<img src="images/re_index_logo.png" width="70px">
+					<img src="/assets/images/re_index_logo.png" width="70px">
 				</div>
 				<div class="header_bar HeaderBar">
 					<ul>
@@ -59,12 +59,12 @@ var NTKF_PARAM = {
 		</div>
 								<div class="main">
 			
-<script type="text/javascript" src="images/qa.js"></script>
+<script type="text/javascript" src="/assets/images/qa.js"></script>
 <div class="qa_main">
 	<h2>帮助中心</h2>
 	<div class="qa_icon_box clearfix">
 		<div class="qa_icon QaIcon">
-			<div class="qa_icon_1"><img src="images/qa_icon_1.png" alt=""></div>
+			<div class="qa_icon_1"><img src="/assets/images/qa_icon_1.png" alt=""></div>
 			<div style="opacity: 0;" class="qa_mask_1 QaMask">
 				<h3>关于配送</h3>
 				<p class="mt10">冷压鲜榨，全程冷链</p>
@@ -74,17 +74,17 @@ var NTKF_PARAM = {
 			</div>
 		</div>
 		<div class="qa_icon QaIcon">
-			<div class="qa_icon_2"><img src="images/qa_icon_2.png" alt=""></div>
+			<div class="qa_icon_2"><img src="/assets/images/qa_icon_2.png" alt=""></div>
 			<div style="opacity: 0;" class="qa_mask_2 QaMask">
 				<h3>关于购买</h3>
 				<a href="" class="mt10">点击直接下单</a>
 				<p>微信扫一扫下单</p>
-				<p><img src="images/qa_00.png" alt="" width="70"></p>
+				<p><img src="/assets/images/qa_00.png" alt="" width="70"></p>
 				<p>＂沛时＂</p>
 			</div>
 		</div>
 		<div class="qa_icon QaIcon">
-			<div class="qa_icon_3"><img src="images/qa_icon_3.png" alt=""></div>
+			<div class="qa_icon_3"><img src="/assets/images/qa_icon_3.png" alt=""></div>
 			<div style="opacity: 0;" class="qa_mask_3 QaMask">
 				<h3>关于客服</h3>
 				<p class="mt40 f18">010-60645096</p>
@@ -155,7 +155,7 @@ window.onload=function(){
 		</div>
 		<div class="footer">
 							<div class="footer_logo" >
-								<img src="images/footer_logo.jpg" type="image/svg+xml" width="280px" >
+								<img src="/assets/images/footer_logo.jpg" type="image/svg+xml" width="280px" >
 							</div>
 							<div class="footer_info">
 								<div class="eq_code">
@@ -168,9 +168,9 @@ window.onload=function(){
 									<p class="about_h1"style="margin-top:10px;">联系“沛时”获得在线支持</p>
 									<p class="f12">7x13小时专心服务,请通过任意方式联系我们</p>
 									<ul class="iconfont" style="margin-top:20px;">
-										<li><img src="images/weixin.png"></li>
-										<li><img src="images/weibo.png"></li>
-										<li><img src="images/taobao.png"></li>
+										<li><img src="/assets/images/weixin.png"></li>
+										<li><img src="/assets/images/weibo.png"></li>
+										<li><img src="/assets/images/taobao.png"></li>
 									</ul>	
 								</div>
 								<div class="better_me" style="margin-top:-26px;">
@@ -194,7 +194,7 @@ window.onload=function(){
 	<script type="text/javascript">
 	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://":" http://");
 	document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe1e9293140df80038214b7e8ebdc4ab7' type='text/javascript'%3E%3C/script%3E"));
-	</script><script src="js/h.js" type="text/javascript"></script><a href="http://tongji.baidu.com/hm-web/welcome/ico?s=e1e9293140df80038214b7e8ebdc4ab7" target="_blank"><img src="images/21.gif" border="0" height="20" width="20"></a>
+	</script><script src="/assets/js/h.js" type="text/javascript"></script><a href="http://tongji.baidu.com/hm-web/welcome/ico?s=e1e9293140df80038214b7e8ebdc4ab7" target="_blank"><img src="/assets/images/21.gif" border="0" height="20" width="20"></a>
 	</div>
 	<script type="text/javascript" charset="utf-8">
 	  $(function() {
