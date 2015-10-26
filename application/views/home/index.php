@@ -80,20 +80,20 @@
 			</ul>
 			<ul style="height: 505.875px;" class="BannerBox">
 				<li class="">
-					<a href="productservice.htm"><img src="/assets/images/banner_warm.jpg" width="100%"></a>	
+					<a href="/home/productservice"><img src="/assets/images/banner_warm.jpg" width="100%"></a>	
 				</li>
 				<li class="">
-					<a href="productservice.htm"><img src="/assets/images/banner_warm1.jpg" width="100%"></a>
+					<a href="/home/productservice"><img src="/assets/images/banner_warm1.jpg" width="100%"></a>
 					
 				</li>
 				
 				
 				<li class="">
-					<a href="productservice.htm"><img src="/assets/images/banner_warm.jpg" width="100%"></a>
+					<a href="/home/productservice"><img src="/assets/images/banner_warm.jpg" width="100%"></a>
 					
 				</li>
 				<li class="this">
-					<a href="productservice.htm"><img src="/assets/images/banner_warm1.jpg" width="100%">
+					<a href="/home/productservice"><img src="/assets/images/banner_warm1.jpg" width="100%">
 				</a>
 				</li>
 			</ul>
@@ -104,7 +104,7 @@
 			<div class="re_index_tittle">轻断食果蔬汁</div>
 			<div class="re_index_pro clearfix">
 							<div class="re_index_pro_list">
-					<a href="product-35.htm" class="re_index_pro_a">
+					<a href="/home/product" class="re_index_pro_a">
 						<div class="re_index_pro_tit">纯果汁系列</div>
 						<div class="re_index_pro_box">
 							<ul>
@@ -113,10 +113,10 @@
 							</ul>
 						</div>
 					</a>
-											<div class="re_index_pro_btn"><a href="product-35.htm">查看详情</a></div>
+											<div class="re_index_pro_btn"><a href="/home/product">查看详情</a></div>
 									</div>
 							<div class="re_index_pro_list">
-					<a href="product-35.htm" class="re_index_pro_a">
+					<a href="/home/product" class="re_index_pro_a">
 						<div class="re_index_pro_tit">复合果汁系列</div>
 						<div class="re_index_pro_box">
 							<ul>
@@ -128,7 +128,7 @@
 											<div class="re_index_pro_btn"><a href="">查看详情</a></div>
 									</div>
 							<div class="re_index_pro_list">
-					<a href="product-35.htm" class="re_index_pro_a">
+					<a href="/home/product" class="re_index_pro_a">
 						<div class="re_index_pro_tit">排毒纤体系列果汁</div>
 						<div class="re_index_pro_box">
 							<ul>
@@ -168,7 +168,7 @@
 						</div>
 					</div>
 					<div class="re_index_04_gks">
-						<div class="re_index_gks_t"><a href="comment.htm"><img src="/assets/images/re_index_04.png"></a></div>
+						<div class="re_index_gks_t"><a href="/home/comment"><img src="/assets/images/re_index_04.png"></a></div>
 						<div class="re_index_gks_b">
 							<ul class="clearfix mt10">
 								<li>
@@ -206,7 +206,7 @@
 			<h2>品牌活动</h2>
 			<ul class="clearfix">
 				<li>
-					<a href="inside1.htm">
+					<a href="/home/inside">
 						<img src="/assets/images/bran_ab1.jpg" width="100%;">
 						<img src="/assets/images/3.png" class="pngbox" width="320px;">
 						<div class="blog_info">
@@ -216,7 +216,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="inside1.htm">
+					<a href="/home/inside1">
 						<img src="/assets/images/huodong1.jpg" width="100%;">
 						<img src="/assets/images/3.png" class="pngbox" width="320px;">
 						<div class="blog_info">
@@ -226,7 +226,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="inside1.htm">
+					<a href="/home/inside">
 						<img src="/assets/images/huodong2.jpg" width="100%;">
 						<img src="/assets/images/3.png" class="pngbox" width="320px;">
 						<div class="blog_info">
@@ -391,11 +391,11 @@
 						</div>
 						<div class="friendly_link">
 							<ul>
-								<li><a href="aboutus.htm">关于沛时</a></li>
-								<li><a href="contactus.htm">联系我们</a></li>
-								<li><a href="help.htm">帮助中心</a></li>
-								<li><a href="brand.htm">品牌活动</a></li>
-								<li><a href="http://www.heyjuice.cn/Delivery/index"></a></li>
+								<li><a href="/home/aboutus">关于沛时</a></li>
+								<li><a href="/home/contactus">联系我们</a></li>
+								<li><a href="/home/help">帮助中心</a></li>
+								<li><a href="/home/brand">品牌活动</a></li>
+								<!-- <li><a href="http://www.heyjuice.cn/Delivery/index"></a></li> -->
 							</ul>
 							<div class="f12 mt30 mb10" style="width:950px; margin-left:auto; margin-right:auto; margin-top:10px;">
 			               	    <p>北京沛时之初饮品有限公司&nbsp&nbsp&nbsp&nbsp京ICP备14012740号 ©沛时 2014&nbsp&nbsp&nbsp&nbsp海淀区上地十街1号院1号楼辉煌国际大厦1609室 </p>
