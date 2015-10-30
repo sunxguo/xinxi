@@ -7,7 +7,7 @@
 			查询
 		</button>
 		<input id="keywords" value="<?php echo isset($_GET['keywords'])?$_GET['keywords']:'';?>" placeholder="关键字" type="text" class="km-form-control fr" style="width:200px;height:30px;margin-right:10px;">
-		<select id="searchColumn" class="inp-txt km-form-control fr" style="width:100px;height:30px;margin-right:10px;">
+		<select id="searchColumn" class="inp-txt km-form-control fr" style="width:200px;height:30px;margin-right:10px;">
 			<option value="0" <?php echo !isset($_GET['column']) || $_GET['column']==0?'selected':'';?>>
 				所有栏目
 			</option>
@@ -143,6 +143,19 @@
 						<input id="title" type="text" class="km-form-control" style="width:400px;">
 					</li>
 					<li>
+						<label for="link" style="width:80px;">是否链接 ： </label>
+						<select id="islink" class="km-form-control" style="width: 50px;" onchange="if($(this).val()==0) $('#link').hide();else $('#link').show();">
+							<option value="0">
+								否
+							</option>
+							<option value="1">
+								是
+							</option>
+						</select>
+						<input id="link" type="text" class="km-form-control" value="http://" style="width:335px;display:none;">
+						<font color="red">-设置后将跳转至该链接-</font>
+					</li>
+					<li>
 						<label for="summary">摘要 ： </label>
 						<input id="summary" type="text" class="km-form-control" style="width:400px;">
 					</li>
@@ -180,8 +193,8 @@
 			<div class="km-modal-body">
 				<ul class="form-list">
 					<li>
-						<label for="column">子栏目 ： </label>
-						<select id="column1" class="inp-txt km-form-control" style="width:100px;">
+						<label for="column1">子栏目 ： </label>
+						<select id="column1" class="inp-txt km-form-control" style="width:150px;">
 							<?php foreach ($subColumns as $value):?>
 							<option value="<?php echo $value->id;?>">
 								<?php echo $value->name;?>
@@ -192,6 +205,18 @@
 					<li>
 						<label for="title">标题 ： </label>
 						<input id="title1" type="text" class="km-form-control" style="width:400px;">
+					</li>
+					<li>
+						<label for="link1" style="width:80px;">是否链接 ： </label>
+						<select id="islink1" class="km-form-control" style="width: 50px;" onchange="if($(this).val()==0) $('#link1').hide();else $('#link1').show();">
+							<option value="0">
+								否
+							</option>
+							<option value="1">
+								是
+							</option>
+						</select>
+						<input id="link1" type="text" class="km-form-control" value="http://" style="width:335px;display:none;">
 					</li>
 					<li>
 						<label for="summary">摘要 ： </label>

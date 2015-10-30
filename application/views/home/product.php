@@ -44,7 +44,7 @@ var NTKF_PARAM = {
 				<div class="header_bar HeaderBar">
 					<ul>
 						<li><a class="" href="/">首页</a></li>
-							<li><a class="this" href="/home/product">产品</a></li>
+							<li><a class="this" href="/home/productlist">产品</a></li>
 							<li><a class="" href="/home/comment">论坛</a></li>
 							<li><a class="" href="/home/brand">品牌活动</a></li>
 							<li><a class="" href="/home/service">品牌理念</a></li>
@@ -61,7 +61,7 @@ var NTKF_PARAM = {
 			
 <div class="details_main">
 	<div class="details_content_1 DetailsHei">
-		<img style="display: inline;" src="/assets/images/banner_012.jpg" class="lazy" data-original="banner_012.jpg" alt="" width="100%">
+		<img style="display: inline;" src="/assets/images/banner_012.jpg" class="lazy" data-original="/assets/images/banner_012.jpg" alt="" width="100%">
 		<div class="details_pro clearfix">
 			<img src="/assets/images/details_icon_01.png" alt="">
 			<ul>
@@ -72,6 +72,7 @@ var NTKF_PARAM = {
 					<div class="pro_ment">
 						<a data-product-id="1" data-product-price="490.00" data-product-info="这是一个连续3天的清体计划，适合每个月一次。3天18瓶，帮助缓解皮肤油腻现状，促进新陈代谢，让身体感觉轻盈没负担。" data-product-name="轻断食果蔬汁 经典款" class="CheckProduct CheckProduct1 this" href="javascript:;">三天装</a><a data-product-id="2" data-product-price="230.00" data-product-info="适合体验型顾客，或者临时补救（比如吃了一天火锅），主要用来清理肠胃。如果想获得更好的效果，需要在前后两天都保持健康饮食，多吃蔬菜水果。					" data-product-name="轻断食果蔬汁 经典款" class="CheckProduct CheckProduct2" href="javascript:;">一天装</a>					</div>
 					
+					<div data-product-id="2" class="add_cart ShoppingCarAdd">购买</div>
 				</li>
 			</ul>
 		</div>
@@ -89,7 +90,7 @@ var NTKF_PARAM = {
 			</tr>
 			<tr>
 				<td colspan="2" class="pt0 ProductInfo">这是一个连续3天的清体计划，适合每个月一次。3天18瓶，帮助缓解皮肤油腻现状，促进新陈代谢，让身体感觉轻盈没负担。</td>
-				<td class="pt0"><div data-product-id="1" class="add_cart m0 ShoppingCarAdd"></div></td>
+				<td class="pt0"><div data-product-id="1" class="add_cart m0 ShoppingCarAdd">购买</div></td>
 			</tr>
 		</tbody></table>
 	</div>

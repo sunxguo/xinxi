@@ -66,6 +66,8 @@ function addEssay(){
     essay.infoType = 'essay';
     essay.column = $("#column").val();
     essay.title = $("#title").val();
+    essay.islink = $("#islink").val();
+    essay.link = $("#link").val();
     essay.summary = $("#summary").val();
     essay.thumbnail = $("#thumbnail").attr('src');
     essay.content = contentEditor.html();
@@ -90,6 +92,8 @@ function saveEssay(){
     essay.id = currentEssayId;
     essay.column = $("#column1").val();
     essay.title = $("#title1").val();
+    essay.islink = $("#islink1").val();
+    essay.link = $("#link1").val();
     essay.summary = $("#summary1").val();
     essay.thumbnail = $("#thumbnail1").attr('src');
     essay.content = contentEditor1.html();
@@ -113,6 +117,13 @@ function editEssay(id){
 function getEssaySuccessHandler(essay){
     $("#title1").val(essay.title);
     $("#summary1").val(essay.summary);
+    $("#islink1").val(essay.islink);
+    if(essay.islink==1){
+        $("#link1").show();
+    }else{
+        $("#link1").hide();
+    }
+    $("#link1").val(essay.link);
     $("#column1").val(essay.column);
     contentEditor1.html(essay.content);
     $("#thumbnail1").attr('src',essay.thumbnail);

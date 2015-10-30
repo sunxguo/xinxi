@@ -14,14 +14,9 @@
 			</a>
 			<ul class="nav <?php echo array_key_exists('content',$sider)?'':'km-hide';?>">
 				<li><a href="/admin/home" class="<?php echo array_key_exists('home',$sider)?'active':'';?>">首页</a></li>
-				<li><a href="/admin/news" class="<?php echo array_key_exists('news',$sider)?'active':'';?>">新闻</a></li>
-				<li><a href="/admin/edu" class="<?php echo array_key_exists('edu',$sider)?'active':'';?>">教育</a></li>
-				<li><a href="/admin/area" class="<?php echo array_key_exists('area',$sider)?'active':'';?>">市县</a></li>
-				<li><a href="/admin/enrol" class="<?php echo array_key_exists('enrol',$sider)?'active':'';?>">招考</a></li>
-				<li><a href="/admin/school" class="<?php echo array_key_exists('school',$sider)?'active':'';?>">学校</a></li>
-				<li><a href="/admin/policy" class="<?php echo array_key_exists('policy',$sider)?'active':'';?>">政策</a></li>
-				<li><a href="/admin/activity" class="<?php echo array_key_exists('activity',$sider)?'active':'';?>">活动</a></li>
-				<li><a href="/admin/about" class="<?php echo array_key_exists('about',$sider)?'active':'';?>">关于</a></li>
+				<li><a href="/admin/products" class="<?php echo array_key_exists('products',$sider)?'active':'';?>">产品</a></li>
+				<li><a href="/admin/forum" class="<?php echo array_key_exists('forum',$sider)?'active':'';?>">论坛</a></li>
+				<li><a href="/admin/activity" class="<?php echo array_key_exists('activity',$sider)?'active':'';?>">品牌活动</a></li>
 			</ul>
 		</li>
 		<li>

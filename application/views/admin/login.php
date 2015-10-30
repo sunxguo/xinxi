@@ -5,9 +5,9 @@
     <title><?php echo $title;?></title>
 	<link rel="stylesheet" href="/assets/css/base.css" type="text/css"/>
 	<link rel="stylesheet" href="/assets/css/admin.css" type="text/css"/>
-    <script src="/assets/js/jquery.js" type="text/javascript"></script>
+    <script src="/assets/js/jquery-2.1.4.min.js" type="text/javascript"></script>
 	<script src="/assets/js/admin.js" type="text/javascript"></script>
-	<script src="/assets/js/common.js" type="text/javascript"></script>
+	<script src="/assets/js/commonmk.js" type="text/javascript"></script>
 </head>
 
 <body class="bk">

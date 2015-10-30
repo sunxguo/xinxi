@@ -489,8 +489,8 @@ div.stat_button{height: 60px; font-size: 14px;text-align: right;background: #dce
 .pro_ment{float: left; height: 30px; line-height: 30px; text-align: center; border: 1px solid #03b0da; background: #fff;}
 .pro_ment a{display: inline-block; text-align: center; width: 83px; color: #03b0da;}
 .pro_ment a.this{background: #03b0da; color: #fff;}
-.add_cart{float: left; width: 168px; height: 31px; line-height: 31px;  text-align: center; color: #fff; box-shadow: 0 1px 0 #;background:-webkit-gradient(linear, 0 0, 0 100%, from(#), to(#));background:-moz-linear-gradient(top, #,#);  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff6c70,endColorstr=#ff585d,grandientType=1); margin-left: 10px; cursor: pointer;}
-.add_cart:hover{background:#; }
+.add_cart{float: left; width: 168px; height: 31px; line-height: 31px;  text-align: center; color: #fff;  box-shadow: 0 1px 0 #777;background:-webkit-gradient(linear, 0 0, 0 100%, from(#ff6c70), to(#ff585d));background:-moz-linear-gradient(top, #ff6c70,#ff585d);  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff6c70,endColorstr=#ff585d,grandientType=1); margin-left: 10px; cursor: pointer;}
+.add_cart:hover{background:#ff585d; }
 .details_content_2{text-align: center;}
 .details_content_2 h2{color: #03b0da; font-size: 22px; padding: 75px 0 45px 0;}
 .details_content_2 p{width: 996px; font-size: 16px; border: 2px #03b0da dotted; border-radius: 2px; background:#e3fcf9; margin: 0 auto; text-align: left; padding: 25px 10px; color: #606774;}

@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <title><?php echo $title;?></title>
-	<link rel="stylesheet" href="/assets/css/base.css" type="text/css"/>
+	<link rel="stylesheet" href="/assets/css/basemk.css" type="text/css"/>
 	<link rel="stylesheet" href="/assets/css/cms.css" type="text/css"/>
 	<link rel="stylesheet" href="/assets/css/template.css" type="text/css"/>
 	<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.css" type="text/css"/>
 	<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-theme.css" type="text/css"/>
-    <script src="/assets/js/jquery.js" type="text/javascript"></script>
-	<script src="/assets/js/common.js" type="text/javascript"></script>
+    <script src="/assets/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+	<script src="/assets/js/commonmk.js" type="text/javascript"></script>
 	<script src="/assets/js/cms.js" type="text/javascript"></script>
 	<script src="/assets/js/admin.js" type="text/javascript"></script>
 	<script src="/assets/js/jquery.form.js" type="text/javascript"></script>
@@ -17,7 +17,7 @@
 <body>
     <div class="header-cms">
 		<a  class="km-logo" href="">
-            <img src="/assets/img/logo.png" alt="<?php echo $websiteName;?>" class="logo-asm"/>
+            <img src="/assets/images/re_index_logo.png" style="height: 40px;width:inherit;margin: 5px 25px;" alt="<?php echo $websiteName;?>" class="logo-asm"/>
 		</a>
         <ul class="menu-cms">
             <li class="name">

@@ -66,38 +66,20 @@
 	<div class="index_main">
 		<div class="banner BannerSlider">
 			<ul class="product_slides_btn SlidesStop">
-				<li class="btn0">
+				<?php foreach($sliders as $key=>$slider):?>
+				<li class="btn0 <?php echo $key==0?'this':'';?>">
 					<a href="javascript:;"></a>
 				</li>
-				<li class="btn1">
-					<a href="javascript:;"></a>
-				</li>
-				<li class="btn1">
-					<a href="javascript:;"></a>
-				</li>
-				<li class="btn1 this">
-					<a href="javascript:;"></a>
-				</li>
-			
+				<?php endforeach;?>
 			</ul>
 			<ul style="height: 505.875px;" class="BannerBox">
-				<li class="">
-					<a href="/home/productservice"><img src="/assets/images/banner_warm.jpg" width="100%"></a>	
+				<?php foreach($sliders as $key=>$slider):?>
+				<li class="<?php echo $key==0?'this':'';?>">
+					<a href="<?php echo $slider->islink==0?'/home/essay?id='.$slider->id:$slider->link;?>">
+						<img src="<?php echo $slider->thumbnail;?>" width="100%">
+					</a>	
 				</li>
-				<li class="">
-					<a href="/home/product"><img src="/assets/images/banner_warm1.jpg" width="100%"></a>
-					
-				</li>
-				
-				
-				<li class="">
-					<a href="/home/productservice"><img src="/assets/images/banner_warm.jpg" width="100%"></a>
-					
-				</li>
-				<li class="this">
-					<a href="/home/product"><img src="/assets/images/banner_warm1.jpg" width="100%">
-				</a>
-				</li>
+				<?php endforeach;?>
 			</ul>
 			<a href="javascript:;" class="pic_pre BannerPre"><img src="/assets/images/a.png" width="100%;"></a>
 			<a href="javascript:;" class="pic_next BannerNext"><img src="/assets/images/a.png" width="100%;"></a>
@@ -105,42 +87,20 @@
 		<div class="re_index_01">
 			<div class="re_index_tittle">轻断食果蔬汁</div>
 			<div class="re_index_pro clearfix">
-							<div class="re_index_pro_list">
-					<a href="/home/product" class="re_index_pro_a">
-						<div class="re_index_pro_tit">纯果汁系列</div>
+				<?php foreach($qingduanguoshus as $key=>$qdgs):?>
+				<div class="re_index_pro_list" <?php if($key>2):?>style="margin-top: 30px;"<?php endif;?>>
+					<a href="<?php echo $qdgs->islink==0?'/home/essay?id='.$qdgs->id:$qdgs->link;?>" class="re_index_pro_a">
+						<div class="re_index_pro_tit"><?php echo $qdgs->title;?></div>
 						<div class="re_index_pro_box">
 							<ul>
-								<li class="re_index_pro_img"><img src="/assets/images/product_01.png" height="137px" width="250px"></li>
-								<li class="re_index_pro_info">这是一个连续3天的清体计划，适合每个月一次。3天18瓶，帮助缓解皮肤油腻现状，促进新陈代谢，让身体感觉轻盈没负担。</li>
+								<li class="re_index_pro_img"><img src="<?php echo $qdgs->thumbnail;?>" height="137px" width="250px"></li>
+								<li class="re_index_pro_info"><?php echo $qdgs->summary;?></li>
 							</ul>
 						</div>
 					</a>
-											<div class="re_index_pro_btn"><a href="/home/product">查看详情</a></div>
-									</div>
-							<div class="re_index_pro_list">
-					<a href="/home/product" class="re_index_pro_a">
-						<div class="re_index_pro_tit">复合果汁系列</div>
-						<div class="re_index_pro_box">
-							<ul>
-								<li class="re_index_pro_img"><img src="/assets/images/product_02.png" height="137px" width="250px"></li>
-								<li class="re_index_pro_info">2015，＂沛时＂暖身款全新升级啦！热量低、维生素种类更丰富，为轻断食之旅增添更多机体活力。可加热婴儿奶瓶PP材质瓶身，分秒“叮”出美味，暖色调瓶搭配萌萌毛线帽，在寒冷的季节里将你萌化。</li>
-							</ul>
-						</div>
-					</a>
-											<div class="re_index_pro_btn"><a href="/home/product">查看详情</a></div>
-									</div>
-							<div class="re_index_pro_list">
-					<a href="/home/product" class="re_index_pro_a">
-						<div class="re_index_pro_tit">排毒纤体系列果汁</div>
-						<div class="re_index_pro_box">
-							<ul>
-								<li class="re_index_pro_img"><img src="/assets/images/product_03.png" height="137px" width="250px"></li>
-								<li class="re_index_pro_info">2015，"沛时"暖身款全新升级啦！热量低、维生素种类更丰富，为轻断食之旅增添更多机体活力。可加热婴儿奶瓶PP材质瓶身，分秒“叮”出美味，暖色调瓶搭配萌萌毛线帽，在寒冷的季节里将你萌化。</li>
-							</ul>
-						</div>
-					</a>
-											<div class="re_index_pro_btn"><a href="/home/product">查看详情</a></div>
-									</div>
+					<div class="re_index_pro_btn"><a href="<?php echo $qdgs->islink==0?'/home/essay?id='.$qdgs->id:$qdgs->link;?>">查看详情</a></div>
+				</div>
+				<?php endforeach;?>
 			</div>
 		</div>
 		<div class="re_index_02">
@@ -160,11 +120,13 @@
 						<div class="re_index_nice_b">
 							<div class="re_index_nice_box ReindexBox">
 								<ul>
-									<li class=""><a href=""><img src="/assets/images/re_nice_1.jpg"></a></li>
-									<li class="this"><a href=""><img src="/assets/images/re_nice_2.jpg"></a></li>
-									<li class=""><a href=""><img src="/assets/images/re_nice_3.jpg"></a></li>
-									<li class=""><a href=""><img src="/assets/images/re_nice_4.jpg"></a></li>
-									<li class=""><a href=""><img src="/assets/images/re_nice_5.jpg"></a></li>
+									<?php foreach($peishizuoce as $key=>$pszc):?>
+									<li class="<?php echo $key==0?'this':'';?>">
+										<a href="<?php echo $qdgs->islink==0?'/home/essay?id='.$qdgs->id:$qdgs->link;?>">
+											<img src="<?php echo $pszc->thumbnail;?>">
+										</a>
+									</li>
+									<?php endforeach;?>
 								</ul>
 							</div>
 						</div>
@@ -207,36 +169,18 @@
 		<div class="index_content_03 TranTop">
 			<h2>品牌活动</h2>
 			<ul class="clearfix">
+				<?php foreach($pinpaihuodong as $pphd):?>
 				<li>
-					<a href="/home/inside">
-						<img src="/assets/images/bran_ab1.jpg" width="100%;">
+					<a href="<?php echo $qdgs->islink==0?'/home/essay?id='.$qdgs->id:$qdgs->link;?>">
+						<img src="<?php echo $pphd->thumbnail;?>" width="100%;">
 						<img src="/assets/images/3.png" class="pngbox" width="320px;">
 						<div class="blog_info">
-							<p class="blog_data">2015/06/17</p>
-							<p class="blog_tit"></p>
+							<p class="blog_data"><?php echo date("Y/m/d",strtotime($pphd->time));?></p>
+							<p class="blog_tit"><?php echo $pphd->title;?></p>
 						</div>
 					</a>
 				</li>
-				<li>
-					<a href="/home/inside">
-						<img src="/assets/images/huodong1.jpg" width="100%;">
-						<img src="/assets/images/3.png" class="pngbox" width="320px;">
-						<div class="blog_info">
-							<p class="blog_data">2015/08/27</p>
-							<p class="blog_tit">两年前的"沛时"长这样？！"沛时"两周年复刻版发布</p>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="/home/inside">
-						<img src="/assets/images/huodong2.jpg" width="100%;">
-						<img src="/assets/images/3.png" class="pngbox" width="320px;">
-						<div class="blog_info">
-							<p class="blog_data">2015/08/27</p>
-							<p class="blog_tit">谁说婚礼才可以穿婚纱？</p>
-						</div>
-					</a>
-				</li>
+				<?php endforeach;?>
 				
 			</ul>
 			
