@@ -19,6 +19,7 @@
 				<li><a href="/admin/activity" class="<?php echo array_key_exists('activity',$sider)?'active':'';?>">品牌活动</a></li>
 			</ul>
 		</li>
+		<?php /*?>
 		<li>
 			<a href="/admin/users" class="nav-header <?php echo array_key_exists('user',$sider)?'active':'';?>">
 				<i class="icon-user"><img src="/assets/images/cms/icon/icon-uc-bs.png"></i>
@@ -37,6 +38,7 @@
 				-->
 			</a>
 		</li>
+		<?php */?>
 		<li class="has-sub">
 			<a href="javascript:void();" class="nav-header <?php echo array_key_exists('system',$sider)?'active':'';?>">
 				<i class="icon-user"><img src="/assets/images/cms/icon/icon-app-bs.png"></i>
@@ -44,9 +46,11 @@
 				<span class="btn-right sprite-ui"></span>
 			</a>
 			<ul class="nav <?php echo array_key_exists('system',$sider)?'':'km-hide';?>">
+				<?php /*?>
 				<li><a href="/admin/parameter" class="<?php echo array_key_exists('parameter',$sider)?'active':'';?>">基本参数</a></li>
 				<li><a href="/admin/log" class="<?php echo array_key_exists('log',$sider)?'active':'';?>">系统日志管理</a></li>
 				<li><a href="/admin/backup" class="<?php echo array_key_exists('backup',$sider)?'active':'';?>">数据库备份</a></li>
+				<?php */?>
 			</ul>
 		</li>
 	</ul>
