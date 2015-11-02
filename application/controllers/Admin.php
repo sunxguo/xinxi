@@ -25,10 +25,10 @@ class Admin extends CI_Controller {
 //		$websiteName=$websiteConfig['website_name_'.$_SESSION['language']];
 		$this->load->view('admin/header',
 			array(
-				'title' => $title." - 山西教育在线",
+				'title' => $title." - 沛时Perse",
 				'showSider' => true,
 				'sider' => $sider,
-				'websiteName'=>"山西教育在线"
+				'websiteName'=>"沛时Perse"
 			)
 		);
 		$this->load->view('admin/'.$view,$data);
