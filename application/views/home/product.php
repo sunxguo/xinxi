@@ -216,12 +216,6 @@ $(function(){
 					</div>
 	<!-- 弹出层 -->
 	<div class="mask_pro MarkWrap"></div>
-	<div style="display:none;">
-	<script type="text/javascript">
-	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://":" http://");
-	document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe1e9293140df80038214b7e8ebdc4ab7' type='text/javascript'%3E%3C/script%3E"));
-	</script><script src="/assets/js/h.js" type="text/javascript"></script><a href="http://tongji.baidu.com/hm-web/welcome/ico?s=e1e9293140df80038214b7e8ebdc4ab7" target="_blank"><img src="/assets/images/21.gif" border="0" height="20" width="20"></a>
-	</div>
 	<script type="text/javascript" charset="utf-8">
 	  $(function() {
 	      $("img.lazy").lazyload({effect: "fadeIn"});
