@@ -56,22 +56,26 @@
 							
 						</div>
 					</div>
-											
-							<div class="main">
+					<div class="main">
 						
 			<div class="order_comments">
 				<div class="main">
 					<ul style="height: 1390px;" class="comments_list">
-					
-					<li style="display: list-item; position: absolute; top: 10px; left: 25px;">
-				<div class="comments_list_content">
-					<a class="comments_list_img" target="_blank" href=""><img alt="real_tdy" src="/assets/images/560263500fff6.jpg"></a>
-					<a class="comments_list_avatar" target="_blank" href=""><img alt="#沛时升级新体验# 三天结束惹！来唠嗑一下感想 @沛时Cleanse" src="/assets/images/560263500fa18.jpg"></a>
-				</div>
-				<div class="comments_list_name">real_tdy</div>
-				<div class="comments_list_text">#“沛时”升级新体验# 三天结束惹！来唠嗑一下感想 “沛时、沛时、沛时”</div>
-			</li>
-			<li style="display: list-item; position: absolute; top: 10px; left: 265px;">
+						<?php foreach($comments as $comment):?>
+						<li style="display: list-item;">
+							<div class="comments_list_content">
+								<a class="comments_list_img" target="_blank" href="<?php echo $comment->islink==0?'/home/essay?id='.$comment->id:$comment->link;?>">
+									<img alt="real_tdy" src="<?php echo $comment->thumbnail;?>">
+								</a>
+								<a class="comments_list_avatar" target="_blank" href="<?php echo $comment->islink==0?'/home/essay?id='.$comment->id:$comment->link;?>">
+									<img alt="<?php echo $comment->title;?>" src="<?php echo $comment->authorAvatar;?>">
+								</a>
+							</div>
+							<div class="comments_list_name"><?php echo $comment->author;?></div>
+							<div class="comments_list_text"><?php echo $comment->summary;?></div>
+						</li>
+						<?php endforeach;?>
+			<!-- <li style="display: list-item; position: absolute; top: 10px; left: 265px;">
 				<div class="comments_list_content">
 					<a class="comments_list_img" target="_blank" href="http://weibo.com/5107111519/CBQY2CLKC?from=page_1005055107111519_profile&amp;wvr=6&amp;mod=weibotime"><img alt="头戴发箍的喵" src="/assets/images/56026279b021f.jpg"></a>
 					<a class="comments_list_avatar" target="_blank" href=""><img alt=" #沛时升级新体验#想说最爱5号，酸酸甜甜的让人很有胃口，苹果和菠萝绝配，4号就是一般的蜂蜜柠檬水味，2号生姜味有点重，不过喝完暖心啊，1&amp;3号说不出来的味道，不算难喝，个人原因，不喜欢黄瓜，菠菜，为嘛1&amp;3号味道一样呢？@HeyJuiceCleanse " src="/assets/images/56026279afeb9.jpg"></a>
@@ -160,15 +164,13 @@
 				</div>
 				<div class="comments_list_name">曹安娜_kelly</div>
 				<div class="comments_list_text">终于拿到了亲自参与研发的H款轻断食果蔬汁，美味·口感轻柔，轻断食·瘦腰美肤，觉得整个人砰砰砰都飞起来了。赞！@沛时Cleanse</div>
-			</li>
-
-			
+			</li> -->
 			</ul>
-					<div style="display: block;" class="order_comments_loading">
+					<!-- <div style="display: none;" class="order_comments_loading">
 						<img src="/assets/images/loading.gif">
 						<span>加载中...</span>
 					</div>
-				</div>
+ -->				</div>
 			</div>
 
 		<script type="text/javascript" src="/assets/images/jquery_003.js"></script>
@@ -273,12 +275,6 @@
 					</div>
 			<!-- 弹出层 -->
 			<div class="mask_pro MarkWrap"></div>
-			<div style="display:none;">
-			<script type="text/javascript">
-			var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://":" http://");
-			document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe1e9293140df80038214b7e8ebdc4ab7' type='text/javascript'%3E%3C/script%3E"));
-			</script><script src="/assets/js/h.js" type="text/javascript"></script><a href="http://tongji.baidu.com/hm-web/welcome/ico?s=e1e9293140df80038214b7e8ebdc4ab7" target="_blank"><img src="/assets/images/21.gif" border="0" height="20" width="20"></a>
-			</div>
 			<script type="text/javascript" charset="utf-8">
 			  $(function() {
 			      $("img.lazy").lazyload({effect: "fadeIn"});

@@ -64,55 +64,17 @@ var NTKF_PARAM = {
 		<img style="display: inline;" src="/assets/images/banner_ab.jpg" class="lazy" data-original="/Public/Home/images/banner_ab.jpg" width="100%">
 	</div>
 	<div class="blog_content_3 clearfix">
-				<a href="/home/inside">
+		<?php foreach($pinpaihuodong as $pphd):?>
+		<a href="/home/essay?id=<?php echo $pphd->id;?>">
 			<img src="/assets/images/2.png" class="pngbox" width="500px;">
-			<img src="/assets/images/5603b14bef3bf.jpg" width="500px;">
+			<img src="<?php echo $pphd->thumbnail;?>" width="500px;">
 			<div class="blog_info">
-				<p class="blog_data">2015-09-23</p>
-				<p class="blog_tit">暖身款回归! | 我没哭，只是被这个果蔬汁暖到了</p>
+				<p class="blog_data"><?php echo date('Y-m-d',strtotime($pphd->time));?></p>
+				<p class="blog_tit"><?php echo $pphd->title;?></p>
 			</div>	
 		</a>
-				<a href="/home/inside">
-			<img src="/assets/images/2.png" class="pngbox" width="500px;">
-			<img src="/assets/images/55eac25f02a5f.jpg" width="500px;">
-			<div class="blog_info">
-				<p class="blog_data">2015-08-31</p>
-				<p class="blog_tit">那个死贵的果蔬汁，到底为什么那么贵？</p>
-			</div>	
-		</a>
-				<a href="/home/inside">
-			<img src="/assets/images/2.png" class="pngbox" width="500px;">
-			<img src="/assets/images/55e42e77dc46b.jpg" width="500px;">
-			<div class="blog_info">
-				<p class="blog_data">2015-08-31</p>
-				<p class="blog_tit">婚纱这么美，一辈子只穿一次太可惜 | “沛时”老友记II</p>
-			</div>	
-		</a>
-				<a href="/home/inside">
-			<img src="/assets/images/2.png" class="pngbox" width="500px;">
-			<img src="/assets/images/55ebca36f2715.jpg" width="500px;">
-			<div class="blog_info">
-				<p class="blog_data">2015-08-17</p>
-				<p class="blog_tit">谁说婚礼才可以穿婚纱？</p>
-			</div>	
-		</a>
-				<a href="/home/inside">
-			<img src="/assets/images/2.png" class="pngbox" width="500px;">
-			<img src="/assets/images/55ebc9f81fcc2.jpg" width="500px;">
-			<div class="blog_info">
-				<p class="blog_data">2015-08-11</p>
-				<p class="blog_tit">两年前的“沛时”长这样？！</p>
-			</div>	
-		</a>
-				<a href="/home/inside">
-			<img src="/assets/images/2.png" class="pngbox" width="500px;">
-			<img src="/assets/images/55810b626172b.jpg" width="500px;">
-			<div class="blog_info">
-				<p class="blog_data">2015-06-17</p>
-				<p class="blog_tit">欢迎“沛时”：</p>
-			</div>	
-		</a>	
-			</div>
+		<?php endforeach;?>
+	</div>
 	<!-- <div class="mvoe">查看更多</div> -->
 </div>
 		</div>

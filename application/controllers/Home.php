@@ -52,13 +52,26 @@ class Home extends CI_Controller {
 		$this->load->view('home/product');
 	}
 	public function essay(){
-		$this->load->view('home/essay');
+		if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
+			$this->load->view('redirect',array('info'=>'地址错误！'));
+			return false;
+		}
+		$id=$_GET['id'];
+		$data['essay']=$this->getdata->getContent('essay',$id);
+		$this->load->view('home/essay',$data);
 	}
 	public function productlist(){
 		$this->load->view('home/productlist');
 	}
 	public function comment(){
-		$this->load->view('home/comment');
+		//'论坛'
+		$parameters=array(
+			'result'=>'data',
+			'column'=>5,
+			'orderBy'=>array('time'=>'DESC')
+		);
+		$data['comments']=$this->getdata->getEssays($parameters);
+		$this->load->view('home/comment',$data);
 	}
 	public function service(){
 		$this->load->view('home/service');
@@ -67,7 +80,14 @@ class Home extends CI_Controller {
 		$this->load->view('home/productservice');
 	}
 	public function brand(){
-		$this->load->view('home/brand');
+		//'品牌活动'
+		$parameters=array(
+			'result'=>'data',
+			'column'=>6,
+			'orderBy'=>array('time'=>'DESC')
+		);
+		$data['pinpaihuodong']=$this->getdata->getEssays($parameters);
+		$this->load->view('home/brand',$data);
 	}
 	public function hpp(){
 		$this->load->view('home/hpp');

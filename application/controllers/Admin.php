@@ -61,7 +61,7 @@ class Admin extends CI_Controller {
 	public function articleadd(){
 		$this->load->view('admin/article-add');
 	}
-	public function adminCommon($english,$chinese){
+	public function adminCommon($english,$chinese,$view='essaylist'){
 		$baseUrl='/admin/'.$english.'?placeholder=true';
 		$selectUrl='/admin/'.$english.'?placeholder=true';
 		$currentPage=isset($_GET['page'])?$_GET['page']:1;
@@ -90,7 +90,7 @@ class Admin extends CI_Controller {
 			'pageInfo'=>$pageInfo,
 			'subColumns'=>$this->getdata->getColumns($english,false)
 		);
-		$this->adminBaseHandler($chinese.'管理',array('content'=>true,$english=>true),'essaylist',$data);
+		$this->adminBaseHandler($chinese.'管理',array('content'=>true,$english=>true),$view,$data);
 	}
 	public function home(){
 		$this->adminCommon('home','首页内容');
@@ -102,6 +102,6 @@ class Admin extends CI_Controller {
 		$this->adminCommon('products','产品');
 	}
 	public function forum(){
-		$this->adminCommon('forum','论坛');
+		$this->adminCommon('forum','论坛','forumlist');
 	}
 }

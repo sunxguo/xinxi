@@ -51,6 +51,24 @@ function beforeUpload1(){
 function successHandler1(src){
     $("#thumbnail1").attr('src',src);
 }
+function uploadThumb2(){
+    uploadImageAdvance("#uploadImgThumb2",beforeUpload2,successHandler2);
+}
+function beforeUpload2(){
+    $("#thumbnail2").attr('src','/assets/images/cms/loading.gif');
+}
+function successHandler2(src){
+    $("#thumbnail2").attr('src',src);
+}
+function uploadThumb3(){
+    uploadImageAdvance("#uploadImgThumb3",beforeUpload3,successHandler3);
+}
+function beforeUpload3(){
+    $("#thumbnail3").attr('src','/assets/images/cms/loading.gif');
+}
+function successHandler3(src){
+    $("#thumbnail3").attr('src',src);
+}
 function showAddEssayDiv(){
     setDivCenter('#addEssayDiv',true);
 }
@@ -71,6 +89,12 @@ function addEssay(){
     essay.summary = $("#summary").val();
     essay.thumbnail = $("#thumbnail").attr('src');
     essay.content = contentEditor.html();
+    if($("#author").length > 0){
+        essay.author = $("#author").val();
+    }
+    if($("#thumbnail2").length > 0){
+        essay.avatar = $("#thumbnail2").attr('src');
+    }
     dataHandler('/common/addInfo',essay,null,null,null,addEssaySuccessHandler,false,false);
     
 }
@@ -97,6 +121,12 @@ function saveEssay(){
     essay.summary = $("#summary1").val();
     essay.thumbnail = $("#thumbnail1").attr('src');
     essay.content = contentEditor1.html();
+    if($("#author1").length > 0){
+        essay.author = $("#author1").val();
+    }
+    if($("#thumbnail3").length > 0){
+        essay.avatar = $("#thumbnail3").attr('src');
+    }
     dataHandler('/common/modifyInfo',essay,null,null,null,saveEssaySuccessHandler,false,false);
     
 }
@@ -122,6 +152,12 @@ function getEssaySuccessHandler(essay){
         $("#link1").show();
     }else{
         $("#link1").hide();
+    }
+    if($("#author1").length > 0){
+        $("#author1").val(essay.author);
+    }
+    if($("#thumbnail3").length > 0){
+        $("#thumbnail3").attr('src',essay.authorAvatar);
     }
     $("#link1").val(essay.link);
     $("#column1").val(essay.column);

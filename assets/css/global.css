@@ -756,7 +756,10 @@ div.stat_button{height: 60px; font-size: 14px;text-align: right;background: #dce
 /* Comments */
 .order_comments { background: #f6fdfe;}
 	.comments_list { position:relative; min-height: 400px; width: 1000px; margin: 0 auto;}
-		.comments_list li { box-shadow: 0 0 4px rgba(0, 0, 0, 0.3); display: none; background: #fff; width: 230px; color: #666;}
+		.comments_list li {float: left;margin-bottom: 10px;height: 396px; box-shadow: 0 0 4px rgba(0, 0, 0, 0.3); display: none; background: #fff; width: 230px; color: #666;}
+		.comments_list li:not(:nth-child(4n+1)) { 
+    		margin-left: 10px;
+		}
 		.comments_list_content { position: relative;}
 			.comments_list_text { width: 210px; padding: 0 10px 10px 10px; line-height: 180%;}
 			.comments_list_name {color: #00969E; width: 210px; padding: 5px 10px; font-size: 16px;}

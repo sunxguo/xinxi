@@ -27,6 +27,12 @@ class Common extends CI_Controller {
 					"author"=>1,
 					"time"=>date("Y-m-d H:i:s")
 				);
+				if(isset($data->author)){
+					$info['author']=$data->author;
+				}
+				if(isset($data->avatar)){
+					$info['authorAvatar']=$data->avatar;
+				}
 			break;
 			case "user":
 				if($data->validcode!=$_SESSION['authcode']){
@@ -63,6 +69,12 @@ class Common extends CI_Controller {
 					"thumbnail"=>$data->thumbnail,
 					"time"=>date("Y-m-d H:i:s")
 				);
+				if(isset($data->author)){
+					$info['author']=$data->author;
+				}
+				if(isset($data->avatar)){
+					$info['authorAvatar']=$data->avatar;
+				}
 			break;
 		}
 		$result=$this->dbHandler->updateData(array('table'=>$table,'where'=>$where,'data'=>$info));
