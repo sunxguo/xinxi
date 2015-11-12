@@ -150,13 +150,6 @@ class Common extends CI_Controller {
 	public function createVeriCode(){
 		veri_code();
 	}
-	public function checkCode(){
-		if(isset($_POST['code']) && strcasecmp($_POST['code'],$_SESSION['authcode'])==0){
-			echo json_encode(array("result"=>"success","message"=>"Right Security code!"));
-		}else{
-			echo json_encode(array("result"=>"failed","message"=>"Wrong Security code!"));
-		}
-	}
 	public function getWeather(){
 		$url="http://www.weather.com.cn/adat/cityinfo/101100101.html";
 		echo $result=httpGet($url);

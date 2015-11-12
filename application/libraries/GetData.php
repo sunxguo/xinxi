@@ -231,6 +231,14 @@ class GetData{
 		}
 		return $returnData;
 	}
+
+	public function checkCode($code){
+		if(strcasecmp($code,$_SESSION['authcode'])==0){
+			return true;
+		}else{
+			return false;
+		}
+	}
 }
 
 /* End of file Common.php */

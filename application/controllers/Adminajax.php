@@ -14,29 +14,35 @@ class Adminajax extends CI_Controller {
 		}
 	}
 	public function login(){
-		if(property_exists($this->_data, "username") && property_exists($this->_data, "password")){
-			$username=$this->_data->username;
-			$password=$this->_data->password;
-			$info=$this->getdata->getContentAdvance('admin',array('username'=>$username));
-			if(property_exists($info,'username')){
-				$post_pwd=MD5("MonkeyKing".$password);
-				$db_pwd=$info->password;
-				if($post_pwd==$db_pwd){
-					$_SESSION['username']=$info->username;
-					$_SESSION['userid']=$info->id;
-					$_SESSION['usertype']="admin";
-					echo json_encode(array("result"=>"success","message"=>"登录成功!"));
-				}
-				else{
-					echo json_encode(array("result"=>"failed","message"=>"密码错误!"));
-				}
-			}
-			else{
-				echo json_encode(array("result"=>"failed","message"=>"用户名不存在!"));
-			}
-		}else{
+		if(!property_exists($this->_data, "username") || !property_exists($this->_data, "password")){
 			echo json_encode(array("result"=>"failed","message"=>"请输入用户名和密码!"));
+			return false;
 		}
+		if(!property_exists($this->_data, "verificationCode")){
+			echo json_encode(array("result"=>"failed","message"=>"请输入验证码!"));
+			return false;
+		}
+		if(!$this->getdata->checkCode($this->_data->verificationCode)){
+			echo json_encode(array("result"=>"failed","message"=>"验证码错误!"));
+			return false;
+		}
+		$username=$this->_data->username;
+		$password=$this->_data->password;
+		$info=$this->getdata->getContentAdvance('admin',array('username'=>$username));
+		if(!property_exists($info,'username')){
+			echo json_encode(array("result"=>"failed","message"=>"用户名不存在!"));
+			return false;
+		}
+		$post_pwd=MD5("fd".$password);
+		$db_pwd=$info->password;
+		if($post_pwd!=$db_pwd){
+			echo json_encode(array("result"=>"failed","message"=>"密码错误!"));
+			return false;
+		}
+		$_SESSION['username']=$info->username;
+		$_SESSION['userid']=$info->id;
+		$_SESSION['usertype']="admin";
+		echo json_encode(array("result"=>"success","message"=>"登录成功!"));
 	}
 	public function logout(){
 		unset($_SESSION["username"]);

@@ -167,7 +167,7 @@ function language(language){
 	});
 }
 function refreshCode(){
-	$("#validCodeImg").attr("src","/common/createVeriCode");
+	$("#verificationCodeImg").attr("src","/common/createVeriCode");
 }
 function isEmail(str){ 
 	var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/; 

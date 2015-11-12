@@ -9,9 +9,22 @@ $(document).ready(function(){
     });
 });
 function adminLogin () {
+    if($("#username").val()==''){
+        showAlert('danger','用户名不能为空！','');
+        return false;
+    }
+    if($("#password").val()==''){
+        showAlert('danger','密码不能为空！','');
+        return false;
+    }
+    if($("#verificationCode").val()==''){
+        showAlert('danger','验证码不能为空！','');
+        return false;
+    }
     var admin = new Object(); 
     admin.username = $("#username").val();
     admin.password = $("#password").val();
+    admin.verificationCode = $("#verificationCode").val();
     dataHandler('/adminajax/login',admin,null,null,null,adminLoginSuccess,false,false);
 }
 function adminLoginSuccess(){
