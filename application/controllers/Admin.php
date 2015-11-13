@@ -34,6 +34,9 @@ class Admin extends CI_Controller {
 // 		$this->load->view('admin/'.$view,$data);
 // 		$this->load->view('admin/footer');
 // 	}
+	public function adminCommonHandler($parameters){
+
+	}
 	public function index(){
 		$data=array();
 		$this->load->view('admin/index',$data);
@@ -45,6 +48,9 @@ class Admin extends CI_Controller {
 	
 	public function articlelist(){
 		$this->load->view('admin/article-list');
+	}
+	public function activitylist(){
+		$this->load->view('admin/activity-list');
 	}
 	public function articleadd(){
 		$this->load->view('admin/article-add');

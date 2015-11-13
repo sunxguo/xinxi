@@ -186,21 +186,10 @@
   </table>
 </div>
 <footer class="footer">
-  <p>感谢jQuery、layer、laypage、Validform、UEditor、My97DatePicker、iconfont、Datatables、WebUploaded、icheck、highcharts、bootstrap-Switch<br>Copyright &copy;2015 FD.admin v1.0 All Rights Reserved.<br>
-    本后台系统由<a href="http://www.fengdukeji.com/" target="_blank" title="风度科技有限公司">风度科技</a>提供前端技术支持</p>
+  <p><!-- 感谢jQuery、layer、laypage、Validform、UEditor、My97DatePicker、iconfont、Datatables、WebUploaded、icheck、highcharts、bootstrap-Switch --><br>Copyright &copy;2015 FD.admin v1.0 All Rights Reserved.<br>
+    本后台系统由<a href="http://www.fengdukeji.com/" target="_blank" title="风度科技有限公司">风度科技</a>提供技术支持</p>
 </footer>
 <script type="text/javascript" src="/assets/lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="/assets/js/H-ui.js"></script>
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?080836300300be57b7f34f4b3e97d911";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F080836300300be57b7f34f4b3e97d911' type='text/javascript'%3E%3C/script%3E"));
-</script>
 </body>
 </html>
