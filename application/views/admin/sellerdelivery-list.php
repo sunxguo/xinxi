@@ -51,7 +51,7 @@
 				<td><?php echo $seller->gender=='0'?'男':($seller->gender=='1'?'女':'未知');?></td>
 				<td><?php echo $seller->phone;?></td>
 				<!-- <td><img src="<?php echo $buyer->qrcode;?>"></td> -->
-				<td><img src="<?php echo $seller->photo;?>" width="150"></td><!-- <td class="text-l">北京市 海淀区</td> -->
+				<td><img src="<?php echo $seller->photo;?>" width="100"></td><!-- <td class="text-l">北京市 海淀区</td> -->
 				<td><u style="cursor:pointer" class="text-primary" onclick="member_show('<?php echo $seller->name;?>','/admin/sellershow','<?php echo $seller->id;?>','360','440')"><?php echo $seller->name;?></u></td>
 				<td><?php echo $seller->devicetype=='0'?'Android':($seller->devicetype=='1'?'IOS':'未知');?></td>
 				<td><?php echo $seller->addtime;?></td>
