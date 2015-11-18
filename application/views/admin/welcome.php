@@ -3,7 +3,7 @@
 <body>
 <div class="pd-20" style="padding-top:20px;">
   <p class="f-20 text-success">欢迎使用插队宝后台管理系统<span class="f-14">Beta</span>！</p>
-  <p>登录次数：18 </p>
+  <!-- <p>登录次数：18 </p>
   <p>上次登录IP：222.35.131.79.1  上次登录时间：2014-6-14 11:19:55</p>
   <table class="table table-border table-bordered table-bg">
     <thead>
@@ -61,7 +61,7 @@
         <td>0</td>
       </tr>
     </tbody>
-  </table>
+  </table> -->
   <table class="table table-border table-bordered table-bg mt-20">
     <thead>
       <tr>
@@ -75,32 +75,32 @@
       </tr>
       <tr>
         <td>服务器IP地址</td>
-        <td>192.168.1.1</td>
+        <td>182.92.156.106</td>
       </tr>
       <tr>
         <td>服务器域名</td>
-        <td>www.h-ui.net</td>
+        <td>www.fengdukeji.com</td>
       </tr>
       <tr>
         <td>服务器端口 </td>
         <td>80</td>
       </tr>
       <tr>
-        <td>服务器IIS版本 </td>
-        <td>Microsoft-IIS/6.0</td>
+        <td>服务器版本 </td>
+        <td>Apache 2.2</td>
       </tr>
       <tr>
         <td>本文件所在文件夹 </td>
-        <td>D:\WebSite\HanXiPuTai.com\XinYiCMS.Web\</td>
+        <td>/var/www/cdb</td>
       </tr>
       <tr>
         <td>服务器操作系统 </td>
-        <td>Microsoft Windows NT 5.2.3790 Service Pack 2</td>
+        <td>Ubuntu 12.4 64Bit</td>
       </tr>
-      <tr>
+     <!--  <tr>
         <td>系统所在文件夹 </td>
         <td>C:\WINDOWS\system32</td>
-      </tr>
+      </tr> -->
       <tr>
         <td>服务器脚本超时时间 </td>
         <td>30000秒</td>
@@ -110,10 +110,10 @@
         <td>Chinese (People's Republic of China)</td>
       </tr>
       <tr>
-        <td>.NET Framework 版本 </td>
-        <td>2.050727.3655</td>
+        <td>PHP 版本 </td>
+        <td>5.2</td>
       </tr>
-      <tr>
+      <!-- <tr>
         <td>服务器当前时间 </td>
         <td>2014-6-14 12:06:23</td>
       </tr>
@@ -128,8 +128,8 @@
       <tr>
         <td>逻辑驱动器 </td>
         <td>C:\D:\</td>
-      </tr>
-      <tr>
+      </tr> -->
+      <!-- <tr>
         <td>CPU 总数 </td>
         <td>4</td>
       </tr>
@@ -138,7 +138,7 @@
         <td>x86 Family 6 Model 42 Stepping 1, GenuineIntel</td>
       </tr>
       <tr>
-        <td>虚拟内存 </td>
+        <td>内存 </td>
         <td>52480M</td>
       </tr>
       <tr>
@@ -160,7 +160,7 @@
       <tr>
         <td>当前系统用户名 </td>
         <td>NETWORK SERVICE</td>
-      </tr>
+      </tr> -->
     </tbody>
   </table>
 </div>
