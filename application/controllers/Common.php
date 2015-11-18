@@ -22,7 +22,7 @@ class Common extends CI_Controller {
 					"addtime"=>$time,
 					"edittime"=>$time,
 					"content"=>$data->content,
-					"thumbnail"=>strpos($data->thumbnail,'http')?$data->thumbnail:SERVER_IP.($data->thumbnail),
+					"thumbnail"=>strstr($data->thumbnail,'http')?$data->thumbnail:SERVER_IP.($data->thumbnail),
 					"order"=>is_numeric($data->order)?$data->order:0,
 					"draft"=>$data->draft
 				);
@@ -39,7 +39,7 @@ class Common extends CI_Controller {
 					"gender"=>$data->gender,
 					"phone"=>$data->phone,
 					"password"=>md5($data->password."63"),
-					"photo"=>strpos($data->photo,'http')?$data->photo:SERVER_IP.($data->photo),
+					"photo"=>strstr($data->photo,'http')?$data->photo:SERVER_IP.($data->photo),
 					"role"=>is_numeric($data->role)?$data->role:1,
 					"status"=>$data->status
 				);
@@ -52,7 +52,7 @@ class Common extends CI_Controller {
 					"name"=>$data->name,
 					"barcode"=>$data->barcode,
 					"price"=>$data->price,
-					"photo"=>strpos($data->photo,'http')?$data->photo:SERVER_IP.($data->photo),
+					"photo"=>strstr($data->photo,'http')?$data->photo:SERVER_IP.($data->photo),
 					"isedit"=>$data->isedit,
 					"categoryid"=>$data->categoryid,
 					"status"=>$data->status,
@@ -87,7 +87,7 @@ class Common extends CI_Controller {
 					"sno"=>$data->sno,
 					"name"=>$data->name,
 					"type"=>0,
-					"logo"=>strpos($data->logo,'http')?$data->logo:SERVER_IP.($data->logo),
+					"logo"=>strstr($data->logo,'http')?$data->logo:SERVER_IP.($data->logo),
 					"status"=>$data->status,
 					"addtime"=>$time,
 					"edittime"=>$time,
@@ -111,7 +111,7 @@ class Common extends CI_Controller {
 					"city"=>$data->city,
 					"area"=>$data->area,
 					"detailedarea"=>$data->detailedarea,
-					"logo"=>strpos($data->logo,'http')?$data->logo:SERVER_IP.($data->logo),
+					"logo"=>strstr($data->logo,'http')?$data->logo:SERVER_IP.($data->logo),
 					"lng"=>$data->lng,
 					"lat"=>$data->lat,
 					"status"=>$data->status,
@@ -172,7 +172,7 @@ class Common extends CI_Controller {
 					$info['content']=$data->content;
 				}
 				if(isset($data->thumbnail)){
-					$info['thumbnail']=strpos($data->thumbnail,'http')?$data->thumbnail:SERVER_IP.($data->thumbnail);
+					$info['thumbnail']=strstr($data->thumbnail,'http')?$data->thumbnail:SERVER_IP.($data->thumbnail);
 				}
 				if(isset($data->order)){
 					$info['order']=$data->order;
@@ -193,7 +193,7 @@ class Common extends CI_Controller {
 					$info['gender']=$data->gender;
 				}
 				if(isset($data->photo)){
-					$info['photo']=strpos($data->photo,'http')?$data->photo:SERVER_IP.($data->photo);
+					$info['photo']=strstr($data->photo,'http')?$data->photo:SERVER_IP.($data->photo);
 				}
 				if(isset($data->birthdate)){
 					$info['birthdate']=$data->birthdate;
@@ -219,8 +219,9 @@ class Common extends CI_Controller {
 				if(isset($data->gender)){
 					$info['gender']=$data->gender;
 				}
+					echo strstr($data->photo,'http');
 				if(isset($data->photo)){
-					$info['photo']=strpos($data->photo,'http')?$data->photo:SERVER_IP.($data->photo);
+					$info['photo']=strstr($data->photo,'http')?$data->photo:SERVER_IP.($data->photo);
 				}
 				if(isset($data->workno)){
 					$info['workno']=$data->workno;
@@ -276,7 +277,7 @@ class Common extends CI_Controller {
 					$info['detailedarea']=$data->detailedarea;
 				}
 				if(isset($data->logo)){
-					$info['logo']=strpos($data->logo,'http')?$data->logo:SERVER_IP.($data->logo);
+					$info['logo']=strstr($data->logo,'http')?$data->logo:SERVER_IP.($data->logo);
 				}
 				if(isset($data->lng)){
 					$info['lng']=$data->lng;
@@ -308,7 +309,7 @@ class Common extends CI_Controller {
 					$info['price']=$data->price;
 				}
 				if(isset($data->photo)){
-					$info['photo']=strpos($data->photo,'http')?$data->photo:SERVER_IP.($data->photo);
+					$info['photo']=strstr($data->photo,'http')?$data->photo:SERVER_IP.($data->photo);
 				}
 				if(isset($data->isedit)){
 					$info['isedit']=$data->isedit;
