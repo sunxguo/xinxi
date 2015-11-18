@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html>
 <head>
 <meta charset="utf-8">
@@ -8,24 +8,6 @@
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 <LINK rel="Bookmark" href="/favicon.ico" >
 <LINK rel="Shortcut Icon" href="/favicon.ico" />
-<script type="text/javascript" src="/assets/lib/jquery/1.9.1/jquery.min.js"></script> 
-<script type="text/javascript" src="/assets/lib/layer/1.9.3/layer.js"></script> 
-<script type="text/javascript" src="/assets/js/H-ui.js"></script> 
-<script type="text/javascript" src="/assets/js/H-ui.admin.js"></script> 
-<!--[if lt IE 9]>
-<script type="text/javascript" src="/assets/lib/html5.js"></script>
-<script type="text/javascript" src="/assets/lib/respond.min.js"></script>
-<script type="text/javascript" src="/assets/lib/PIE_IE678.js"></script>
-<![endif]-->
-<link href="/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
-<link href="/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
-<link href="/assets/skin/default/skin.css" rel="stylesheet" type="text/css" id="skin" />
-<link href="/assets/lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css" />
-<link href="/assets/css/style.css" rel="stylesheet" type="text/css" />
-<!--[if IE 6]>
-<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
-<script>DD_belatedPNG.fix('*');</script>
-<![endif]-->
 <title>插队宝后台管理系统</title>
 </head>
 <body>
@@ -67,19 +49,25 @@
 <aside class="Hui-aside">
 	<input runat="server" id="divScrollValue" type="hidden" value="" />
 	<div class="menu_dropdown bk_2">
-		<dl id="menu-article">
-			<dt><i class="Hui-iconfont">&#xe616;</i> 资讯管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+		<dl id="menu-picture">
+			<dt><i class="Hui-iconfont">&#xe613;</i> Banner管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="/admin/articlelist" href="javascript:void(0)">资讯管理</a></li>
+					<li><a _href="/admin/bannerlist" href="javascript:void(0)">Banner管理</a></li>
 				</ul>
 			</dd>
 		</dl>
-		<dl id="menu-picture">
-			<dt><i class="Hui-iconfont">&#xe613;</i> 活动管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+		<dl id="menu-member">
+			<dt><i class="Hui-iconfont">&#xe60d;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="/admin/activitylist" href="javascript:void(0)">活动管理</a></li>
+					<li><a _href="/admin/buyerlist" href="javascript:;">用户列表</a></li>
+					<!-- <li><a _href="member-del.html" href="javascript:;">删除的会员</a></li>
+					<li><a _href="member-level.html" href="javascript:;">等级管理</a></li>
+					<li><a _href="member-scoreoperation.html" href="javascript:;">积分管理</a></li>
+					<li><a _href="member-record-browse.html" href="javascript:void(0)">浏览记录</a></li>
+					<li><a _href="member-record-download.html" href="javascript:void(0)">下载记录</a></li>
+					<li><a _href="member-record-share.html" href="javascript:void(0)">分享记录</a></li> -->
 				</ul>
 			</dd>
 		</dl>
@@ -87,9 +75,29 @@
 			<dt><i class="Hui-iconfont">&#xe620;</i> 商品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="/admin/productbrand" href="javascript:void(0)">品牌管理</a></li>
-					<li><a _href="/admin/productcategory" href="javascript:void(0)">分类管理</a></li>
-					<li><a _href="/admin/productlist" href="javascript:void(0)">产品管理</a></li>
+					<li><a _href="/admin/productlist" href="javascript:void(0)">商品管理</a></li>
+					<!-- <li><a _href="/admin/productbrand" href="javascript:void(0)">品牌管理</a></li> -->
+					<li><a _href="/admin/categorylist" href="javascript:void(0)">分类管理</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl id="menu-admin">
+			<dt><i class="Hui-iconfont">&#xe62d;</i> 卖家管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a _href="/admin/supermarketlist" href="javascript:void(0)">超市管理</a></li>
+					<li><a _href="/admin/sellermarketlist" href="javascript:void(0)">超市账号管理</a></li>
+					<li><a _href="/admin/sellerdeliverylist" href="javascript:void(0)">物流账号管理</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl id="menu-article">
+			<dt><i class="Hui-iconfont">&#xe687;</i> 订单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a _href="/admin/orderlist" href="javascript:void(0)">订单管理</a></li>
+					<li><a _href="/admin/deliverylist" href="javascript:void(0)">物流管理</a></li>
+					<li><a _href="/admin/commentlist" href="javascript:void(0)">评价管理</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -103,11 +111,11 @@
 			</dd>
 		</dl>-->
 		<dl id="menu-comments">
-			<dt><i class="Hui-iconfont">&#xe622;</i> 评论管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe6ca;</i> 优惠券管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="http://h-ui.duoshuo.com/admin/" href="javascript:;">评论列表</a></li>
-					<li><a _href="feedback-list.html" href="javascript:void(0)">意见反馈</a></li>
+					<li><a _href="/admin/coupon" href="javascript:;">优惠券管理</a></li>
+					<!-- <li><a _href="feedback-list.html" href="javascript:void(0)">意见反馈</a></li> -->
 				</ul>
 			</dd>
 		</dl>
@@ -121,21 +129,7 @@
 				</ul>
 			</dd>
 		</dl>-->
-		<dl id="menu-member">
-			<dt><i class="Hui-iconfont">&#xe60d;</i> 会员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-			<dd>
-				<ul>
-					<li><a _href="member-list.html" href="javascript:;">会员列表</a></li>
-					<li><a _href="member-del.html" href="javascript:;">删除的会员</a></li>
-					<li><a _href="member-level.html" href="javascript:;">等级管理</a></li>
-					<li><a _href="member-scoreoperation.html" href="javascript:;">积分管理</a></li>
-					<li><a _href="member-record-browse.html" href="javascript:void(0)">浏览记录</a></li>
-					<li><a _href="member-record-download.html" href="javascript:void(0)">下载记录</a></li>
-					<li><a _href="member-record-share.html" href="javascript:void(0)">分享记录</a></li>
-				</ul>
-			</dd>
-		</dl>
-		<dl id="menu-admin">
+		<!-- <dl id="menu-admin">
 			<dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
@@ -144,8 +138,8 @@
 					<li><a _href="admin-list.html" href="javascript:void(0)">管理员列表</a></li>
 				</ul>
 			</dd>
-		</dl>
-		<dl id="menu-tongji">
+		</dl> -->
+		<!-- <dl id="menu-tongji">
 			<dt><i class="Hui-iconfont">&#xe61a;</i> 系统统计<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
@@ -158,16 +152,19 @@
 					<li><a _href="charts-7.html" href="javascript:void(0)">3D饼状图</a></li>
 				</ul>
 			</dd>
-		</dl>
+		</dl> -->
 		<dl id="menu-system">
 			<dt><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="system-base.html" href="javascript:void(0)">系统设置</a></li>
+					<!-- <li><a _href="system-base.html" href="javascript:void(0)">系统设置</a></li>
 					<li><a _href="system-category.html" href="javascript:void(0)">栏目管理</a></li>
 					<li><a _href="system-data.html" href="javascript:void(0)">数据字典</a></li>
 					<li><a _href="system-shielding.html" href="javascript:void(0)">屏蔽词</a></li>
-					<li><a _href="system-log.html" href="javascript:void(0)">系统日志</a></li>
+					<li><a _href="system-log.html" href="javascript:void(0)">系统日志</a></li> -->
+					<li><a _href="system-base.html" href="javascript:void(0)">关于我们</a></li>
+					<li><a _href="system-base.html" href="javascript:void(0)">意见反馈</a></li>
+					<li><a _href="system-base.html" href="javascript:void(0)">推送消息</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -222,16 +219,6 @@ function product_add(title,url){
 function member_add(title,url,w,h){
 	layer_show(title,url,w,h);
 }
-</script> 
-<script type="text/javascript">
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?080836300300be57b7f34f4b3e97d911";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s)})();
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F080836300300be57b7f34f4b3e97d911' type='text/javascript'%3E%3C/script%3E"));
 </script>
 </body>
 </html>

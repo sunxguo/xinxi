@@ -1,5 +1,7 @@
-<script type="text/javascript" src="/assets/lib/jquery/1.9.1/jquery.min.js"></script> 
-<script type="text/javascript" src="/assets/lib/Validform/5.3.2/Validform.min.js"></script>  
-<script type="text/javascript" src="/assets/lib/layer/1.9.3/layer.js"></script>
-<script type="text/javascript" src="/assets/js/H-ui.js"></script> 
-<script type="text/javascript" src="/assets/js/H-ui.admin.js"></script> 
+<div id="waitDiv"><img src="/assets/images/loading.gif"></div>
+<div id="messageAlert" class="km-alert km-alert-dismissible fade in" style="width:40%;display:none;">
+  <button type="button" class="km-close" onclick="$('#messageAlert').hide();"><span>×</span></button>
+  <strong></strong>
+  <span class="km-alert-msg"></span>
+</div>
+<div id="bkDiv"></div>

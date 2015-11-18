@@ -35,36 +35,531 @@ class Admin extends CI_Controller {
 // 		$this->load->view('admin/footer');
 // 	}
 	public function adminCommonHandler($parameters){
-
-	}
-	public function index(){
-		$data=array();
-		$this->load->view('admin/index',$data);
-	}
-	public function welcome(){
-		$data=array();
-		$this->load->view('admin/welcome',$data);
-	}
-	
-	public function articlelist(){
-		$this->load->view('admin/article-list');
-	}
-	public function activitylist(){
-		$this->load->view('admin/activity-list');
-	}
-	public function articleadd(){
-		$this->load->view('admin/article-add');
-	}
-	public function productbrand(){
-		$this->load->view('admin/product-brand');
-	}
-	public function productlist(){
+		if(!$this->checkAdminLogin()) return false;
 		$this->load->view('admin/_header');
-		$this->load->view('admin/product-list');
+		$this->load->view('admin/'.$parameters['view'],$parameters['data']);
 		$this->load->view('admin/_footer');
 	}
-	public function productcategory(){
-		$this->load->view('admin/product-category');
+	public function index(){
+		$parameters=array(
+			'view'=>'index',
+			'data'=>array()
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function welcome(){
+		$parameters=array(
+			'view'=>'welcome',
+			'data'=>array()
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function articlelist(){
+		$parameters=array(
+			'view'=>'article-list',
+			'data'=>array()
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function bannerlist(){
+		$bannerParameters=array(
+			'result'=>'count',
+			'orderBy'=>array('edittime'=>'DESC')
+		);
+		if(isset($_GET['startTime'])){
+			$bannerParameters['time']['begin']=$_GET['startTime'].' 00:00:00';
+		}
+		if(isset($_GET['endTime'])){
+			$bannerParameters['time']['end']=$_GET['endTime'].' 23:59:59';
+		}
+		if(isset($_GET['keywords'])){
+			$bannerParameters['keywords']=$_GET['keywords'];
+		}
+		$amount=$this->getdata->getBanners($bannerParameters);
+		$baseUrl='/admin/bannerlist?placeholder=true';
+		$selectUrl='/admin/bannerlist?placeholder=true';
+		$currentPage=isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+		$amountPerPage=20;
+		$pageInfo=$this->getdata->getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount);
+		$bannerParameters['result']='data';
+		// $bannerParameters['limit']=$pageInfo['limit'];
+		$banners=$this->getdata->getBanners($bannerParameters);
+
+		$parameters=array(
+			'view'=>'banner-list',
+			'data'=>array('banners'=>$banners,'pageInfo'=>$pageInfo)
+		);
+
+		$this->adminCommonHandler($parameters);
+	}
+	public function banneradd(){
+		$parameters=array(
+			'view'=>'banner-add',
+			'data'=>array()
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function banneredit(){
+		if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
+			$this->load->view('redirect',array('info'=>'地址错误！'));
+			return false;
+		}
+		$banner=$this->getdata->getContent('banner',$_GET['id']);
+		$parameters=array(
+			'view'=>'banner-edit',
+			'data'=>array('banner'=>$banner)
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function buyerlist(){
+
+		$bannerParameters=array(
+			'result'=>'count',
+			'orderBy'=>array('addtime'=>'DESC')
+		);
+		if(isset($_GET['gender'])){
+			$bannerParameters['gender']=$_GET['gender'];//0-男；1-女
+		}
+		if(isset($_GET['startTime'])){
+			$bannerParameters['time']['begin']=$_GET['startTime'].' 00:00:00';
+		}
+		if(isset($_GET['endTime'])){
+			$bannerParameters['time']['end']=$_GET['endTime'].' 23:59:59';
+		}
+		if(isset($_GET['keywords'])){
+			$bannerParameters['keywords']=$_GET['keywords'];
+		}
+		$amount=$this->getdata->getBuyers($bannerParameters);
+		$baseUrl='/admin/buyerlist?placeholder=true';
+		$selectUrl='/admin/buyerlist?placeholder=true';
+		$currentPage=isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+		$amountPerPage=20;
+		$pageInfo=$this->getdata->getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount);
+		$bannerParameters['result']='data';
+		// $bannerParameters['limit']=$pageInfo['limit'];
+		$buyers=$this->getdata->getBuyers($bannerParameters);
+
+		$parameters=array(
+			'view'=>'buyer-list',
+			'data'=>array('buyers'=>$buyers,'pageInfo'=>$pageInfo)
+		);
+
+		$this->adminCommonHandler($parameters);
+	}
+	public function buyershow(){
+		if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
+			$this->load->view('redirect',array('info'=>'地址错误！'));
+			return false;
+		}
+		$buyer=$this->getdata->getContent('buyer',$_GET['id']);
+		$defaultSuperMarket=$this->getdata->getContent('supermarket',$buyer->defaultsid);
+		// $this->getdata->twoDimensionCode($text,$id);
+		$parameters=array(
+			'view'=>'buyer-show',
+			'data'=>array('buyer'=>$buyer,'defaultSuperMarket'=>$defaultSuperMarket)
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function sellershow(){
+		if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
+			$this->load->view('redirect',array('info'=>'地址错误！'));
+			return false;
+		}
+		$seller=$this->getdata->getContent('seller',$_GET['id']);
+		$superMarket=$this->getdata->getContent('supermarket',$seller->sid);
+		$parameters=array(
+			'view'=>'seller-show',
+			'data'=>array('seller'=>$seller,'superMarket'=>$superMarket)
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function supermarketshow(){
+		if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
+			$this->load->view('redirect',array('info'=>'地址错误！'));
+			return false;
+		}
+		$supermarket=$this->getdata->getContent('supermarket',$_GET['id']);
+		$parameters=array(
+			'view'=>'supermarket-show',
+			'data'=>array('supermarket'=>$supermarket)
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function supermarketedit(){
+		if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
+			$this->load->view('redirect',array('info'=>'地址错误！'));
+			return false;
+		}
+		$supermarket=$this->getdata->getContent('supermarket',$_GET['id']);
+		$parameters=array(
+			'view'=>'supermarket-edit',
+			'data'=>array('supermarket'=>$supermarket)
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function subsupermarketedit(){
+		if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
+			$this->load->view('redirect',array('info'=>'地址错误！'));
+			return false;
+		}
+		$subsupermarket=$this->getdata->getContent('supermarket',$_GET['id']);
+		$supermarkets=$this->getdata->getAllSupermarkets(false);
+		$parameters=array(
+			'view'=>'subsupermarket-edit',
+			'data'=>array('subsupermarket'=>$subsupermarket,'supermarkets'=>$supermarkets)
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function supermarketadd(){
+		$parameters=array(
+			'view'=>'supermarket-add',
+			'data'=>array()
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function subsupermarketadd(){
+		$supermarkets=$this->getdata->getAllSupermarkets(false);
+		$parameters=array(
+			'view'=>'subsupermarket-add',
+			'data'=>array('supermarkets'=>$supermarkets)
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	//超市管理
+	public function supermarketlist(){
+
+		$superMarketsParameters=array(
+			'result'=>'count',
+			'orderBy'=>array('addtime'=>'DESC')
+		);
+		if(isset($_GET['type'])){
+			$superMarketsParameters['type']=$_GET['type'];//0-总；1-分
+		}
+		if(isset($_GET['startTime'])){
+			$superMarketsParameters['time']['begin']=$_GET['startTime'].' 00:00:00';
+		}
+		if(isset($_GET['endTime'])){
+			$superMarketsParameters['time']['end']=$_GET['endTime'].' 23:59:59';
+		}
+		if(isset($_GET['keywords'])){
+			$superMarketsParameters['keywords']=$_GET['keywords'];
+		}
+		$amount=$this->getdata->getSupermarkets($superMarketsParameters);
+		$baseUrl='/admin/supermarketlist?placeholder=true';
+		$selectUrl='/admin/supermarketlist?placeholder=true';
+		$currentPage=isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+		$amountPerPage=20;
+		$pageInfo=$this->getdata->getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount);
+		$superMarketsParameters['result']='data';
+		// $superMarketsParameters['limit']=$pageInfo['limit'];
+		$superMarkets=$this->getdata->getSupermarkets($superMarketsParameters);
+
+		$parameters=array(
+			'view'=>'supermarket-list',
+			'data'=>array('superMarkets'=>$superMarkets,'pageInfo'=>$pageInfo)
+		);
+
+		$this->adminCommonHandler($parameters);
+	}
+	//超市账号管理
+	public function sellermarketlist(){
+
+		$bannerParameters=array(
+			'result'=>'count',
+			'role'=>1,
+			'orderBy'=>array('addtime'=>'DESC')
+		);
+		if(isset($_GET['gender'])){
+			$bannerParameters['gender']=$_GET['gender'];//0-男；1-女
+		}
+		if(isset($_GET['startTime'])){
+			$bannerParameters['time']['begin']=$_GET['startTime'].' 00:00:00';
+		}
+		if(isset($_GET['endTime'])){
+			$bannerParameters['time']['end']=$_GET['endTime'].' 23:59:59';
+		}
+		if(isset($_GET['keywords'])){
+			$bannerParameters['keywords']=$_GET['keywords'];
+		}
+		$amount=$this->getdata->getSellers($bannerParameters);
+		$baseUrl='/admin/sellermarketlist?placeholder=true';
+		$selectUrl='/admin/sellermarketlist?placeholder=true';
+		$currentPage=isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+		$amountPerPage=20;
+		$pageInfo=$this->getdata->getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount);
+		$bannerParameters['result']='data';
+		// $bannerParameters['limit']=$pageInfo['limit'];
+		$sellers=$this->getdata->getSellers($bannerParameters);
+
+		$parameters=array(
+			'view'=>'sellermarket-list',
+			'data'=>array('sellers'=>$sellers,'pageInfo'=>$pageInfo)
+		);
+
+		$this->adminCommonHandler($parameters);
+	}
+
+	public function sellermarketadd(){
+		$supermarkets=$this->getdata->getAllSupermarkets(false);
+		$parameters=array(
+			'view'=>'sellermarket-add',
+			'data'=>array('supermarkets'=>$supermarkets)
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function sellermarketedit(){
+		if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
+			$this->load->view('redirect',array('info'=>'地址错误！'));
+			return false;
+		}
+		$seller=$this->getdata->getContent('seller',$_GET['id']);
+		$seller->subSupermarket=$this->getdata->getContent('supermarket',$seller->sid);
+		$supermarkets=$this->getdata->getAllSupermarkets(false);
+		$subParameters=array(
+			'result'=>'data',
+			'no'=>$seller->subSupermarket->no,
+			'type'=>1,
+		);
+		$subSupermarkets=$this->getdata->getSupermarkets($subParameters);//获取对应所有分店
+		$parameters=array(
+			'view'=>'sellermarket-edit',
+			'data'=>array('seller'=>$seller,'supermarkets'=>$supermarkets,'subSupermarkets'=>$subSupermarkets)
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	//物流账号管理
+	public function sellerdeliverylist(){
+
+		$bannerParameters=array(
+			'result'=>'count',
+			'role'=>0,
+			'orderBy'=>array('addtime'=>'DESC')
+		);
+		if(isset($_GET['gender'])){
+			$bannerParameters['gender']=$_GET['gender'];//0-男；1-女
+		}
+		if(isset($_GET['startTime'])){
+			$bannerParameters['time']['begin']=$_GET['startTime'].' 00:00:00';
+		}
+		if(isset($_GET['endTime'])){
+			$bannerParameters['time']['end']=$_GET['endTime'].' 23:59:59';
+		}
+		if(isset($_GET['keywords'])){
+			$bannerParameters['keywords']=$_GET['keywords'];
+		}
+		$amount=$this->getdata->getSellers($bannerParameters);
+		$baseUrl='/admin/sellerdeliverylist?placeholder=true';
+		$selectUrl='/admin/sellerdeliverylist?placeholder=true';
+		$currentPage=isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+		$amountPerPage=20;
+		$pageInfo=$this->getdata->getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount);
+		$bannerParameters['result']='data';
+		// $bannerParameters['limit']=$pageInfo['limit'];
+		$sellers=$this->getdata->getSellers($bannerParameters);
+
+		$parameters=array(
+			'view'=>'sellerdelivery-list',
+			'data'=>array('sellers'=>$sellers,'pageInfo'=>$pageInfo)
+		);
+
+		$this->adminCommonHandler($parameters);
+	}
+
+	public function sellerdeliveryadd(){
+		$supermarkets=$this->getdata->getAllSupermarkets(false);
+		$parameters=array(
+			'view'=>'sellerdelivery-add',
+			'data'=>array('supermarkets'=>$supermarkets)
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function sellerdeliveryedit(){
+		if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
+			$this->load->view('redirect',array('info'=>'地址错误！'));
+			return false;
+		}
+		$seller=$this->getdata->getContent('seller',$_GET['id']);
+		$seller->subSupermarket=$this->getdata->getContent('supermarket',$seller->sid);
+		$supermarkets=$this->getdata->getAllSupermarkets(false);
+		$subParameters=array(
+			'result'=>'data',
+			'no'=>$seller->subSupermarket->no,
+			'type'=>1,
+		);
+		$subSupermarkets=$this->getdata->getSupermarkets($subParameters);//获取对应所有分店
+		$parameters=array(
+			'view'=>'sellerdelivery-edit',
+			'data'=>array('seller'=>$seller,'supermarkets'=>$supermarkets,'subSupermarkets'=>$subSupermarkets)
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function sellerchangepassword(){
+		if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
+			$this->load->view('redirect',array('info'=>'地址错误！'));
+			return false;
+		}
+		$seller=$this->getdata->getContent('seller',$_GET['id']);
+		$parameters=array(
+			'view'=>'sellerchange-password',
+			'data'=>array('seller'=>$seller)
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function articleadd(){
+		$parameters=array(
+			'view'=>'article-add',
+			'data'=>array()
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function productbrand(){
+		$parameters=array(
+			'view'=>'product-brand',
+			'data'=>array()
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function productlist(){
+		$productParameters=array(
+			'result'=>'count',
+			'orderBy'=>array('addtime'=>'DESC')
+		);
+		if(isset($_GET['sid'])){
+			$productParameters['sid']=$_GET['sid'];
+		}
+		if(isset($_GET['categoryid'])){
+			$productParameters['categoryid']=$_GET['categoryid'];
+		}
+		if(isset($_GET['startTime'])){
+			$productParameters['time']['begin']=$_GET['startTime'].' 00:00:00';
+		}
+		if(isset($_GET['endTime'])){
+			$productParameters['time']['end']=$_GET['endTime'].' 23:59:59';
+		}
+		if(isset($_GET['keywords'])){
+			$productParameters['keywords']=$_GET['keywords'];
+		}
+		$amount=$this->getdata->getProducts($productParameters);
+		$baseUrl='/admin/productlist?placeholder=true';
+		$selectUrl='/admin/productlist?placeholder=true';
+		$currentPage=isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+		$amountPerPage=20;
+		$pageInfo=$this->getdata->getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount);
+		$productParameters['result']='data';
+		// $bannerParameters['limit']=$pageInfo['limit'];
+		$products=$this->getdata->getProducts($productParameters);
+		$supermarkets=$this->getdata->getAllSupermarkets(true,false);
+		if(isset($_GET['sid'])){
+			$categories=$this->getdata->getCategories(array(
+				'result'=>'data',
+				'sid'=>$_GET['sid']
+			));
+		}else{
+			$categories=array();
+		}
+		$parameters=array(
+			'view'=>'product-list',
+			'data'=>array('products'=>$products,'pageInfo'=>$pageInfo,'supermarkets'=>$supermarkets,'categories'=>$categories)
+		);
+
+		$this->adminCommonHandler($parameters);
+	}
+	public function categorylist(){
+		$categoryParameters=array(
+			'result'=>'count',
+			'orderBy'=>array('addtime'=>'DESC')
+		);
+		if(isset($_GET['sid'])){
+			$categoryParameters['sid']=$_GET['sid'];
+		}
+		if(isset($_GET['startTime'])){
+			$categoryParameters['time']['begin']=$_GET['startTime'].' 00:00:00';
+		}
+		if(isset($_GET['endTime'])){
+			$categoryParameters['time']['end']=$_GET['endTime'].' 23:59:59';
+		}
+		if(isset($_GET['keywords'])){
+			$categoryParameters['keywords']=$_GET['keywords'];
+		}
+		$amount=$this->getdata->getCategories($categoryParameters);
+		$baseUrl='/admin/categorylist?placeholder=true';
+		$selectUrl='/admin/categorylist?placeholder=true';
+		$currentPage=isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+		$amountPerPage=20;
+		$pageInfo=$this->getdata->getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount);
+		$categoryParameters['result']='data';
+		// $bannerParameters['limit']=$pageInfo['limit'];
+		$categories=$this->getdata->getCategories($categoryParameters);
+		$supermarkets=$this->getdata->getAllSupermarkets(true,false);
+		$parameters=array(
+			'view'=>'category-list',
+			'data'=>array('categories'=>$categories,'pageInfo'=>$pageInfo,'supermarkets'=>$supermarkets)
+		);
+
+		$this->adminCommonHandler($parameters);
+	}
+	public function productadd(){
+		$supermarkets=$this->getdata->getAllSupermarkets(true,false);
+		$parameters=array(
+			'view'=>'product-add',
+			'data'=>array('supermarkets'=>$supermarkets)
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function categoryedit(){
+		if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
+			$this->load->view('redirect',array('info'=>'地址错误！'));
+			return false;
+		}
+		$category=$this->getdata->getContent('category',$_GET['id']);
+		$supermarkets=$this->getdata->getAllSupermarkets(true,false);
+		$parameters=array(
+			'view'=>'category-edit',
+			'data'=>array('category'=>$category,'supermarkets'=>$supermarkets)
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function categoryadd(){
+		$supermarkets=$this->getdata->getAllSupermarkets(true,false);
+		$parameters=array(
+			'view'=>'category-add',
+			'data'=>array('supermarkets'=>$supermarkets)
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function productedit(){
+		if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
+			$this->load->view('redirect',array('info'=>'地址错误！'));
+			return false;
+		}
+		$product=$this->getdata->getContent('goods',$_GET['id']);
+		$categories=$this->getdata->getCategories(
+					array(
+						'result'=>'data',
+						'sid'=>$product->sid,
+						'orderBy'=>array('order'=>'ASC')
+					)
+				);
+		$supermarkets=$this->getdata->getAllSupermarkets(true,false);
+		$parameters=array(
+			'view'=>'product-edit',
+			'data'=>array('product'=>$product,'categories'=>$categories,'supermarkets'=>$supermarkets)
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function productshow(){
+		if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
+			$this->load->view('redirect',array('info'=>'地址错误！'));
+			return false;
+		}
+		$product=$this->getdata->getContent('goods',$_GET['id']);
+		$supermarket=$this->getdata->getContent('supermarket',$product->sid);
+		$category=$this->getdata->getContent('category',$product->categoryid);
+		$parameters=array(
+			'view'=>'product-show',
+			'data'=>array('product'=>$product,'category'=>$category,'supermarket'=>$supermarket)
+		);
+		$this->adminCommonHandler($parameters);
 	}
 	// public function adminCommon($english,$chinese,$view='essaylist'){
 	// 	$baseUrl='/admin/'.$english.'?placeholder=true';

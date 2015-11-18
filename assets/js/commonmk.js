@@ -118,26 +118,26 @@ function dataHandler(url,postDataObj,confirmMsg,cancelCallBack,successMsg,callBa
 function addImage(){
 	$("#file").click();
 }*/
-function uploadImage(beforeUpload,successHandler){
-	$("#upload_image_form").ajaxSubmit({
-		success: function (data) {
-			var result=$.parseJSON(data);
-			if(result.code){
-				successHandler(result.message);
-			}else{
-				alert(result.message);
-			}
-		},
-		url: "/common/uploadImage",
-		data: $("#upload_image_form").formSerialize(),
-		type: 'POST',
-		beforeSubmit: function () {
-			beforeUpload();
-		}
-	});
-	return false;
-}
-function uploadImageAdvance(formId,beforeUpload,successHandler){
+// function uploadImage(beforeUpload,successHandler){
+// 	$("#upload_image_form").ajaxSubmit({
+// 		success: function (data) {
+// 			var result=$.parseJSON(data);
+// 			if(result.code){
+// 				successHandler(result.message);
+// 			}else{
+// 				alert(result.message);
+// 			}
+// 		},
+// 		url: "/common/uploadImage",
+// 		data: $("#upload_image_form").formSerialize(),
+// 		type: 'POST',
+// 		beforeSubmit: function () {
+// 			beforeUpload();
+// 		}
+// 	});
+// 	return false;
+// }
+function uploadImage(formId,beforeUpload,successHandler){
 	$(formId).ajaxSubmit({
 		success: function (data) {
 			var result=$.parseJSON(data);

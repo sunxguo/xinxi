@@ -5,6 +5,7 @@ class GetData{
 	function __construct(){
 		$this->CI =& get_instance();
 		$this->CI->load->model("dbHandler");
+		$this->CI->load->helper("qrcode");
 	}
 	/**
 	 * 获取网站配置信息
@@ -129,22 +130,57 @@ class GetData{
 		);
 		return $page;
 	}
-	public function getEssays($parameters){
+	// public function getEssays($parameters){
+	// 	$condition=array(
+	// 		'table'=>'essay',
+	// 		'result'=>$parameters['result']
+	// 	);
+	// 	if(isset($parameters['column'])){
+	// 		$condition['where']['column']=$parameters['column'];
+	// 	}
+	// 	if(isset($parameters['columns'])){
+	// 		$condition['where_in']=array('column'=>$parameters['columns']);
+	// 	}
+	// 	if(isset($parameters['nocolumns'])){
+	// 		$condition['where_not_in']=array('column'=>$parameters['nocolumns']);
+	// 	}
+	// 	if(isset($parameters['orderBy'])){
+	// 		$condition['order_by']=$parameters['orderBy'];
+	// 	}
+	// 	if(isset($parameters['keywords'])){
+	// 		$condition['like']=array('title'=>$parameters['keywords']);
+	// 	}
+	// 	if(isset($parameters['limit'])){
+	// 		$condition['limit']=$parameters['limit'];
+	// 	}
+	// 	if(isset($parameters['time'])){
+	// 		if(isset($parameters['time']['begin'])){
+	// 			$condition['where']['time >=']=$parameters['time']['begin'];
+	// 		}
+	// 		if(isset($parameters['time']['end'])){
+	// 			$condition['where']['time <=']=$parameters['time']['end'];
+	// 		}
+	// 	}
+	// 	$essays=$this->getData($condition);
+	// 	if($parameters['result']=='data'){
+	// 		foreach ($essays as $key => $value) {
+	// 			$value->columnName=$this->getContent('column',$value->column)->name;
+	// 		}
+	// 	}
+	// 	return $essays;
+	// }
+	public function getBanners($parameters){
 		$condition=array(
-			'table'=>'essay',
+			'table'=>'banner',
 			'result'=>$parameters['result']
 		);
-		if(isset($parameters['column'])){
-			$condition['where']['column']=$parameters['column'];
-		}
-		if(isset($parameters['columns'])){
-			$condition['where_in']=array('column'=>$parameters['columns']);
-		}
-		if(isset($parameters['nocolumns'])){
-			$condition['where_not_in']=array('column'=>$parameters['nocolumns']);
+		if(isset($parameters['draft'])){
+			$condition['where']=array('draft'=>$parameters['draft']);
 		}
 		if(isset($parameters['orderBy'])){
 			$condition['order_by']=$parameters['orderBy'];
+		}else{
+			$condition['order_by']=array('order'=>'ASC');
 		}
 		if(isset($parameters['keywords'])){
 			$condition['like']=array('title'=>$parameters['keywords']);
@@ -154,83 +190,278 @@ class GetData{
 		}
 		if(isset($parameters['time'])){
 			if(isset($parameters['time']['begin'])){
-				$condition['where']['time >=']=$parameters['time']['begin'];
+				$condition['where']['addtime >=']=$parameters['time']['begin'];
 			}
 			if(isset($parameters['time']['end'])){
-				$condition['where']['time <=']=$parameters['time']['end'];
+				$condition['where']['addtime <=']=$parameters['time']['end'];
 			}
 		}
-		$essays=$this->getData($condition);
-		if($parameters['result']=='data'){
-			foreach ($essays as $key => $value) {
-				$value->columnName=$this->getContent('column',$value->column)->name;
-			}
-		}
-		return $essays;
+		$banners=$this->getData($condition);
+		// if($parameters['result']=='data'){
+		// 	foreach ($essays as $key => $value) {
+		// 		$value->columnName=$this->getContent('column',$value->column)->name;
+		// 	}
+		// }
+		return $banners;
 	}
-	public function getUsers($parameters){
+	public function getBuyers($parameters){
 		$condition=array(
-			'table'=>'user',
+			'table'=>'buyer',
 			'result'=>$parameters['result']
 		);
 		if(isset($parameters['gender'])){
-			$condition['where']['gender']=$parameters['gender'];
+			$condition['where']['gender']=$parameters['gender']=="NULL"?NULL:$parameters['gender'];
 		}
 		if(isset($parameters['orderBy'])){
 			$condition['order_by']=$parameters['orderBy'];
 		}
 		if(isset($parameters['keywords'])){
-			$condition['like']=array('username'=>$parameters['keywords']);
+			$condition['or_like_bracket']['alias']=$parameters['keywords'];
+			$condition['or_like_bracket']['phone']=$parameters['keywords'];
 		}
 		if(isset($parameters['limit'])){
 			$condition['limit']=$parameters['limit'];
 		}
 		if(isset($parameters['time'])){
 			if(isset($parameters['time']['begin'])){
-				$condition['where']['time >=']=$parameters['time']['begin'];
+				$condition['where']['addtime >=']=$parameters['time']['begin'];
 			}
 			if(isset($parameters['time']['end'])){
-				$condition['where']['time <=']=$parameters['time']['end'];
+				$condition['where']['addtime <=']=$parameters['time']['end'];
 			}
 		}
-		$users=$this->getData($condition);
+		$buyers=$this->getData($condition);
+		if($parameters['result']=='data'){
+			foreach ($buyers as $key => $value) {
+				$value->supermarket=$this->getContent('supermarket',$value->defaultsid);
+			}
+		}
+		return $buyers;
+	}
+	public function getProducts($parameters){
+		$condition=array(
+			'table'=>'goods',
+			'result'=>$parameters['result']
+		);
+		if(isset($parameters['sid'])){
+			$condition['where']['sid']=$parameters['sid'];
+		}
+		if(isset($parameters['categoryid'])){
+			$condition['where']['categoryid']=$parameters['categoryid'];
+		}
+		if(isset($parameters['orderBy'])){
+			$condition['order_by']=$parameters['orderBy'];
+		}
+		if(isset($parameters['keywords'])){
+			$condition['or_like_bracket']['name']=$parameters['keywords'];
+		}
+		if(isset($parameters['limit'])){
+			$condition['limit']=$parameters['limit'];
+		}
+		if(isset($parameters['time'])){
+			if(isset($parameters['time']['begin'])){
+				$condition['where']['addtime >=']=$parameters['time']['begin'];
+			}
+			if(isset($parameters['time']['end'])){
+				$condition['where']['addtime <=']=$parameters['time']['end'];
+			}
+		}
+		$products=$this->getData($condition);
+		if($parameters['result']=='data'){
+			foreach ($products as $key => $value) {
+				$value->supermarket=$this->getContent('supermarket',$value->sid);
+				$value->category=$this->getContent('category',$value->categoryid);
+			}
+		}
+		return $products;
+	}
+	public function getSellers($parameters){
+		$condition=array(
+			'table'=>'seller',
+			'result'=>$parameters['result']
+		);
+		if(isset($parameters['gender'])){
+			$condition['where']['gender']=$parameters['gender']=="NULL"?NULL:$parameters['gender'];
+		}
+		if(isset($parameters['supermarket'])){
+			$condition['where']['sid']=$parameters['supermarket'];
+		}
+		if(isset($parameters['role'])){
+			$condition['where']['role']=$parameters['role'];
+		}
+		if(isset($parameters['keywords'])){
+			$condition['or_like_bracket']['workno']=$parameters['keywords'];
+			$condition['or_like_bracket']['name']=$parameters['keywords'];
+			$condition['or_like_bracket']['phone']=$parameters['keywords'];
+			// $condition['sql']="(`workno` LIKE '%".$parameters['keywords']."%' OR `name` LIKE '%".$parameters['keywords']."%' OR `pone` LIKE '%".$parameters['keywords']."%')";
+		}
+		if(isset($parameters['limit'])){
+			$condition['limit']=$parameters['limit'];
+		}
+		if(isset($parameters['time'])){
+			if(isset($parameters['time']['begin'])){
+				$condition['where']['addtime >=']=$parameters['time']['begin'];
+			}
+			if(isset($parameters['time']['end'])){
+				$condition['where']['addtime <=']=$parameters['time']['end'];
+			}
+		}
+		if(isset($parameters['orderBy'])){
+			$condition['order_by']=$parameters['orderBy'];
+		}
+		$sellers=$this->getData($condition);
+		if($parameters['result']=='data'){
+			foreach ($sellers as $key => $value) {
+				$value->supermarket=$this->getContent('supermarket',$value->sid);
+			}
+		}
+		return $sellers;
+	}
+	public function getAllSupermarkets($withSub=false,$asArray=false){
+		$parameters=array(
+			'result'=>'data',
+			'type'=>0,
+			'orderBy'=>array('name'=>'ASC')
+		);
+		$supermarkets=$this->getSupermarkets($parameters);//所有总店
+		if($withSub){
+			foreach ($supermarkets as $key => $value) {
+				$subParameters=array(
+					'result'=>'data',
+					'no'=>$value->no,
+					'type'=>1,
+				);
+				$value->subSupermarkets=$this->getSupermarkets($subParameters);//获取对应所有分店
+			}
+		}
+		if($asArray){
+			$supermarketsArray=array();
+			foreach ($supermarkets as $value) {
+				$supermarketsArray[$value->id]=$value;
+				foreach ($value->subSupermarkets as $v) {
+					$supermarketsArray[$v->id]=$v;
+				}
+			}
+			$supermarkets=$supermarketsArray;
+		}
+		return $supermarkets;
+	}
+	public function getSubSupermarkets($sid){
+		$supermarket=$this->getContent('supermarket',$sid);
+		if(!isset($supermarket->no)){
+			return array();
+		}
+		$subParameters=array(
+			'result'=>'data',
+			'no'=>$supermarket->no,
+			'type'=>1,
+		);
+		$subSupermarkets=$this->getSupermarkets($subParameters);//获取对应所有分店
+		return $subSupermarkets;
+	}
+	public function getSupermarkets($parameters){
+		$condition=array(
+			'table'=>'supermarket',
+			'result'=>$parameters['result']
+		);
+		if(isset($parameters['no'])){
+			$condition['where']['no']=$parameters['no'];
+		}
+		if(isset($parameters['sno'])){
+			$condition['where']['sno']=$parameters['sno'];
+		}
+		if(isset($parameters['type'])){
+			$condition['where']['type']=$parameters['type'];
+		}
+		if(isset($parameters['keywords'])){
+			$condition['or_like_bracket']['name']=$parameters['keywords'];
+			$condition['or_like_bracket']['sname']=$parameters['keywords'];
+		}
+		if(isset($parameters['limit'])){
+			$condition['limit']=$parameters['limit'];
+		}
+		if(isset($parameters['time'])){
+			if(isset($parameters['time']['begin'])){
+				$condition['where']['addtime >=']=$parameters['time']['begin'];
+			}
+			if(isset($parameters['time']['end'])){
+				$condition['where']['addtime <=']=$parameters['time']['end'];
+			}
+		}
+		if(isset($parameters['orderBy'])){
+			$condition['order_by']=$parameters['orderBy'];
+		}
+		$supermarkets=$this->getData($condition);
 		// if($parameters['result']=='data'){
-		// 	foreach ($users as $key => $value) {
-		// 		$value->columnName=$this->getContent('column',$value->column)->name;
+		// 	foreach ($supermarkets as $key => $value) {
+		// 		$value->supermarket=$this->getContent('supermarket',$value->sid);
 		// 	}
 		// }
-		return $users;
+		return $supermarkets;
 	}
-	public function getColumns($type,$isOnlyId){
-		switch ($type) {
-			case 'home'://首页
-				$columns = array(1,2,3);
-				break;
-			case 'products'://产品
-				$columns = array(4);
-				break;
-			case 'forum'://论坛
-				$columns = array(5);
-				break;
-			case 'activity'://品牌活动
-				$columns = array(6);
-				break;
-			
-			default:
-				
-				break;
+	public function getCategories($parameters){
+		$condition=array(
+			'table'=>'category',
+			'result'=>$parameters['result']
+		);
+		if(isset($parameters['sid'])){
+			$condition['where']['sid']=$parameters['sid'];
 		}
-		$returnData=array();
-		if($isOnlyId){
-			$returnData=$columns;
-		}else{
-			foreach ($columns as $value) {
-				$item=$this->getContent('column',$value);
-				$returnData[]=$item;
+		if(isset($parameters['keywords'])){
+			$condition['or_like_bracket']['name']=$parameters['keywords'];
+		}
+		if(isset($parameters['limit'])){
+			$condition['limit']=$parameters['limit'];
+		}
+		if(isset($parameters['time'])){
+			if(isset($parameters['time']['begin'])){
+				$condition['where']['addtime >=']=$parameters['time']['begin'];
+			}
+			if(isset($parameters['time']['end'])){
+				$condition['where']['addtime <=']=$parameters['time']['end'];
 			}
 		}
-		return $returnData;
+		if(isset($parameters['orderBy'])){
+			$condition['order_by']=$parameters['orderBy'];
+		}
+		$categories=$this->getData($condition);
+		if($parameters['result']=='data'){
+			foreach ($categories as $key => $value) {
+				$value->supermarket=$this->getContent('supermarket',$value->sid);
+			}
+		}
+		return $categories;
 	}
+	// public function getColumns($type,$isOnlyId){
+	// 	switch ($type) {
+	// 		case 'home'://首页
+	// 			$columns = array(1,2,3);
+	// 			break;
+	// 		case 'products'://产品
+	// 			$columns = array(4);
+	// 			break;
+	// 		case 'forum'://论坛
+	// 			$columns = array(5);
+	// 			break;
+	// 		case 'activity'://品牌活动
+	// 			$columns = array(6);
+	// 			break;
+			
+	// 		default:
+				
+	// 			break;
+	// 	}
+	// 	$returnData=array();
+	// 	if($isOnlyId){
+	// 		$returnData=$columns;
+	// 	}else{
+	// 		foreach ($columns as $value) {
+	// 			$item=$this->getContent('column',$value);
+	// 			$returnData[]=$item;
+	// 		}
+	// 	}
+	// 	return $returnData;
+	// }
 
 	public function checkCode($code){
 		if(strcasecmp($code,$_SESSION['authcode'])==0){
@@ -238,6 +469,72 @@ class GetData{
 		}else{
 			return false;
 		}
+	}
+	public function isExist($table,$where){
+		$condition=array(
+			'table'=>$table,
+			'where'=>$where,
+			'result'=>'count'
+		);
+		$number=$this->getData($condition);
+		if($number<1){
+			return false;
+		}else{
+			return true;
+		}
+	}
+	public function isModifyExist($table,$id,$where){
+		$condition=array(
+			'table'=>$table,
+			'where'=>$where,
+			'result'=>'data'
+		);
+		$data=$this->getOneData($condition);
+		if(isset($data->id) && $data->id!=$id){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function twoDimensionCode($text,$id){
+		$value = $text; //二维码内容   
+		$errorCorrectionLevel = 'H';//容错级别   
+		$matrixPointSize = 10;//生成图片大小    
+		$QR = $_SERVER['DOCUMENT_ROOT'].'/uploads/2dcode/'.$id.'qrcode.png';//已经生成的原始二维码图    
+		
+		//生成二维码图片
+		QRcode::png($value,$QR, $errorCorrectionLevel, $matrixPointSize, 2);
+		return  $QR;
+	}
+	public function twoDimensionCodeWithLogo($text,$appid,$logoSrc){
+		$value = $text; //二维码内容   
+		$errorCorrectionLevel = 'H';//容错级别   
+		$matrixPointSize = 10;//生成图片大小    
+		$QR = $_SERVER['DOCUMENT_ROOT'].'/uploads/2dcode/'.$appid.'qrcode.png';//已经生成的原始二维码图    
+		
+		//生成二维码图片
+		QRcode::png($value,$QR, $errorCorrectionLevel, $matrixPointSize, 2);
+		$logo = $_SERVER['DOCUMENT_ROOT'].$logoSrc;//准备好的logo图片 
+		if ($logo !== FALSE) {
+			$QR = imagecreatefromstring(file_get_contents($QR));   
+			$logo = imagecreatefromstring(file_get_contents($logo));   
+			$QR_width = imagesx($QR);//二维码图片宽度   
+			$QR_height = imagesy($QR);//二维码图片高度   
+			$logo_width = imagesx($logo);//logo图片宽度   
+			$logo_height = imagesy($logo);//logo图片高度   
+			$logo_qr_width = $QR_width / 4;
+			$scale = $logo_width/$logo_qr_width;
+			$logo_qr_height = $logo_height/$scale;
+			$from_width = ($QR_width - $logo_qr_width) / 2;
+			//重新组合图片并调整大小   
+			imagecopyresampled($QR, $logo, $from_width, $from_width, 0, 0, $logo_qr_width,   
+			$logo_qr_height, $logo_width, $logo_height);   
+		}   
+		//输出图片地址
+		$dstLocation='/uploads/2dcode/'.$appid.'withlogo.png';
+		//输出图片   
+		imagepng($QR,$_SERVER['DOCUMENT_ROOT'].$dstLocation);   
+		return  $dstLocation; 
 	}
 }
 

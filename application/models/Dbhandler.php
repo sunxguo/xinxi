@@ -39,6 +39,9 @@ class DbHandler extends CI_Model{
 				$this->db->join($condition['join'][$key],$condition['join'][$value]);
 			}
 		}
+		if(isset($condition['sql'])){
+			$this->db->where($condition['sql']);
+		}
 		if(isset($condition['where'])){
 			foreach($condition['where'] as $key=>$value){
 				$this->db->where($key,$value);
@@ -73,6 +76,20 @@ class DbHandler extends CI_Model{
 			foreach($condition['or_like'] as $key=>$value){
 				$this->db->or_like($key,$value);
 			}
+		}
+		if(isset($condition['or_like_bracket'])){
+			$sql='(';
+			$count=0;
+			foreach($condition['or_like_bracket'] as $key=>$value){
+				if($count!=0){
+					$sql.=" OR ";
+				}
+				$sql.="`".$key."` LIKE '%".$value."%'";
+				$count++;
+				// $condition['sql']="(`workno` LIKE '%".$parameters['keywords']."%' OR `name` LIKE '%".$parameters['keywords']."%' OR `pone` LIKE '%".$parameters['keywords']."%')";
+			}
+			$sql.=")";
+			$this->db->where($sql);
 		}
 		if(isset($condition['limit'])) $this->db->limit($condition['limit']['limit'],$condition['limit']['offset']);
 		//Example: $this->db->group_by("title"); OR $this->db->group_by(array("title", "date")); 
