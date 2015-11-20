@@ -60,7 +60,7 @@
 		</div>
 		<div class="row cl">
 			<div class="col-10 col-offset-2">
-				<button onClick="saveAboutus(false);" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 添加</button>
+				<button onClick="saveAboutus(false);" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
 				<!-- <button onClick="saveAboutus(true,true);" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存草稿</button> -->
 				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
