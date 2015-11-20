@@ -65,9 +65,9 @@
 				<td><?php echo $coupon->orderno;?></td>
 				<td><?php echo $coupon->addtime;?></td>
 				<?php if($coupon->status=='1'):?>
-				<td class="td-status"><span class="label label-success radius">可用</span></td>
+				<td class="td-status"><span class="label label-defaunt radius">已使用</span></td>
 				<?php else:?>
-				<td class="td-status"><span class="label label-defaunt radius">不可用</span></td>
+				<td class="td-status"><span class="label label-success radius">未使用</span></td>
 				<?php endif;?>
 				
 				<td class="td-manage">
