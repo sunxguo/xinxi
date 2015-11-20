@@ -30,7 +30,7 @@
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
 		<span class="l">
 			<a href="javascript:;" onclick="member_del_bulk()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> 
-			<!-- <a href="javascript:;" onclick="member_add('添加物流账号','/admin/sellerdeliveryadd','','610')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加物流账号</a> -->
+			<a href="javascript:;" onclick="member_add('添加优惠券','/admin/couponadd','','510')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加优惠券</a>
 		</span> 
 		<span class="r">共有数据：<strong><?php echo $pageInfo['amount'];?></strong> 条</span> 
 	</div>

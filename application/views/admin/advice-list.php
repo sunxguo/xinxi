@@ -45,7 +45,7 @@
 				<?php else:?>
 				<td><u style="cursor:pointer" class="text-primary" onclick="member_show('<?php echo $advice->seller->name;?>','/admin/sellershow','<?php echo $advice->seller->id;?>','360','440')"><?php echo $advice->seller->name;?></u></td>
 				<?php endif;?>
-				<td><?php echo $advice->role=='2'?'用户':($advice->role=='1'?'超市':'物流');?></td>
+				<td><?php echo $advice->role=='2'?'用户':($advice->role=='1'?'物流':'超市');?></td>
 				<td><?php echo $advice->content;?></td>
 				<td><?php echo $advice->addtime;?></td>
 				<td class="td-manage">

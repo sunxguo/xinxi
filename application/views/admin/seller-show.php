@@ -22,7 +22,7 @@
       </tr>
       <tr>
         <th class="text-r">角色：</th>
-        <td><?php echo $seller->role=='0'?'物流':'超市';?></td>
+        <td><?php echo $seller->role=='0'?'超市':'物流';?></td>
       </tr>
       <tr>
         <th class="text-r">设备类型：</th>

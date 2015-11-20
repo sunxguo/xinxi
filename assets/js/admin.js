@@ -329,6 +329,24 @@ function saveSeller(isNew,callBack){
     }
     dataHandler('/common/'+method+'Info',seller,null,null,null,callBack,false,false);
 }
+function saveCoupon(isNew,callBack){
+    showWait();
+    var coupon = new Object(); 
+    coupon.infoType = 'coupons';
+    coupon.sid = $("#subsupermarket").val();
+    coupon.buyerid = $("#buyer").val();
+    coupon.facevalue = $("#facevalue").val();
+    coupon.useprice = $("#useprice").val();
+    coupon.beginvalid = $("#datemin").val();
+    coupon.endvalid = $("#datemax").val();
+    coupon.pushmsg = $("input[name='pushmsg']:checked").val();
+    var method='add';
+    if(!isNew){
+        coupon.id = $("#id").val();
+        method = 'modify';
+    }
+    dataHandler('/common/'+method+'BulkInfo',coupon,null,null,null,callBack,false,false);
+}
 function saveSubSuperMarket(isNew,callBack){
     showWait();
     var subsupermarket = new Object(); 

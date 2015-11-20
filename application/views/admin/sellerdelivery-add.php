@@ -4,7 +4,7 @@
 <body>
 <div class="pd-20">
   <form class="form form-horizontal" id="form-member-add">
-    <input id="role" value="0" type="hidden">
+    <input id="role" value="1" type="hidden">
     <div class="row cl">
       <label class="form-label col-3"><span class="c-red">*</span>超市：</label>
       <div class="formControls col-5"> <span class="select-box">
