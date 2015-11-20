@@ -689,6 +689,26 @@ class Admin extends CI_Controller {
 		);
 		$this->adminCommonHandler($parameters);
 	}
+	public function ordershow(){
+		if(!isset($_GET['id'])){
+			$this->load->view('redirect',array('info'=>'地址错误！'));
+			return false;
+		}
+		$status=$this->getdata->getOrderStatus();
+		$order=$this->getdata->getContentAdvance('order',array('orderno'=>$_GET['id']));
+		$order->supermarket=$this->getdata->getContent('supermarket',$order->sid);
+		$order->buyer=$this->getdata->getContent('buyer',$order->buyerid);
+		$order->seller=$this->getdata->getContent('seller',$order->sellerid);
+		$order->address=$this->getdata->getContent('address',$order->addressid);
+		$order->coupon=$this->getdata->getContent('coupon',$order->couponid);
+		$order->details=$this->getdata->getOrderDetail($order->orderno);
+		$order->status_zn=$status[$order->status];
+		$parameters=array(
+			'view'=>'order-show',
+			'data'=>array('order'=>$order)
+		);
+		$this->adminCommonHandler($parameters);
+	}
 	// public function adminCommon($english,$chinese,$view='essaylist'){
 	// 	$baseUrl='/admin/'.$english.'?placeholder=true';
 	// 	$selectUrl='/admin/'.$english.'?placeholder=true';
