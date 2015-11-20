@@ -161,10 +161,10 @@ function member_del_bulk(){
         memberArray.push($(this).val()); 
     });
     if(memberArray.length<1){
-       layer.alert('请选择要删除的账号！');
+       layer.alert('请选择要删除的意见反馈！');
         return false;
     }
-	layer.confirm('确认要删除这些账号吗？',function(index){
+	layer.confirm('确认要删除这些意见反馈吗？',function(index){
 	    var advices = new Object();
 	    advices.infoType = 'advices';
 	    advices.idArray = memberArray;
