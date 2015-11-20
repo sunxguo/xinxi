@@ -4,7 +4,7 @@
 <div class="cl pd-20" style=" background-color:#dd514c">
   <img class="avatar size-XL l" src="<?php echo $order->buyer->photo;?>">
   <dl style="margin-left:80px; color:#fff">
-    <dt><span class="f-18"><?php echo $order->buyer->alias;?></span> <span class="pl-10 f-12">总金额：<?php echo $order->goodsprice;?></span></dt>
+    <dt><span class="f-18"><?php echo $order->buyer->alias;?></span> <span class="pl-10 f-12">总金额：￥<?php echo $order->goodsprice;?></span></dt>
     <!-- <dd class="pt-10 f-12" style="margin-left:0">这家伙很懒，什么也没有留下</dd> -->
     <dd class="pt-10 f-12" style="margin-left:0">订单号：<?php echo $order->orderno;?></dd>
   </dl>
@@ -46,7 +46,7 @@
       </tr>
       <tr>
         <th class="text-r">配送费：</th>
-        <td><?php echo $order->expressfee;?></td>
+        <td><?php echo '￥'.$order->expressfee;?></td>
       </tr>
       <tr>
         <th class="text-r">优惠价：</th>
