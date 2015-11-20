@@ -19,6 +19,7 @@ class Common extends CI_Controller {
 				$time=date("Y-m-d H:i:s");
 				$info=array(
 					"title"=>$data->title,
+					"introduction"=>$data->introduction,
 					"addtime"=>$time,
 					"edittime"=>$time,
 					"content"=>$data->content,
@@ -180,6 +181,9 @@ class Common extends CI_Controller {
 				$info=array('edittime'=>date("Y-m-d H:i:s"));
 				if(isset($data->title)){
 					$info['title']=$data->title;
+				}
+				if(isset($data->introduction)){
+					$info['introduction']=$data->introduction;
 				}
 				if(isset($data->content)){
 					$info['content']=$data->content;

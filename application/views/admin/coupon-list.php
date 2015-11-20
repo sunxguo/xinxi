@@ -3,7 +3,17 @@
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 优惠券管理 <span class="c-gray en">&gt;</span> 优惠券列表 <a class="btn btn-success radius r mr-20 btn-refresh" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="pd-20">
-	<div class="text-c"> 添加时间：
+	<div class="text-c">  超市：
+		<select id="supermarket" class="select" style="height:31px;width:inherit;vertical-align:middle;">
+          <option value="-1">所有</option>
+          <?php foreach($supermarkets as $sm):?>
+          <optgroup label="<?php echo $sm->name;?>">
+            <?php foreach($sm->subSupermarkets as $ssm):?>
+            <option value="<?php echo $ssm->id;?>" <?php echo isset($_GET['sid']) && $_GET['sid']==$ssm->id?'selected':'';?>><?php echo $ssm->sname;?></option>
+            <?php endforeach;?>
+          </optgroup>
+          <?php endforeach;?>
+        </select> 添加时间：
 		<input type="text" value="<?php echo isset($_GET['startTime'])?$_GET['startTime']:'';?>" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})" id="datemin" class="input-text Wdate" style="width:120px;">
 		-
 		<input type="text" value="<?php echo isset($_GET['endTime'])?$_GET['endTime']:'';?>" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d'})" id="datemax" class="input-text Wdate" style="width:120px;">
@@ -32,14 +42,14 @@
 				<th width="80">超市</th>
 				<th width="60">用户</th>
 				<th width="40">面值</th>
-				<th width="40">使用金额</th>
+				<th width="50">使用条件</th>
 				<!-- <th width="150">二维码</th> -->
 				<th width="80">有效期始</th>
 				<th width="80">有效期止</th>
 				<th width="130">订单号</th>
 				<th width="130">添加时间</th>
 				<th width="50">状态</th>
-				<th width="100">操作</th>
+				<th width="30">操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -49,7 +59,7 @@
 				<td><u style="cursor:pointer" class="text-primary" onclick="member_show('<?php echo $coupon->supermarket->name.' - '.$coupon->supermarket->sname;?>','/admin/supermarketshow','<?php echo $coupon->supermarket->id;?>','360','440')"><?php echo $coupon->supermarket->name.' - '.$coupon->supermarket->sname;?></u></td>
 				<td><u style="cursor:pointer" class="text-primary" onclick="member_show('<?php echo $coupon->buyer->alias;?>','/admin/buyershow','<?php echo $coupon->buyer->id;?>','360','440')"><?php echo $coupon->buyer->alias;?></u></td>
 				<td><?php echo '￥'.$coupon->facevalue;?></td>
-				<td><?php echo '￥'.$coupon->useprice;?></td>
+				<td><?php echo '满￥'.$coupon->useprice;?></td>
 				<td><?php echo $coupon->beginvalid;?></td>
 				<td><?php echo $coupon->endvalid;?></td>
 				<td><?php echo $coupon->orderno;?></td>
