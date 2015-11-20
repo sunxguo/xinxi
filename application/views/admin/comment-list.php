@@ -46,8 +46,21 @@
 				<td><u style="cursor:pointer" class="text-primary" onclick="member_show('<?php echo $comment->orderno;?>','/admin/ordershow','<?php echo $comment->orderno;?>','360','440')"><?php echo $comment->orderno;?></u></td>
 				<td><u style="cursor:pointer" class="text-primary" onclick="member_show('<?php echo $comment->buyer->alias;?>','/admin/buyershow','<?php echo $comment->buyer->id;?>','360','440')"><?php echo $comment->buyer->alias;?></u></td>
 				<td><?php echo $comment->content;?></td>
-				<td><?php echo $comment->speed;?></td>
-				<td><?php echo $comment->attitude;?></td>
+				<td>
+					<?php for($i=0;$i<$comment->speed;$i++):?>
+					<i class="Hui-iconfont">&#xe69d;</i>
+					<?php endfor;?>
+					<?php for($i=0;$i<5-$comment->speed;$i++):?>
+					<i class="Hui-iconfont">&#xe69e;</i>
+					<?php endfor;?>
+				</td>
+				<td>
+					<?php for($i=0;$i<$comment->attitude;$i++):?>
+					<i class="Hui-iconfont">&#xe69d;</i>
+					<?php endfor;?>
+					<?php for($i=0;$i<5-$comment->attitude;$i++):?>
+					<i class="Hui-iconfont">&#xe69e;</i>
+					<?php endfor;?></td>
 				<td><?php echo $comment->addtime;?></td>				
 				<td class="td-manage">
 					<?php /*if($seller->status=='0'):?>
