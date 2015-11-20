@@ -472,6 +472,44 @@ class GetData{
 		}
 		return $advices;
 	}
+	public function getAboutus($parameters){
+		$condition=array(
+			'table'=>'aboutus',
+			'result'=>$parameters['result']
+		);
+		if(isset($parameters['role'])){
+			$condition['where']['role']=$parameters['role'];
+		}
+		if(isset($parameters['orderBy'])){
+			$condition['order_by']=$parameters['orderBy'];
+		}
+		if(isset($parameters['keywords'])){
+			$condition['or_like_bracket']['content']=$parameters['keywords'];
+		}
+		if(isset($parameters['limit'])){
+			$condition['limit']=$parameters['limit'];
+		}
+		if(isset($parameters['time'])){
+			if(isset($parameters['time']['begin'])){
+				$condition['where']['addtime >=']=$parameters['time']['begin'];
+			}
+			if(isset($parameters['time']['end'])){
+				$condition['where']['addtime <=']=$parameters['time']['end'];
+			}
+		}
+		$aboutuss=$this->getData($condition);
+		// if($parameters['result']=='data'){
+		// 	foreach ($aboutuss as $key => $value) {
+		// 		if($value->role==2){
+		// 			$value->buyer=$this->getContent('buyer',$value->uid);
+		// 		}else{
+		// 			$value->seller=$this->getContent('seller',$value->uid);
+		// 		}
+				
+		// 	}
+		// }
+		return $aboutuss;
+	}
 	public function getOrderStatus(){
 		$status=array(
 			'0'=>'未完成扫描',

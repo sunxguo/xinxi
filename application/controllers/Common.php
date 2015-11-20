@@ -27,6 +27,19 @@ class Common extends CI_Controller {
 					"draft"=>$data->draft
 				);
 			break;
+			case "aboutus":
+				$table="aboutus";
+				$time=date("Y-m-d H:i:s");
+				$info=array(
+					"appname"=>$data->appname,
+					"addtime"=>$time,
+					"edittime"=>$time,
+					"content"=>$data->content,
+					"logo"=>strstr($data->logo,'http')?$data->logo:SERVER_IP.($data->logo),
+					"version"=>$data->version,
+					"role"=>$data->role
+				);
+			break;
 			case "seller":
 				$table="seller";
 				$time=date("Y-m-d H:i:s");
@@ -181,6 +194,26 @@ class Common extends CI_Controller {
 					$info['draft']=$data->draft;
 				}
 
+			break;
+			case "aboutus":
+				$table="aboutus";
+				$where=array('id'=>$data->id);
+				$info=array('edittime'=>date("Y-m-d H:i:s"));
+				if(isset($data->role)){
+					$info['role']=$data->role;
+				}
+				if(isset($data->content)){
+					$info['content']=$data->content;
+				}
+				if(isset($data->logo)){
+					$info['logo']=strstr($data->logo,'http')?$data->logo:SERVER_IP.($data->logo);
+				}
+				if(isset($data->appname)){
+					$info['appname']=$data->appname;
+				}
+				if(isset($data->version)){
+					$info['version']=$data->version;
+				}
 			break;
 			case "buyer":
 				$table="buyer";
@@ -409,6 +442,10 @@ class Common extends CI_Controller {
 				$condition['table']="advice";
 				$condition['where']=array("id"=>$data->id);
 			break;
+			case 'aboutus':
+				$condition['table']="aboutus";
+				$condition['where']=array("id"=>$data->id);
+			break;
 			// case 'essay':
 			// 	$condition['table']="essay";
 			// 	$condition['where']=array("id"=>$data->id);
@@ -464,6 +501,10 @@ class Common extends CI_Controller {
 			break;
 			case 'advices':
 				$table="advice";
+				$where="id";
+			break;
+			case 'aboutuss':
+				$table="aboutus";
 				$where="id";
 			break;
 		}

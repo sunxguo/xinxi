@@ -591,6 +591,55 @@ class Admin extends CI_Controller {
 
 		$this->adminCommonHandler($parameters);
 	}
+	public function aboutuslist(){
+		$aboutusParameters=array(
+			'result'=>'count',
+			'orderBy'=>array('addtime'=>'DESC')
+		);
+		// if(isset($_GET['startTime'])){
+		// 	$adviceParameters['time']['begin']=$_GET['startTime'].' 00:00:00';
+		// }
+		// if(isset($_GET['endTime'])){
+		// 	$adviceParameters['time']['end']=$_GET['endTime'].' 23:59:59';
+		// }
+		// if(isset($_GET['keywords'])){
+		// 	$adviceParameters['keywords']=$_GET['keywords'];
+		// }
+		$amount=$this->getdata->getAboutus($aboutusParameters);
+		$baseUrl='/admin/aboutuslist?placeholder=true';
+		$selectUrl='/admin/aboutuslist?placeholder=true';
+		$currentPage=isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+		$amountPerPage=20;
+		$pageInfo=$this->getdata->getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount);
+		$aboutusParameters['result']='data';
+		// $bannerParameters['limit']=$pageInfo['limit'];
+		$aboutus=$this->getdata->getAboutus($aboutusParameters);
+		$parameters=array(
+			'view'=>'aboutus-list',
+			'data'=>array('aboutus'=>$aboutus,'pageInfo'=>$pageInfo)
+		);
+
+		$this->adminCommonHandler($parameters);
+	}
+	public function aboutusadd(){
+		$parameters=array(
+			'view'=>'aboutus-add',
+			'data'=>array()
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function aboutusedit(){
+		if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
+			$this->load->view('redirect',array('info'=>'地址错误！'));
+			return false;
+		}
+		$aboutus=$this->getdata->getContent('aboutus',$_GET['id']);
+		$parameters=array(
+			'view'=>'aboutus-edit',
+			'data'=>array('aboutus'=>$aboutus)
+		);
+		$this->adminCommonHandler($parameters);
+	}
 	public function couponlist(){
 		$couponParameters=array(
 			'result'=>'count',

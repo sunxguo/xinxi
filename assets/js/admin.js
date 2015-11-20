@@ -268,6 +268,41 @@ function addBannerSuccessHandler(){
         location.reload();
     },2000);
 }
+function saveAboutus(isNew){
+    if($("#role").val()==''){
+        alert('请选择客户端！');
+        $("#role").focus();
+        return false;
+    }
+    if($("#version").val()==''){
+        alert('请输入版本号！');
+        $("#version").focus();
+        return false;
+    }
+    if($("#thumbnail").attr('src')==''){
+        alert('请选择Logo！');
+        return false;
+    }
+    if($("#appname").val()==''){
+        alert('请输入App名称！');
+        $("#appname").focus();
+        return false;
+    }
+    showWait();
+    var aboutus = new Object(); 
+    aboutus.infoType = 'aboutus';
+    aboutus.role = $("#role").val();
+    aboutus.version = $("#version").val();
+    aboutus.appname = $("#appname").val();
+    aboutus.logo = $("#thumbnail").attr('src');
+    aboutus.content = contentEditor.html();
+    var method='add';
+    if(!isNew){
+        aboutus.id = $("#id").val();
+        method = 'modify';
+    }
+    dataHandler('/common/'+method+'Info',aboutus,null,null,null,addBannerSuccessHandler,false,false);
+}
 function saveSeller(isNew,callBack){
     showWait();
     var seller = new Object(); 
