@@ -63,7 +63,7 @@
 			<?php foreach($products as $product):?>
 			<tr class="text-c">
 				<td><input type="checkbox" value="<?php echo $product->id;?>" name="id"></td>
-				<td><img src="<?php echo $product->photo;?>" width="100"></td>
+				<td><img src="<?php echo $product->photo;?>" width="50"></td>
 				<td><?php echo $product->supermarket->name.' - '.$product->supermarket->sname;?></td>
 				<td><?php echo $product->category->name;?></td>
 				<td><u style="cursor:pointer" class="text-primary" onclick="member_show('<?php echo $product->name;?>','/admin/productshow','<?php echo $product->id;?>','360','380')"><?php echo $product->name;?></u></td>

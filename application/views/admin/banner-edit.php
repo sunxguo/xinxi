@@ -17,13 +17,19 @@
 			</div>
 		</div>
 		<div class="row cl">
+			<label class="form-label col-2">简介：</label>
+			<div class="formControls col-10">
+				<input type="text" class="input-text" value="<?php echo $banner->introduction;?>" placeholder="" id="introduction" name="">
+			</div>
+		</div>
+		<div class="row cl">
 			<label class="form-label col-2">排序值：</label>
 			<div class="formControls col-2">
 				<input type="text" class="input-text" value="<?php echo $banner->order;?>" placeholder="" id="orderNumber" name="">从小到大排序
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-2">Banner内容：</label>
+			<label class="form-label col-2">内容：</label>
 			<div class="formControls col-10">
 				<textarea id="content" name="" cols="" rows="" class="textarea"><?php echo $banner->content;?></textarea>
 			</div>

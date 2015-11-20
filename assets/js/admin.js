@@ -201,6 +201,9 @@ function searchCoupon(){
     if($("#datemax").val()!=''){
         extUrl+='&endTime='+$("#datemax").val();
     }
+    if ($("#supermarket").val()!=-1) {
+         extUrl+='&sid='+$("#supermarket").val();
+    };
     // if($("#keywords").val()!=''){
     //     extUrl+='&keywords='+$("#keywords").val();
     // }
@@ -245,6 +248,7 @@ function saveBanner(isNew,isDraft){
     var banner = new Object(); 
     banner.infoType = 'banner';
     banner.title = $("#title").val();
+    banner.introduction = $("#introduction").val();
     banner.order = $("#orderNumber").val();
     banner.thumbnail = $("#thumbnail").attr('src');
     banner.content = contentEditor.html();

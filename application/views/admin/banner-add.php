@@ -11,8 +11,14 @@
 	<div class="form form-horizontal" id="form-article-add">
 		<div class="row cl">
 			<label class="form-label col-2"><span class="c-red">*</span>Banner标题：</label>
-			<div class="formControls col-10">
+			<div class="formControls col-5">
 				<input type="text" class="input-text" value="" placeholder="" id="title" name="">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-2">简介：</label>
+			<div class="formControls col-10">
+				<input type="text" class="input-text" value="" placeholder="" id="introduction" name="">
 			</div>
 		</div>
 		<div class="row cl">
@@ -22,7 +28,7 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-2">Banner内容：</label>
+			<label class="form-label col-2">内容：</label>
 			<div class="formControls col-10">
 				<textarea id="content" name="" cols="" rows="" class="textarea"></textarea>
 			</div>

@@ -651,9 +651,9 @@ class Admin extends CI_Controller {
 		if(isset($_GET['endTime'])){
 			$couponParameters['time']['end']=$_GET['endTime'].' 23:59:59';
 		}
-		// if(isset($_GET['keywords'])){
-		// 	$couponParameters['keywords']=$_GET['keywords'];
-		// }
+		if(isset($_GET['sid'])){
+			$couponParameters['sid']=$_GET['sid'];
+		}
 		$amount=$this->getdata->getCoupons($couponParameters);
 		$baseUrl='/admin/couponlist?placeholder=true';
 		$selectUrl='/admin/couponlist?placeholder=true';
@@ -663,9 +663,10 @@ class Admin extends CI_Controller {
 		$couponParameters['result']='data';
 		// $bannerParameters['limit']=$pageInfo['limit'];
 		$coupons=$this->getdata->getCoupons($couponParameters);
+		$supermarkets=$this->getdata->getAllSupermarkets(true,false);
 		$parameters=array(
 			'view'=>'coupon-list',
-			'data'=>array('coupons'=>$coupons,'pageInfo'=>$pageInfo)
+			'data'=>array('coupons'=>$coupons,'pageInfo'=>$pageInfo,'supermarkets'=>$supermarkets)
 		);
 
 		$this->adminCommonHandler($parameters);
