@@ -389,6 +389,22 @@ class Common extends CI_Controller {
 				$condition['table']="category";
 				$condition['where']=array("id"=>$data->id);
 			break;
+			case 'order':
+				$condition['table']="order";
+				$condition['where']=array("id"=>$data->id);
+			break;
+			case 'address':
+				$condition['table']="address";
+				$condition['where']=array("id"=>$data->id);
+			break;
+			case 'comment':
+				$condition['table']="comment";
+				$condition['where']=array("id"=>$data->id);
+			break;
+			case 'coupon':
+				$condition['table']="coupon";
+				$condition['where']=array("id"=>$data->id);
+			break;
 			// case 'essay':
 			// 	$condition['table']="essay";
 			// 	$condition['where']=array("id"=>$data->id);
@@ -424,6 +440,22 @@ class Common extends CI_Controller {
 			break;
 			case 'categories':
 				$table="category";
+				$where="id";
+			break;
+			case 'orders':
+				$table="order";
+				$where="id";
+			break;
+			case 'addresses':
+				$table="address";
+				$where="id";
+			break;
+			case 'comments':
+				$table="comment";
+				$where="id";
+			break;
+			case 'coupons':
+				$table="coupon";
 				$where="id";
 			break;
 		}

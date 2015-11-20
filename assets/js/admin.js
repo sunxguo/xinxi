@@ -151,6 +151,61 @@ function searchProduct(){
     }
     location.href="/admin/productlist"+extUrl;
 }
+function searchOrder(){
+    var extUrl='?placeholder=true';
+    if($("#datemin").val()!=''){
+        extUrl+='&startTime='+$("#datemin").val();
+    }
+    if($("#datemax").val()!=''){
+        extUrl+='&endTime='+$("#datemax").val();
+    }
+    if ($("#supermarket").val()!=-1) {
+         extUrl+='&sid='+$("#supermarket").val();
+    };
+    if($("#keywords").val()!=''){
+        extUrl+='&keywords='+$("#keywords").val();
+    }
+    location.href="/admin/orderlist"+extUrl;
+}
+function searchComment(){
+    var extUrl='?placeholder=true';
+    if($("#datemin").val()!=''){
+        extUrl+='&startTime='+$("#datemin").val();
+    }
+    if($("#datemax").val()!=''){
+        extUrl+='&endTime='+$("#datemax").val();
+    }
+    if($("#keywords").val()!=''){
+        extUrl+='&keywords='+$("#keywords").val();
+    }
+    location.href="/admin/commentlist"+extUrl;
+}
+function searchAddress(){
+    var extUrl='?placeholder=true';
+    if($("#datemin").val()!=''){
+        extUrl+='&startTime='+$("#datemin").val();
+    }
+    if($("#datemax").val()!=''){
+        extUrl+='&endTime='+$("#datemax").val();
+    }
+    if($("#keywords").val()!=''){
+        extUrl+='&keywords='+$("#keywords").val();
+    }
+    location.href="/admin/addresslist"+extUrl;
+}
+function searchCoupon(){
+    var extUrl='?placeholder=true';
+    if($("#datemin").val()!=''){
+        extUrl+='&startTime='+$("#datemin").val();
+    }
+    if($("#datemax").val()!=''){
+        extUrl+='&endTime='+$("#datemax").val();
+    }
+    // if($("#keywords").val()!=''){
+    //     extUrl+='&keywords='+$("#keywords").val();
+    // }
+    location.href="/admin/couponlist"+extUrl;
+}
 function searchCategory(){
     var extUrl='?placeholder=true';
     if($("#datemin").val()!=''){

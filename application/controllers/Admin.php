@@ -464,9 +464,137 @@ class Admin extends CI_Controller {
 
 		$this->adminCommonHandler($parameters);
 	}
+	public function orderlist(){
+		$orderParameters=array(
+			'result'=>'count',
+			'orderBy'=>array('addtime'=>'DESC')
+		);
+		if(isset($_GET['sid'])){
+			$orderParameters['sid']=$_GET['sid'];
+		}
+		if(isset($_GET['categoryid'])){
+			$orderParameters['categoryid']=$_GET['categoryid'];
+		}
+		if(isset($_GET['startTime'])){
+			$orderParameters['time']['begin']=$_GET['startTime'].' 00:00:00';
+		}
+		if(isset($_GET['endTime'])){
+			$orderParameters['time']['end']=$_GET['endTime'].' 23:59:59';
+		}
+		if(isset($_GET['keywords'])){
+			$orderParameters['keywords']=$_GET['keywords'];
+		}
+		$amount=$this->getdata->getOrders($orderParameters);
+		$baseUrl='/admin/orderlist?placeholder=true';
+		$selectUrl='/admin/orderlist?placeholder=true';
+		$currentPage=isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+		$amountPerPage=20;
+		$pageInfo=$this->getdata->getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount);
+		$orderParameters['result']='data';
+		// $bannerParameters['limit']=$pageInfo['limit'];
+		$orders=$this->getdata->getOrders($orderParameters);
+		$supermarkets=$this->getdata->getAllSupermarkets(true,false);
+		$parameters=array(
+			'view'=>'order-list',
+			'data'=>array('orders'=>$orders,'pageInfo'=>$pageInfo,'supermarkets'=>$supermarkets)
+		);
+
+		$this->adminCommonHandler($parameters);
+	}
+	public function addresslist(){
+		$addressorderParameters=array(
+			'result'=>'count',
+			'orderBy'=>array('addtime'=>'DESC')
+		);
+		if(isset($_GET['startTime'])){
+			$addressorderParameters['time']['begin']=$_GET['startTime'].' 00:00:00';
+		}
+		if(isset($_GET['endTime'])){
+			$addressorderParameters['time']['end']=$_GET['endTime'].' 23:59:59';
+		}
+		if(isset($_GET['keywords'])){
+			$addressorderParameters['keywords']=$_GET['keywords'];
+		}
+		$amount=$this->getdata->getAddresses($addressorderParameters);
+		$baseUrl='/admin/addresslist?placeholder=true';
+		$selectUrl='/admin/addresslist?placeholder=true';
+		$currentPage=isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+		$amountPerPage=20;
+		$pageInfo=$this->getdata->getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount);
+		$addressorderParameters['result']='data';
+		// $bannerParameters['limit']=$pageInfo['limit'];
+		$addresses=$this->getdata->getAddresses($addressorderParameters);
+		$parameters=array(
+			'view'=>'address-list',
+			'data'=>array('addresses'=>$addresses,'pageInfo'=>$pageInfo)
+		);
+
+		$this->adminCommonHandler($parameters);
+	}
+	public function commentlist(){
+		$commentParameters=array(
+			'result'=>'count',
+			'orderBy'=>array('addtime'=>'DESC')
+		);
+		if(isset($_GET['startTime'])){
+			$commentParameters['time']['begin']=$_GET['startTime'].' 00:00:00';
+		}
+		if(isset($_GET['endTime'])){
+			$commentParameters['time']['end']=$_GET['endTime'].' 23:59:59';
+		}
+		if(isset($_GET['keywords'])){
+			$commentParameters['keywords']=$_GET['keywords'];
+		}
+		$amount=$this->getdata->getComments($commentParameters);
+		$baseUrl='/admin/commentlist?placeholder=true';
+		$selectUrl='/admin/commentlist?placeholder=true';
+		$currentPage=isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+		$amountPerPage=20;
+		$pageInfo=$this->getdata->getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount);
+		$commentParameters['result']='data';
+		// $bannerParameters['limit']=$pageInfo['limit'];
+		$comments=$this->getdata->getComments($commentParameters);
+		$parameters=array(
+			'view'=>'comment-list',
+			'data'=>array('comments'=>$comments,'pageInfo'=>$pageInfo)
+		);
+
+		$this->adminCommonHandler($parameters);
+	}
+	public function couponlist(){
+		$couponParameters=array(
+			'result'=>'count',
+			'orderBy'=>array('addtime'=>'DESC')
+		);
+		if(isset($_GET['startTime'])){
+			$couponParameters['time']['begin']=$_GET['startTime'].' 00:00:00';
+		}
+		if(isset($_GET['endTime'])){
+			$couponParameters['time']['end']=$_GET['endTime'].' 23:59:59';
+		}
+		// if(isset($_GET['keywords'])){
+		// 	$couponParameters['keywords']=$_GET['keywords'];
+		// }
+		$amount=$this->getdata->getCoupons($couponParameters);
+		$baseUrl='/admin/couponlist?placeholder=true';
+		$selectUrl='/admin/couponlist?placeholder=true';
+		$currentPage=isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+		$amountPerPage=20;
+		$pageInfo=$this->getdata->getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount);
+		$couponParameters['result']='data';
+		// $bannerParameters['limit']=$pageInfo['limit'];
+		$coupons=$this->getdata->getCoupons($couponParameters);
+		$parameters=array(
+			'view'=>'coupon-list',
+			'data'=>array('coupons'=>$coupons,'pageInfo'=>$pageInfo)
+		);
+
+		$this->adminCommonHandler($parameters);
+	}
 	public function categorylist(){
 		$categoryParameters=array(
 			'result'=>'count',
+			'limit'=>array('limit'=>10,'offset'=>0),
 			'orderBy'=>array('addtime'=>'DESC')
 		);
 		if(isset($_GET['sid'])){
