@@ -275,6 +275,188 @@ class GetData{
 		}
 		return $products;
 	}
+	public function getOrders($parameters){
+		$condition=array(
+			'table'=>'order',
+			'result'=>$parameters['result']
+		);
+		if(isset($parameters['sid'])){
+			$condition['where']['sid']=$parameters['sid'];
+		}
+		if(isset($parameters['sellerid'])){
+			$condition['where']['sellerid']=$parameters['sellerid'];
+		}
+		if(isset($parameters['buyerid'])){
+			$condition['where']['buyerid']=$parameters['buyerid'];
+		}
+		if(isset($parameters['status'])){
+			$condition['where']['status']=$parameters['status'];
+		}
+		if(isset($parameters['isshared'])){
+			$condition['where']['isshared']=$parameters['isshared'];
+		}
+		if(isset($parameters['isdel'])){
+			$condition['where']['isdel']=$parameters['isdel'];
+		}
+		if(isset($parameters['orderBy'])){
+			$condition['order_by']=$parameters['orderBy'];
+		}
+		if(isset($parameters['keywords'])){
+			$condition['or_like_bracket']['orderno']=$parameters['keywords'];
+		}
+		if(isset($parameters['limit'])){
+			$condition['limit']=$parameters['limit'];
+		}
+		if(isset($parameters['time'])){
+			if(isset($parameters['time']['begin'])){
+				$condition['where']['addtime >=']=$parameters['time']['begin'];
+			}
+			if(isset($parameters['time']['end'])){
+				$condition['where']['addtime <=']=$parameters['time']['end'];
+			}
+		}
+		$orders=$this->getData($condition);
+		$status=$this->getOrderStatus();
+		if($parameters['result']=='data'){
+			foreach ($orders as $key => $value) {
+				$value->supermarket=$this->getContent('supermarket',$value->sid);
+				$value->buyer=$this->getContent('buyer',$value->buyerid);
+				$value->seller=$this->getContent('seller',$value->sellerid);
+				$value->address=$this->getContent('address',$value->addressid);
+				$value->coupon=$this->getContent('coupon',$value->couponid);
+				$value->details=$this->getOrderDetail($value->orderno);
+				$value->status_zn=$status[$value->status];
+			}
+		}
+		return $orders;
+	}
+	public function getAddresses($parameters){
+		$condition=array(
+			'table'=>'address',
+			'result'=>$parameters['result']
+		);
+		if(isset($parameters['orderBy'])){
+			$condition['order_by']=$parameters['orderBy'];
+		}
+		if(isset($parameters['keywords'])){
+			$condition['or_like_bracket']['name']=$parameters['keywords'];
+			$condition['or_like_bracket']['phone']=$parameters['keywords'];
+			$condition['or_like_bracket']['detailedarea']=$parameters['keywords'];
+		}
+		if(isset($parameters['limit'])){
+			$condition['limit']=$parameters['limit'];
+		}
+		if(isset($parameters['time'])){
+			if(isset($parameters['time']['begin'])){
+				$condition['where']['addtime >=']=$parameters['time']['begin'];
+			}
+			if(isset($parameters['time']['end'])){
+				$condition['where']['addtime <=']=$parameters['time']['end'];
+			}
+		}
+		$addresses=$this->getData($condition);
+		if($parameters['result']=='data'){
+			foreach ($addresses as $key => $value) {
+				$value->buyer=$this->getContent('buyer',$value->buyerid);
+			}
+		}
+		return $addresses;
+	}
+	public function getComments($parameters){
+		$condition=array(
+			'table'=>'comment',
+			'result'=>$parameters['result']
+		);
+		if(isset($parameters['orderBy'])){
+			$condition['order_by']=$parameters['orderBy'];
+		}
+		if(isset($parameters['keywords'])){
+			$condition['or_like_bracket']['orderno']=$parameters['keywords'];
+			$condition['or_like_bracket']['content']=$parameters['keywords'];
+		}
+		if(isset($parameters['limit'])){
+			$condition['limit']=$parameters['limit'];
+		}
+		if(isset($parameters['time'])){
+			if(isset($parameters['time']['begin'])){
+				$condition['where']['addtime >=']=$parameters['time']['begin'];
+			}
+			if(isset($parameters['time']['end'])){
+				$condition['where']['addtime <=']=$parameters['time']['end'];
+			}
+		}
+		$comments=$this->getData($condition);
+		if($parameters['result']=='data'){
+			foreach ($comments as $key => $value) {
+				$value->buyer=$this->getContent('buyer',$value->buyerid);
+			}
+		}
+		return $comments;
+	}
+	public function getCoupons($parameters){
+		$condition=array(
+			'table'=>'coupon',
+			'result'=>$parameters['result']
+		);
+		if(isset($parameters['sid'])){
+			$condition['where']['sid']=$parameters['sid'];
+		}
+		if(isset($parameters['buyerid'])){
+			$condition['where']['buyerid']=$parameters['buyerid'];
+		}
+		if(isset($parameters['orderBy'])){
+			$condition['order_by']=$parameters['orderBy'];
+		}
+		// if(isset($parameters['keywords'])){
+		// 	$condition['or_like_bracket']['orderno']=$parameters['keywords'];
+		// 	$condition['or_like_bracket']['content']=$parameters['keywords'];
+		// }
+		if(isset($parameters['limit'])){
+			$condition['limit']=$parameters['limit'];
+		}
+		if(isset($parameters['time'])){
+			if(isset($parameters['time']['begin'])){
+				$condition['where']['addtime >=']=$parameters['time']['begin'];
+			}
+			if(isset($parameters['time']['end'])){
+				$condition['where']['addtime <=']=$parameters['time']['end'];
+			}
+		}
+		$coupons=$this->getData($condition);
+		if($parameters['result']=='data'){
+			foreach ($coupons as $key => $value) {
+				$value->supermarket=$this->getContent('supermarket',$value->sid);
+				$value->buyer=$this->getContent('buyer',$value->buyerid);
+			}
+		}
+		return $coupons;
+	}
+	public function getOrderStatus(){
+		$status=array(
+			'0'=>'未完成扫描',
+			'1'=>'待付款',
+			'2'=>'未指派',
+			'3'=>'待发货',
+			'4'=>'运输中',
+			'5'=>'交易完成(未评价)',
+			'6'=>'交易完成(已评价)',
+			'-1'=>'已取消',
+			'7'=>'自提'
+		);
+		return $status;
+	}
+	public function getOrderDetail($orderno){
+		$parameters=array(
+						'table'=>'orderitem',
+						'result'=>'data',
+						'where'=>array('orderno'=>$orderno)
+						);
+		$details=$this->getData($parameters);
+		foreach ($details as $key => $value) {
+			$value->product=$this->getContent('goods',$value->goodsid);
+		}
+		return $details;
+	}
 	public function getSellers($parameters){
 		$condition=array(
 			'table'=>'seller',

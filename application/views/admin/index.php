@@ -95,7 +95,7 @@
 			<dd>
 				<ul>
 					<li><a _href="/admin/orderlist" href="javascript:void(0)">订单管理</a></li>
-					<li><a _href="/admin/deliverylist" href="javascript:void(0)">物流管理</a></li>
+					<li><a _href="/admin/addresslist" href="javascript:void(0)">收货地址管理</a></li>
 					<li><a _href="/admin/commentlist" href="javascript:void(0)">评价管理</a></li>
 				</ul>
 			</dd>
@@ -113,7 +113,7 @@
 			<dt><i class="Hui-iconfont">&#xe6ca;</i> 优惠券管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="/admin/coupon" href="javascript:;">优惠券管理</a></li>
+					<li><a _href="/admin/couponlist" href="javascript:;">优惠券管理</a></li>
 					<!-- <li><a _href="feedback-list.html" href="javascript:void(0)">意见反馈</a></li> -->
 				</ul>
 			</dd>
