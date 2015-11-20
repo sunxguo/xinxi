@@ -405,6 +405,10 @@ class Common extends CI_Controller {
 				$condition['table']="coupon";
 				$condition['where']=array("id"=>$data->id);
 			break;
+			case 'advice':
+				$condition['table']="advice";
+				$condition['where']=array("id"=>$data->id);
+			break;
 			// case 'essay':
 			// 	$condition['table']="essay";
 			// 	$condition['where']=array("id"=>$data->id);
