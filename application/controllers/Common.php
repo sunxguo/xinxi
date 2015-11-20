@@ -462,6 +462,10 @@ class Common extends CI_Controller {
 				$table="coupon";
 				$where="id";
 			break;
+			case 'advices':
+				$table="advice";
+				$where="id";
+			break;
 		}
 		foreach ($data->idArray as $value) {
 			$result=$this->dbHandler->deleteData(array('table'=>$table,'where'=>array($where=>$value)));
