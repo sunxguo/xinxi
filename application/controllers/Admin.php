@@ -266,7 +266,7 @@ class Admin extends CI_Controller {
 
 		$bannerParameters=array(
 			'result'=>'count',
-			'role'=>1,
+			'role'=>0,
 			'orderBy'=>array('addtime'=>'DESC')
 		);
 		if(isset($_GET['gender'])){
@@ -332,7 +332,7 @@ class Admin extends CI_Controller {
 
 		$bannerParameters=array(
 			'result'=>'count',
-			'role'=>0,
+			'role'=>1,
 			'orderBy'=>array('addtime'=>'DESC')
 		);
 		if(isset($_GET['gender'])){
@@ -669,6 +669,14 @@ class Admin extends CI_Controller {
 			'data'=>array('coupons'=>$coupons,'pageInfo'=>$pageInfo,'supermarkets'=>$supermarkets)
 		);
 
+		$this->adminCommonHandler($parameters);
+	}
+	public function couponadd(){
+		$supermarkets=$this->getdata->getAllSupermarkets(true,false);
+		$parameters=array(
+			'view'=>'coupon-add',
+			'data'=>array('supermarkets'=>$supermarkets)
+		);
 		$this->adminCommonHandler($parameters);
 	}
 	public function categorylist(){

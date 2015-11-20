@@ -169,6 +169,45 @@ class Common extends CI_Controller {
 		if($result==1)echo json_encode(array("result"=>"success","message"=>"信息写入成功"));
 		else echo json_encode(array("result"=>"failed","message"=>"信息写入失败"));
 	}
+	public function addBulkInfo(){
+		$table="";
+		$data=json_decode($_POST['data']);
+		$info=array();
+		switch($data->infoType){
+			case "coupons":
+				$table="coupon";
+				$time=date("Y-m-d H:i:s");
+				$info=array(
+					"sid"=>$data->sid,
+					"facevalue"=>$data->facevalue,
+					"useprice"=>$data->useprice,
+					"beginvalid"=>$data->beginvalid,
+					"endvalid"=>$data->endvalid,
+					"addtime"=>$time,
+					"edittime"=>$time
+				);
+				$users=array();
+				if($data->buyerid==0){
+					$allUsers=$this->getdata->getBuyers(array('result'=>'data'));
+					foreach ($allUsers as $key => $value) {
+						$users[]=$value->id;
+					}
+				}else{
+					$users=explode(',',$data->buyerid);
+				}
+				foreach ($users as $value) {
+					$info['buyerid']=$value;
+					$this->dbHandler->insertData($table,$info);
+				}
+				if($data->pushmsg=='1'){
+					$pushUrl='http://182.92.156.106:9080/CDB/buyer/sendcoupons';
+					$ids=implode(',',$users);
+					httpPost($pushUrl,array('ids'=>$ids));
+				}
+			break;
+		}
+		echo json_encode(array("result"=>"success","message"=>"信息写入成功"));
+	}
 	public function modifyInfo(){
 		$table="";
 		$data=json_decode($_POST['data']);

@@ -1,4 +1,4 @@
-<title>添加超市账号</title>
+<title>添加优惠券</title>
 <link href="/assets/lib/icheck/icheck.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -8,7 +8,7 @@
     <div class="row cl">
       <label class="form-label col-3"><span class="c-red">*</span>超市：</label>
       <div class="formControls col-5"> <span class="select-box">
-        <select id="supermarket" onchange="getSubSupermarkets();" class="select" size="1" name="demo1" datatype="*" nullmsg="请选择所属总超市！">
+        <select id="supermarket" onchange="getSubSupermarkets();" class="select" size="1" name="demo1" datatype="*" nullmsg="请选择总超市！">
           <option value="" selected>请选择总超市</option>
           <?php foreach($supermarkets as $sm):?>
           <option value="<?php echo $sm->id;?>"><?php echo $sm->name;?></option>
@@ -20,59 +20,47 @@
     <div class="row cl">
       <label class="form-label col-3"></label>
       <div class="formControls col-5"> <span class="select-box">
-        <select id="subsupermarket" class="select" size="1" name="demo1" datatype="*" nullmsg="请选择所属具体超市！">
+        <select id="subsupermarket" class="select" size="1" name="demo1" datatype="*" nullmsg="请选择具体超市！">
           <option value="" selected>请选择具体超市</option>
         </select>
         </span> </div>
       <div class="col-4"> </div>
     </div>
     <div class="row cl">
-      <label class="form-label col-3"><span class="c-red">*</span>工号：</label>
+      <label class="form-label col-3"><span class="c-red">*</span>用户：</label>
       <div class="formControls col-5">
-        <input type="text" class="input-text" value="" placeholder="" id="workno" name="member-workno" datatype="*2-16" nullmsg="工号不能为空">
+        <input type="text" class="input-text" value="" placeholder="用户id，多用户用英文逗号分隔，只填写0为所有用户" id="buyer" name="member-buyer" datatype="*2-16" nullmsg="用户不能为空">
       </div>
       <div class="col-4"> </div>
     </div>
     <div class="row cl">
-      <label class="form-label col-3"><span class="c-red">*</span>姓名：</label>
+      <label class="form-label col-3"><span class="c-red">*</span>面值：</label>
       <div class="formControls col-5">
-        <input type="text" class="input-text" value="" placeholder="" id="name" name="member-name" datatype="*2-16" nullmsg="姓名不能为空">
+        <input type="text" class="input-text" value="" placeholder="" id="facevalue" name="member-facevalue"  datatype="n" nullmsg="面值不能为空">
       </div>
       <div class="col-4"> </div>
     </div>
     <div class="row cl">
-      <label class="form-label col-3"><span class="c-red">*</span>性别：</label>
-      <div class="formControls col-5 skin-minimal">
-        <div class="radio-box">
-          <input type="radio" id="sex-1" name="gender" value="0" datatype="*" nullmsg="请选择性别！">
-          <label for="sex-1">男</label>
-        </div>
-        <div class="radio-box">
-          <input type="radio" id="sex-2" name="gender" value="1">
-          <label for="sex-2">女</label>
-        </div>
-        <div class="radio-box">
-          <input type="radio" id="sex-3" name="gender" value="2">
-          <label for="sex-3">保密</label>
-        </div>
-      </div>
-      <div class="col-4"> </div>
-    </div>
-    <div class="row cl">
-      <label class="form-label col-3"><span class="c-red">*</span>手机：</label>
+      <label class="form-label col-3"><span class="c-red">*</span>使用条件：</label>
       <div class="formControls col-5">
-        <input type="text" class="input-text" value="" placeholder="" id="phone" name="member-tel"  datatype="m" nullmsg="手机不能为空">
+        <input type="text" class="input-text" placeholder="满￥" name="useprice" id="useprice" datatype="n" nullmsg="请输入使用条件！">
       </div>
       <div class="col-4"> </div>
     </div>
     <div class="row cl">
-      <label class="form-label col-3"><span class="c-red">*</span>密码：</label>
+      <label class="form-label col-3"><span class="c-red">*</span>有效期始：</label>
       <div class="formControls col-5">
-        <input type="password" class="input-text" placeholder="" name="password" id="password" datatype="*6-16" nullmsg="请输入密码！">
+        <input type="text" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})" id="datemin" class="input-text Wdate">
       </div>
       <div class="col-4"> </div>
     </div>
     <div class="row cl">
+      <label class="form-label col-3"><span class="c-red">*</span>有效期止：</label>
+      <div class="formControls col-5">
+        <input type="text" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'datemin\')}'})" id="datemax" class="input-text Wdate">
+      </div>
+    </div>
+    <!-- <div class="row cl">
       <label class="form-label col-3">头像：</label>
       <div class="formControls col-5">
         <img src="" id="thumbnail" style="max-width:90%;max-height:100px;">
@@ -81,7 +69,7 @@
         </span>
       </div>
       <div class="col-4"> </div>
-    </div>
+    </div> -->
     <!-- <div class="row cl">
       <label class="form-label col-3">备注：</label>
       <div class="formControls col-5">
@@ -91,15 +79,15 @@
       <div class="col-4"> </div>
     </div> -->
     <div class="row cl">
-      <label class="form-label col-3"><span class="c-red">*</span>是否启用：</label>
+      <label class="form-label col-3"><span class="c-red">*</span>是否推送消息：</label>
       <div class="formControls col-5 skin-minimal">
         <div class="radio-box">
-          <input type="radio" id="status-1" name="status" value="0" datatype="*" checked="checked">
-          <label for="status-1">立即启用</label>
+          <input type="radio" id="pushmsg-1" name="pushmsg" value="1" datatype="*" checked="checked">
+          <label for="pushmsg-1">是</label>
         </div>
         <div class="radio-box">
-          <input type="radio" id="status-2" name="status" value="1">
-          <label for="status-2">暂不启用</label>
+          <input type="radio" id="pushmsg-2" name="pushmsg" value="0">
+          <label for="pushmsg-2">否</label>
         </div>
       </div>
       <div class="col-4"> </div>
@@ -112,11 +100,11 @@
   </form>
 </div>
 </div>
-<form id="uploadImgThumb" enctype="multipart/form-data">
+<!-- <form id="uploadImgThumb" enctype="multipart/form-data">
     <input onchange="return uploadThumb()" name="image" type="file" id="file" style="display:none;" accept="image/*">
-</form>
+</form> -->
 <script type="text/javascript" src="/assets/lib/icheck/jquery.icheck.min.js"></script>
-<script charset="utf-8" src="/assets/js/jquery.form.js"></script>
+<!-- <script charset="utf-8" src="/assets/js/jquery.form.js"></script> -->
 <script type="text/javascript">
 $(function(){
 	$('.skin-minimal input').iCheck({
@@ -130,7 +118,7 @@ $(function(){
 		callback:function(form){
       // alert('ok');
 			// form[0].submit();
-      saveSeller(true,function(){
+      saveCoupon(true,function(){
         alert('添加成功！');
         var index = parent.layer.getFrameIndex(window.name);
         // parent.$('.btn-refresh').click();
