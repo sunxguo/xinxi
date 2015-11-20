@@ -431,6 +431,47 @@ class GetData{
 		}
 		return $coupons;
 	}
+	public function getAdvices($parameters){
+		$condition=array(
+			'table'=>'advice',
+			'result'=>$parameters['result']
+		);
+		if(isset($parameters['role'])){
+			$condition['where']['role']=$parameters['role'];
+		}
+		if(isset($parameters['uid'])){
+			$condition['where']['uid']=$parameters['uid'];
+		}
+		if(isset($parameters['orderBy'])){
+			$condition['order_by']=$parameters['orderBy'];
+		}
+		if(isset($parameters['keywords'])){
+			$condition['or_like_bracket']['content']=$parameters['keywords'];
+		}
+		if(isset($parameters['limit'])){
+			$condition['limit']=$parameters['limit'];
+		}
+		if(isset($parameters['time'])){
+			if(isset($parameters['time']['begin'])){
+				$condition['where']['addtime >=']=$parameters['time']['begin'];
+			}
+			if(isset($parameters['time']['end'])){
+				$condition['where']['addtime <=']=$parameters['time']['end'];
+			}
+		}
+		$advices=$this->getData($condition);
+		if($parameters['result']=='data'){
+			foreach ($advices as $key => $value) {
+				if($value->role==2){
+					$value->buyer=$this->getContent('buyer',$value->uid);
+				}else{
+					$value->seller=$this->getContent('seller',$value->uid);
+				}
+				
+			}
+		}
+		return $advices;
+	}
 	public function getOrderStatus(){
 		$status=array(
 			'0'=>'未完成扫描',

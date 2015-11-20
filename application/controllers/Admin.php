@@ -561,6 +561,36 @@ class Admin extends CI_Controller {
 
 		$this->adminCommonHandler($parameters);
 	}
+	public function advicelist(){
+		$adviceParameters=array(
+			'result'=>'count',
+			'orderBy'=>array('addtime'=>'DESC')
+		);
+		if(isset($_GET['startTime'])){
+			$adviceParameters['time']['begin']=$_GET['startTime'].' 00:00:00';
+		}
+		if(isset($_GET['endTime'])){
+			$adviceParameters['time']['end']=$_GET['endTime'].' 23:59:59';
+		}
+		if(isset($_GET['keywords'])){
+			$adviceParameters['keywords']=$_GET['keywords'];
+		}
+		$amount=$this->getdata->getAdvices($adviceParameters);
+		$baseUrl='/admin/commentlist?placeholder=true';
+		$selectUrl='/admin/commentlist?placeholder=true';
+		$currentPage=isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+		$amountPerPage=20;
+		$pageInfo=$this->getdata->getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount);
+		$adviceParameters['result']='data';
+		// $bannerParameters['limit']=$pageInfo['limit'];
+		$advices=$this->getdata->getAdvices($adviceParameters);
+		$parameters=array(
+			'view'=>'advice-list',
+			'data'=>array('advices'=>$advices,'pageInfo'=>$pageInfo)
+		);
+
+		$this->adminCommonHandler($parameters);
+	}
 	public function couponlist(){
 		$couponParameters=array(
 			'result'=>'count',
