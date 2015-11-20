@@ -1,7 +1,7 @@
 <title>订单查看</title>
 </head>
 <body>
-<div class="cl pd-20" style=" background-color:#5bacb6">
+<div class="cl pd-20" style=" background-color:#dd514c">
   <img class="avatar size-XL l" src="<?php echo $order->buyer->photo;?>">
   <dl style="margin-left:80px; color:#fff">
     <dt><span class="f-18"><?php echo $order->buyer->alias;?></span> <span class="pl-10 f-12">总金额：<?php echo $order->goodsprice;?></span></dt>
@@ -13,8 +13,20 @@
   <table class="table">
     <tbody>
       <tr>
+        <th class="text-r" width="80">超市：</th>
+        <td><?php echo $order->supermarket->name.' - '.$order->supermarket->sname;?></td>
+      </tr>
+      <tr>
         <th class="text-r" width="80">超市账号：</th>
         <td><?php echo $order->seller->name;?></td>
+      </tr>
+      <tr>
+        <th class="text-r" width="80">商品：</th>
+        <td>
+          <?php foreach($order->details as $detail):?>
+          <img src="<?php echo $detail->product->photo;?>" title="<?php echo $detail->product->name;?>" alt="<?php echo $detail->product->name;?>" width="30"> <?php echo $detail->product->name;?> × <?php echo $detail->count;?>
+          <?php endforeach;?>
+        </td>
       </tr>
       <tr>
         <th class="text-r">收货地址：</th>
