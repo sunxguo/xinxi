@@ -28,11 +28,16 @@
 		<li class="dropDown dropDown_hover"><a href="#" class="dropDown_A"><?php echo $_SESSION['username'];?> <i class="Hui-iconfont">&#xe6d5;</i></a>
 			<ul class="dropDown-menu radius box-shadow">
 				<li><a href="#">个人信息</a></li>
-				<li><a href="#">切换账户</a></li>
+				<li><a href="/admin/login">切换账户</a></li>
 				<li><a href="/admin/login">退出</a></li>
 			</ul>
 		</li>
-		<li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
+		<li id="Hui-msg"> 
+			<a href="javascript:$('#advicelist').click();" title="消息">
+				<span class="badge badge-danger"></span>
+				<i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i>
+			</a> 
+		</li>
 		<li id="Hui-skin" class="dropDown right dropDown_hover"><a href="javascript:;" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
 			<ul class="dropDown-menu radius box-shadow">
 				<li><a href="javascript:;" data-val="default" title="默认（黑色）">默认（黑色）</a></li>
@@ -162,7 +167,7 @@
 					<li><a _href="system-shielding.html" href="javascript:void(0)">屏蔽词</a></li>
 					<li><a _href="system-log.html" href="javascript:void(0)">系统日志</a></li> -->
 					<li><a _href="/admin/aboutuslist" href="javascript:void(0)">关于我们</a></li>
-					<li><a _href="/admin/advicelist" href="javascript:void(0)">意见反馈</a></li>
+					<li><a id="advicelist" _href="/admin/advicelist" href="javascript:void(0)">意见反馈</a></li>
 					<!-- <li><a _href="system-base.html" href="javascript:void(0)">推送消息</a></li> -->
 				</ul>
 			</dd>
