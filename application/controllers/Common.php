@@ -295,7 +295,6 @@ class Common extends CI_Controller {
 				if(isset($data->gender)){
 					$info['gender']=$data->gender;
 				}
-					echo strstr($data->photo,'http');
 				if(isset($data->photo)){
 					$info['photo']=strstr($data->photo,'http')?$data->photo:SERVER_IP.($data->photo);
 				}
