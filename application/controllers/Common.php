@@ -53,7 +53,7 @@ class Common extends CI_Controller {
 					"gender"=>$data->gender,
 					"phone"=>$data->phone,
 					"password"=>md5($data->password."63"),
-					"photo"=>strstr($data->photo,'http')?$data->photo:SERVER_IP.($data->photo),
+					"photo"=>$data->photo==""?'':(strstr($data->photo,'http')?$data->photo:SERVER_IP.($data->photo)),
 					"role"=>is_numeric($data->role)?$data->role:1,
 					"status"=>$data->status
 				);
@@ -296,7 +296,7 @@ class Common extends CI_Controller {
 					$info['gender']=$data->gender;
 				}
 				if(isset($data->photo)){
-					$info['photo']=strstr($data->photo,'http')?$data->photo:SERVER_IP.($data->photo);
+					$info['photo']=$data->photo==""?'':(strstr($data->photo,'http')?$data->photo:SERVER_IP.($data->photo));
 				}
 				if(isset($data->workno)){
 					$info['workno']=$data->workno;
