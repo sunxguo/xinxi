@@ -62,6 +62,8 @@
 					<u style="cursor:pointer" class="text-primary" onclick="member_show('<?php echo $coupon->buyer->alias;?>','/admin/buyershow','<?php echo $coupon->buyer->id;?>','360','440')"><?php echo $coupon->buyer->alias;?></u>
 					<?php elseif(isset($coupon->buyer->linecode)):?>
 					<u style="cursor:pointer" class="text-primary" onclick="member_show('<?php echo $coupon->buyer->linecode;?>','/admin/buyershow','<?php echo $coupon->buyer->id;?>','360','440')"><?php echo $coupon->buyer->linecode;?></u>
+					<?php else:?>
+						用户不存在
 					<?php endif;?>
 				</td>
 				<td><?php echo '￥'.$coupon->facevalue;?></td>

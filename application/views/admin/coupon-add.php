@@ -27,9 +27,9 @@
       <div class="col-4"> </div>
     </div>
     <div class="row cl">
-      <label class="form-label col-3"><span class="c-red">*</span>用户：</label>
+      <label class="form-label col-3"><span class="c-red">*</span>用户插队码：</label>
       <div class="formControls col-5">
-        <input type="text" class="input-text" value="" placeholder="用户id，多用户用英文逗号分隔，只填写0为所有用户" id="buyer" name="member-buyer" datatype="*2-16" nullmsg="用户不能为空">
+        <input type="text" class="input-text" value="" placeholder="多用户用英文逗号分隔，只填写0为所有用户" id="buyer" name="member-buyer" datatype="*2-16" nullmsg="用户不能为空">
       </div>
       <div class="col-4"> </div>
     </div>
