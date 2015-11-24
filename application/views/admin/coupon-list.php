@@ -58,7 +58,7 @@
 				<td><input type="checkbox" value="<?php echo $coupon->id;?>" name="id"></td>
 				<td><u style="cursor:pointer" class="text-primary" onclick="member_show('<?php echo $coupon->supermarket->name.' - '.$coupon->supermarket->sname;?>','/admin/supermarketshow','<?php echo $coupon->supermarket->id;?>','360','440')"><?php echo $coupon->supermarket->name.' - '.$coupon->supermarket->sname;?></u></td>
 				<td>
-					<?php if(isset($coupon->buyer->alias));?>
+					<?php if(isset($coupon->buyer->alias)):?>
 					<u style="cursor:pointer" class="text-primary" onclick="member_show('<?php echo $coupon->buyer->alias;?>','/admin/buyershow','<?php echo $coupon->buyer->id;?>','360','440')"><?php echo $coupon->buyer->alias;?></u>
 					<?php endif;?>
 				</td>
