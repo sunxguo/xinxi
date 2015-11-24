@@ -193,7 +193,13 @@ class Common extends CI_Controller {
 						$users[]=$value->id;
 					}
 				}else{
-					$users=explode(',',$data->buyerid);
+					$usersLinecode=explode(',',$data->buyerid);
+					foreach ($usersLinecode as $value) {
+						$user=$this->getdata->getContentAdvance('buyer',array('linecode'=>$value));
+						if(isset($user->id)){
+							$users[]=$user->id;
+						}
+					}
 				}
 				foreach ($users as $value) {
 					$info['buyerid']=$value;
