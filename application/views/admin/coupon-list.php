@@ -60,6 +60,8 @@
 				<td>
 					<?php if(isset($coupon->buyer->alias)):?>
 					<u style="cursor:pointer" class="text-primary" onclick="member_show('<?php echo $coupon->buyer->alias;?>','/admin/buyershow','<?php echo $coupon->buyer->id;?>','360','440')"><?php echo $coupon->buyer->alias;?></u>
+					<?php elseif(isset($coupon->buyer->linecode)):?>
+					<u style="cursor:pointer" class="text-primary" onclick="member_show('<?php echo $coupon->buyer->linecode;?>','/admin/buyershow','<?php echo $coupon->buyer->id;?>','360','440')"><?php echo $coupon->buyer->linecode;?></u>
 					<?php endif;?>
 				</td>
 				<td><?php echo '￥'.$coupon->facevalue;?></td>
