@@ -76,8 +76,24 @@
 					<?php endforeach;?>
 				</td>
 				<td><?php echo $order->supermarket->name.' - '.$order->supermarket->sname;?></td>
-				<td><u style="cursor:pointer" class="text-primary" onclick="member_show('<?php echo $order->seller->name;?>','/admin/sellershow','<?php echo $order->sellerid;?>','360','440')"><?php echo isset($order->seller->name)?$order->seller->name:'已删除';?></u></td>
-				<td><u style="cursor:pointer" class="text-primary" onclick="member_show('<?php echo $order->buyer->alias;?>','/admin/buyershow','<?php echo $order->buyerid;?>','360','440')"><?php echo isset($order->buyer->alias)?$order->buyer->alias:'已删除';?></u></td>
+				<td>
+					<?php if(isset($order->seller->name)):?>
+					<u style="cursor:pointer" class="text-primary" onclick="member_show('<?php echo $order->seller->name;?>','/admin/sellershow','<?php echo $order->sellerid;?>','360','440')"><?php echo $order->seller->name;?></u>
+					<?php elseif(isset($order->seller->workno)):?>
+					<u style="cursor:pointer" class="text-primary" onclick="member_show('<?php echo $order->seller->workno;?>','/admin/sellershow','<?php echo $order->sellerid;?>','360','440')"><?php echo $order->seller->workno;?></u>
+					<?php else:?>
+					账号不存在
+					<?php endif;?>
+				</td>
+				<td>
+					<?php if(isset($order->buyer->alias)):?>
+					<u style="cursor:pointer" class="text-primary" onclick="member_show('<?php echo $order->buyer->alias;?>','/admin/buyershow','<?php echo $order->buyerid;?>','360','440')"><?php echo $order->buyer->alias;?></u>
+					<?php elseif(isset($order->buyer->linecode)):?>
+					<u style="cursor:pointer" class="text-primary" onclick="member_show('<?php echo $order->buyer->linecode;?>','/admin/buyershow','<?php echo $order->buyerid;?>','360','440')"><?php echo $order->buyer->linecode;?></u>
+					<?php else:?>
+					账号不存在
+					<?php endif;?>
+				</td>
 				<!-- <td><?php echo $order->addressid;//echo $order->address->province.$order->address->city.$order->address->area.$order->address->detailarea.'<br>'.$order->address->name.' 电话：'.$order->address->phone;?></td> -->
 				<!-- <td><?php echo $order->count;?></td> -->
 				<!-- <td><?php echo $order->expressway=='0'?'物流':'自提';?></td>
