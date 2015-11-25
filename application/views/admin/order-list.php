@@ -233,37 +233,39 @@ function change_password(title,url,id,w,h){
 }
 /*用户-删除*/
 function member_del(obj,id){
-	layer.confirm('确认要删除吗？',function(index){
-		var order = new Object(); 
-	    order.infoType = 'order';
-	    order.id = id;
-		dataHandler('/common/deleteInfo',order,null,null,null,function(){
-			$(obj).parents("tr").remove();
-			layer.msg('已删除!',{icon:1,time:1000});
-		},false,false);
-	});
+	layer.alert('为保证数据完整性，暂不提供订单删除功能！');
+	// layer.confirm('确认要删除吗？',function(index){
+	// 	var order = new Object(); 
+	//     order.infoType = 'order';
+	//     order.id = id;
+	// 	dataHandler('/common/deleteInfo',order,null,null,null,function(){
+	// 		$(obj).parents("tr").remove();
+	// 		layer.msg('已删除!',{icon:1,time:1000});
+	// 	},false,false);
+	// });
 }
 /*seller-批量删除*/
 function member_del_bulk(){
-	var memberArray = new Array();
-    $("input[name='id']:checked").each(function(){
-        memberArray.push($(this).val()); 
-    });
-    if(memberArray.length<1){
-       layer.alert('请选择要删除的订单！');
-        return false;
-    }
-	layer.confirm('确认要删除这些订单吗？',function(index){
-	    var orders = new Object();
-	    orders.infoType = 'orders';
-	    orders.idArray = memberArray;
-	    dataHandler("/common/deleteBulkInfo",orders,null,null,null,function(){
-	    	$("input[name='id']:checked").each(function(){
-		        $(this).parents("tr").remove();
-		    });
-			layer.msg('已删除!',{icon:1,time:1000});
-	    },false,false);
-	});
+	layer.alert('为保证数据完整性，暂不提供订单删除功能！');
+	// var memberArray = new Array();
+ //    $("input[name='id']:checked").each(function(){
+ //        memberArray.push($(this).val()); 
+ //    });
+ //    if(memberArray.length<1){
+ //       layer.alert('请选择要删除的订单！');
+ //        return false;
+ //    }
+	// layer.confirm('确认要删除这些订单吗？',function(index){
+	//     var orders = new Object();
+	//     orders.infoType = 'orders';
+	//     orders.idArray = memberArray;
+	//     dataHandler("/common/deleteBulkInfo",orders,null,null,null,function(){
+	//     	$("input[name='id']:checked").each(function(){
+	// 	        $(this).parents("tr").remove();
+	// 	    });
+	// 		layer.msg('已删除!',{icon:1,time:1000});
+	//     },false,false);
+	// });
 }
 </script> 
 </body>
