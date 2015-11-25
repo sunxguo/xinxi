@@ -233,7 +233,7 @@ function change_password(title,url,id,w,h){
 }
 /*用户-删除*/
 function member_del(obj,id){
-	layer.alert('为保证数据完整性，暂不提供订单删除功能！');
+	layer.alert('为保证数据完整与安全性，暂不提供订单删除功能！');
 	// layer.confirm('确认要删除吗？',function(index){
 	// 	var order = new Object(); 
 	//     order.infoType = 'order';
@@ -246,7 +246,7 @@ function member_del(obj,id){
 }
 /*seller-批量删除*/
 function member_del_bulk(){
-	layer.alert('为保证数据完整性，暂不提供订单删除功能！');
+	layer.alert('为保证数据完整与安全性，暂不提供订单删除功能！');
 	// var memberArray = new Array();
  //    $("input[name='id']:checked").each(function(){
  //        memberArray.push($(this).val()); 
