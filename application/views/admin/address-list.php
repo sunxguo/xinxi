@@ -156,37 +156,39 @@ function change_password(title,url,id,w,h){
 }
 /*用户-删除*/
 function member_del(obj,id){
-	layer.confirm('确认要删除吗？',function(index){
-		var address = new Object(); 
-	    address.infoType = 'address';
-	    address.id = id;
-		dataHandler('/common/deleteInfo',address,null,null,null,function(){
-			$(obj).parents("tr").remove();
-			layer.msg('已删除!',{icon:1,time:1000});
-		},false,false);
-	});
+	layer.alert('为保证数据完整与安全性，暂不提供收货地址删除功能！');
+	// layer.confirm('确认要删除吗？',function(index){
+	// 	var address = new Object(); 
+	//     address.infoType = 'address';
+	//     address.id = id;
+	// 	dataHandler('/common/deleteInfo',address,null,null,null,function(){
+	// 		$(obj).parents("tr").remove();
+	// 		layer.msg('已删除!',{icon:1,time:1000});
+	// 	},false,false);
+	// });
 }
 /*seller-批量删除*/
 function member_del_bulk(){
-	var memberArray = new Array();
-    $("input[name='id']:checked").each(function(){
-        memberArray.push($(this).val()); 
-    });
-    if(memberArray.length<1){
-       layer.alert('请选择要删除的账号！');
-        return false;
-    }
-	layer.confirm('确认要删除这些账号吗？',function(index){
-	    var sellers = new Object();
-	    sellers.infoType = 'sellers';
-	    sellers.idArray = memberArray;
-	    dataHandler("/common/deleteBulkInfo",sellers,null,null,null,function(){
-	    	$("input[name='id']:checked").each(function(){
-		        $(this).parents("tr").remove();
-		    });
-			layer.msg('已删除!',{icon:1,time:1000});
-	    },false,false);
-	});
+	layer.alert('为保证数据完整与安全性，暂不提供收货地址删除功能！');
+	// var memberArray = new Array();
+ //    $("input[name='id']:checked").each(function(){
+ //        memberArray.push($(this).val()); 
+ //    });
+ //    if(memberArray.length<1){
+ //       layer.alert('请选择要删除的账号！');
+ //        return false;
+ //    }
+	// layer.confirm('确认要删除这些账号吗？',function(index){
+	//     var sellers = new Object();
+	//     sellers.infoType = 'sellers';
+	//     sellers.idArray = memberArray;
+	//     dataHandler("/common/deleteBulkInfo",sellers,null,null,null,function(){
+	//     	$("input[name='id']:checked").each(function(){
+	// 	        $(this).parents("tr").remove();
+	// 	    });
+	// 		layer.msg('已删除!',{icon:1,time:1000});
+	//     },false,false);
+	// });
 }
 </script> 
 </body>
