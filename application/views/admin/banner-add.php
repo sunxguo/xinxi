@@ -76,6 +76,7 @@ KindEditor.ready(function(K) {
         uploadJson : '/assets/kindEditor/php/upload_json.php',
         fileManagerJson : '/assets/kindEditor/php/file_manager_json.php',
         allowFileManager : true,
+        filterMode: false,//是否开启过滤模式
         width : '100%',
         height:'200px',
         resizeType:0,
