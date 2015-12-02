@@ -11,7 +11,7 @@ class Admin extends CI_Controller {
 	}
 	public function checkAdminLogin(){
 		if (!checkLogin() || strcmp($_SESSION["usertype"], "admin")) {
-			$this->load->view('redirect',array("url"=>"/admin/login","info"=>"请先登录管理员账号"));
+			$this->load->view('redirect',array("fartherurl"=>"/admin/login","info"=>"请先登录管理员账号"));
 			return false;
 		}else return true;
 	}
