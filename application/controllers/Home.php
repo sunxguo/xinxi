@@ -8,6 +8,11 @@ class Home extends CI_Controller {
 		$this->load->library('GetData');
 	}
 	public function index(){
+		$this->load->view('index',array(
+			// 'about'=>$this->getdata->getAbout()
+		));
+	}
+	public function index1(){
 		$data=array();
 		//滚动
 		$parameters=array(
