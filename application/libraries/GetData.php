@@ -27,6 +27,14 @@ class GetData{
 			return $newArray;
 		}
 	}
+	// public function getAbout(){
+	// 	$condition=array(
+	// 		'table'=>'about',
+	// 		'where'=>array('id'=>84),
+	// 		'result'=>'data'
+	// 	);
+	// 	return $result=$this->CI->dbHandler->selectData($condition);
+	// }
 	public function language($type='home'){
 		$this->CI->load->helper('language');
 		if(isset($_SESSION['language'])){

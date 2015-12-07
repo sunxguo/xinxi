@@ -8,6 +8,51 @@ class Home extends CI_Controller {
 		$this->load->library('GetData');
 	}
 	public function index(){
+<<<<<<< HEAD
+		$this->load->view('index',array(
+			// 'about'=>$this->getdata->getAbout()
+		));
+	}
+	public function index1(){
+		$data=array();
+		//滚动
+		$parameters=array(
+			'result'=>'data',
+			'column'=>1,
+			'orderBy'=>array('time'=>'DESC')
+		);
+		$data['sliders']=$this->getdata->getEssays($parameters);
+		//轻断食果蔬汁
+		$parameters=array(
+			'result'=>'data',
+			'column'=>2,
+			'orderBy'=>array('time'=>'DESC')
+		);
+		$data['qingduanguoshus']=$this->getdata->getEssays($parameters);
+		//沛时左侧滚动图
+		$parameters=array(
+			'result'=>'data',
+			'column'=>3,
+			'orderBy'=>array('time'=>'DESC')
+		);
+		$data['peishizuoce']=$this->getdata->getEssays($parameters);
+		//沛时右侧'论坛'最新三条
+		$parameters=array(
+			'result'=>'data',
+			'column'=>5,
+			'limit'=>array('limit'=>3,'offset'=>0),
+			'orderBy'=>array('time'=>'DESC')
+		);
+		$data['comment']=$this->getdata->getEssays($parameters);
+		//'品牌活动'最新三条
+		$parameters=array(
+			'result'=>'data',
+			'column'=>6,
+			'limit'=>array('limit'=>3,'offset'=>0),
+			'orderBy'=>array('time'=>'DESC')
+		);
+		$data['pinpaihuodong']=$this->getdata->getEssays($parameters);
+=======
 		$data=array('about'=>'');
 
 		// //滚动
@@ -47,6 +92,7 @@ class Home extends CI_Controller {
 		// 	'orderBy'=>array('time'=>'DESC')
 		// );
 		// $data['pinpaihuodong']=$this->getdata->getEssays($parameters);
+>>>>>>> 24b04c1a02da6db1005f496e9cfc960fd093d21f
 		$this->load->view('home/index',$data);
 	}
 	public function product(){
