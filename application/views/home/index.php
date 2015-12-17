@@ -45,9 +45,13 @@
 
 	}
 	.body .background{
+		position: relative;
+	}
+	.body .background .background-image{
 		position:absolute;
 		z-index:-1;
 		width:100%;
+		min-height: 503px;
 		/*opacity:0.9;
 		filter:alpha(opacity=90); /* 针对 IE8 以及更早的版本 */
 	}
@@ -187,14 +191,14 @@
 	</div>
 	<div class="body">
 		<div class="background">
-    		<img src="/assets/images/home/background.png" width="100%" height="100%" />
-		</div>
-		<div class="introduction">
-			<div class="introduction-left">
-				<img src="/assets/images/home/cdb-summary.png">
-			</div>
-			<div class="introduction-right">
-				<img src="/assets/images/home/cdb-phone.png">
+    		<img class="background-image" src="/assets/images/home/background.png" width="100%" height="100%" />
+			<div class="introduction">
+				<div class="introduction-left">
+					<img src="/assets/images/home/cdb-summary.png">
+				</div>
+				<div class="introduction-right">
+					<img src="/assets/images/home/cdb-phone.png">
+				</div>
 			</div>
 		</div>
 		<div class="download clearfix">
