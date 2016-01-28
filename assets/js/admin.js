@@ -330,6 +330,10 @@ function saveSeller(isNew,callBack){
     dataHandler('/common/'+method+'Info',seller,null,null,null,callBack,false,false);
 }
 function saveCoupon(isNew,callBack){
+    if($("#useprice").val()<$("#facevalue").val()){
+        alert('使用条件不能小于面值！');
+        return false;
+    }
     showWait();
     var coupon = new Object(); 
     coupon.infoType = 'coupons';

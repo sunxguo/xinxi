@@ -55,6 +55,7 @@ class Common extends CI_Controller {
 					"password"=>md5($data->password."63"),
 					"photo"=>$data->photo==""?'':(strstr($data->photo,'http')?$data->photo:SERVER_IP.($data->photo)),
 					"role"=>is_numeric($data->role)?$data->role:1,
+					"token"=>md5(($data->phone).($data->password).time()),
 					"status"=>$data->status
 				);
 			break;
