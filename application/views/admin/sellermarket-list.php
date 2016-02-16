@@ -76,10 +76,10 @@
 					<a style="text-decoration:none" class="ml-5" onClick="change_password('修改密码','/admin/sellerchangepassword','<?php echo $seller->id;?>','600','270')" href="javascript:;" title="修改密码">
 						<i class="Hui-iconfont">&#xe63f;</i>
 					</a> 
-					<a title="删除" href="javascript:;" onclick="member_del(this,'<?php echo $seller->id;?>')" class="ml-5" style="text-decoration:none">
+					<!-- <a title="删除" href="javascript:;" onclick="member_del(this,'<?php echo $seller->id;?>')" class="ml-5" style="text-decoration:none">
 						<i class="Hui-iconfont">&#xe6e2;</i>
 					</a>
-				</td>
+ -->				</td>
 			</tr>
 			<?php endforeach;?>
 		</tbody>

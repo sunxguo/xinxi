@@ -92,6 +92,7 @@
 					<li><a _href="/admin/supermarketlist" href="javascript:void(0)">超市管理</a></li>
 					<li><a _href="/admin/sellermarketlist" href="javascript:void(0)">超市账号管理</a></li>
 					<li><a _href="/admin/sellerdeliverylist" href="javascript:void(0)">物流账号管理</a></li>
+					<li><a _href="/admin/sellerpicklist" href="javascript:void(0)">拣货员账号管理</a></li>
 				</ul>
 			</dd>
 		</dl>

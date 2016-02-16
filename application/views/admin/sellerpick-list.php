@@ -1,7 +1,7 @@
 <title>账号管理-物流</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 卖家管理 <span class="c-gray en">&gt;</span> 物流账号列表 <a class="btn btn-success radius r mr-20 btn-refresh" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 卖家管理 <span class="c-gray en">&gt;</span> 拣货员账号列表 <a class="btn btn-success radius r mr-20 btn-refresh" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="pd-20">
 	<div class="text-c"> 注册时间：
 		<input type="text" value="<?php echo isset($_GET['startTime'])?$_GET['startTime']:'';?>" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})" id="datemin" class="input-text Wdate" style="width:120px;">
@@ -14,13 +14,13 @@
 			<option value="1">女</option>
 			<option value="NULL">未知</option>
 		</select> -->
-		<input type="text" value="<?php echo isset($_GET['keywords'])?$_GET['keywords']:'';?>" id="keywords" class="input-text" style="width:250px" placeholder="输入物流账号姓名/工号/手机"name="">
-		<button onclick="searchSellerDelivery();" type="submit" class="btn btn-success radius" name=""><i class="Hui-iconfont">&#xe665;</i> 搜物流账号</button>
+		<input type="text" value="<?php echo isset($_GET['keywords'])?$_GET['keywords']:'';?>" id="keywords" class="input-text" style="width:250px" placeholder="输入拣货员账号姓名/工号/手机"name="">
+		<button onclick="searchSellerPick();" type="submit" class="btn btn-success radius" name=""><i class="Hui-iconfont">&#xe665;</i> 搜拣货员账号</button>
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
 		<span class="l">
 			<a href="javascript:;" onclick="member_del_bulk()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> 
-			<a href="javascript:;" onclick="member_add('添加物流账号','/admin/sellerdeliveryadd','','610')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加物流账号</a>
+			<a href="javascript:;" onclick="member_add('添加拣货员账号','/admin/sellerpickadd','','610')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加拣货员账号</a>
 		</span> 
 		<span class="r">共有数据：<strong><?php echo $pageInfo['amount'];?></strong> 条</span> 
 	</div>
@@ -70,7 +70,7 @@
 						<i class="Hui-iconfont">&#xe6e1;</i>
 					</a> 
 					<?php endif;?>
-					<a title="编辑" href="javascript:;" onclick="member_edit('修改物流账号信息','/admin/sellerdeliveryedit','<?php echo $seller->id;?>','','610')" class="ml-5" style="text-decoration:none">
+					<a title="编辑" href="javascript:;" onclick="member_edit('修改拣货员账号信息','/admin/sellerpickedit','<?php echo $seller->id;?>','','610')" class="ml-5" style="text-decoration:none">
 						<i class="Hui-iconfont">&#xe6df;</i>
 					</a> 
 					<a style="text-decoration:none" class="ml-5" onClick="change_password('修改密码','/admin/sellerchangepassword','<?php echo $seller->id;?>','600','270')" href="javascript:;" title="修改密码">

@@ -116,6 +116,22 @@ function searchSellerDelivery(){
     }
     location.href="/admin/sellerdeliverylist"+extUrl;
 }
+function searchSellerPick(){
+    var extUrl='?placeholder=true';
+    if($("#datemin").val()!=''){
+        extUrl+='&startTime='+$("#datemin").val();
+    }
+    if($("#datemax").val()!=''){
+        extUrl+='&endTime='+$("#datemax").val();
+    }
+    // if ($("#gender").val()!=-1) {
+    //      extUrl+='&gender='+$("#gender").val();
+    // };
+    if($("#keywords").val()!=''){
+        extUrl+='&keywords='+$("#keywords").val();
+    }
+    location.href="/admin/sellerpicklist"+extUrl;
+}
 function searchSuperMarket(){
     var extUrl='?placeholder=true';
     if($("#datemin").val()!=''){

@@ -327,6 +327,73 @@ class Admin extends CI_Controller {
 		);
 		$this->adminCommonHandler($parameters);
 	}
+
+	//超市账号管理
+	public function sellerpicklist(){
+
+		$bannerParameters=array(
+			'result'=>'count',
+			'role'=>3,
+			'orderBy'=>array('addtime'=>'DESC')
+		);
+		if(isset($_GET['gender'])){
+			$bannerParameters['gender']=$_GET['gender'];//0-男；1-女
+		}
+		if(isset($_GET['startTime'])){
+			$bannerParameters['time']['begin']=$_GET['startTime'].' 00:00:00';
+		}
+		if(isset($_GET['endTime'])){
+			$bannerParameters['time']['end']=$_GET['endTime'].' 23:59:59';
+		}
+		if(isset($_GET['keywords'])){
+			$bannerParameters['keywords']=$_GET['keywords'];
+		}
+		$amount=$this->getdata->getSellers($bannerParameters);
+		$baseUrl='/admin/sellermarketlist?placeholder=true';
+		$selectUrl='/admin/sellermarketlist?placeholder=true';
+		$currentPage=isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+		$amountPerPage=20;
+		$pageInfo=$this->getdata->getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount);
+		$bannerParameters['result']='data';
+		// $bannerParameters['limit']=$pageInfo['limit'];
+		$sellers=$this->getdata->getSellers($bannerParameters);
+
+		$parameters=array(
+			'view'=>'sellerpick-list',
+			'data'=>array('sellers'=>$sellers,'pageInfo'=>$pageInfo)
+		);
+
+		$this->adminCommonHandler($parameters);
+	}
+
+	public function sellerpickadd(){
+		$supermarkets=$this->getdata->getAllSupermarkets(false);
+		$parameters=array(
+			'view'=>'sellerpick-add',
+			'data'=>array('supermarkets'=>$supermarkets)
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function sellerpickedit(){
+		if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
+			$this->load->view('redirect',array('info'=>'地址错误！'));
+			return false;
+		}
+		$seller=$this->getdata->getContent('seller',$_GET['id']);
+		$seller->subSupermarket=$this->getdata->getContent('supermarket',$seller->sid);
+		$supermarkets=$this->getdata->getAllSupermarkets(false);
+		$subParameters=array(
+			'result'=>'data',
+			'no'=>$seller->subSupermarket->no,
+			'type'=>1,
+		);
+		$subSupermarkets=$this->getdata->getSupermarkets($subParameters);//获取对应所有分店
+		$parameters=array(
+			'view'=>'sellerpick-edit',
+			'data'=>array('seller'=>$seller,'supermarkets'=>$supermarkets,'subSupermarkets'=>$subSupermarkets)
+		);
+		$this->adminCommonHandler($parameters);
+	}
 	//物流账号管理
 	public function sellerdeliverylist(){
 
