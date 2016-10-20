@@ -647,11 +647,11 @@ class Common extends CI_Controller {
 		switch($_POST['info_type']){
 			case 'upass':
 				$websiteUrl=$this->getdata->getWebsiteConfig('website_url');
-				$file = fopen($websiteUrl.$data->src,'r'); 
+				// $file = fopen($websiteUrl.$data->src,'r'); 
 				$itemList=array();
 				// $head=fgetcsv($file);
-				$data=$this->read($data->src,$encode='utf-8');
-				print_r($data); 
+				$data=$this->read($websiteUrl.$data->src,$encode='utf-8');
+				print_r($data);
 				// while ($data = fgetcsv($file)) { //每次读取CSV里面的一行内容
 				// 	print_r($data); //此为一个数组，要获得每一个数据，访问数组下标即可
 				// 	// $info=array(
@@ -759,7 +759,7 @@ class Common extends CI_Controller {
 				// 		$upassId=$data[0]->id;
 				// 	}
 				//  }
-				 fclose($file);
+				 // fclose($file);
 			break;
 		}
 		// if($result==1)
