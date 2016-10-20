@@ -79,7 +79,7 @@
       </tr>
       <tr>
         <td>服务器域名</td>
-        <td>www.fengdukeji.com</td>
+        <td>www.ncut.edu.cn</td>
       </tr>
       <tr>
         <td>服务器端口 </td>
@@ -91,7 +91,7 @@
       </tr>
       <tr>
         <td>本文件所在文件夹 </td>
-        <td>/var/www/cdb</td>
+        <td>/var/www/xinxi</td>
       </tr>
       <tr>
         <td>服务器操作系统 </td>

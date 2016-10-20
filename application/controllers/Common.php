@@ -6,7 +6,8 @@ class Common extends CI_Controller {
 		$this->load->helper("base");
 		$this->load->helper("upload");
 		$this->load->library('GetData');
-//		$this->load->library('PHPExcel');
+		$this->load->library('PHPExcel/IOFactory',array());
+		// $this->load->library('PHPExcel/PHPExcel_Cell');
 		$this->load->model("dbHandler");
 	}
 	public function addInfo(){
@@ -622,6 +623,148 @@ class Common extends CI_Controller {
 			break;
 		}
 		echo json_encode(array("result"=>"success","message"=>$result));
+	}
+	public function read($filename,$encode='utf-8'){
+        $objReader = IOFactory::createReader('Excel2007');
+        $objReader->setReadDataOnly(true);
+        $objPHPExcel = $objReader->load($filename);
+        // $objWorksheet = $objPHPExcel->getActiveSheet();
+        $objWorksheet = $objPHPExcel->getSheet(0);
+		$highestRow = $objWorksheet->getHighestRow();
+		$highestColumn = $objWorksheet->getHighestColumn();
+		// $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($highestColumn);
+		$excelData = array();
+		for ($row = 1; $row <= $highestRow; $row++) {
+			for ($col = 0; $col < 17; $col++) {
+				$excelData[$row][] =(string)$objWorksheet->getCellByColumnAndRow($col, $row)->getValue();
+			}
+		}
+		return $excelData;
+	}    
+	public function uploadInfo(){
+		$data=json_decode($_POST['data']);
+		$result=array();
+		switch($_POST['info_type']){
+			case 'upass':
+				$websiteUrl=$this->getdata->getWebsiteConfig('website_url');
+				$file = fopen($websiteUrl.$data->src,'r'); 
+				$itemList=array();
+				// $head=fgetcsv($file);
+				$data=$this->read($data->src,$encode='utf-8');
+				print_r($data); 
+				// while ($data = fgetcsv($file)) { //每次读取CSV里面的一行内容
+				// 	print_r($data); //此为一个数组，要获得每一个数据，访问数组下标即可
+				// 	// $info=array(
+				// 	// 	"name"=>$data[0]
+				// 	// 	"product_merchant"=>$_SESSION['merchant_userid'],
+				// 	// 	"time"=>date("Y-m-d H:i:s")
+				// 	// );
+
+				// 	//添加班级
+				// 	$table="class";
+				// 	$info=array(
+				// 		"name"=>$data[0]
+				// 	);
+				// 	$data=$this->getdata->getData(array('table'=>$table,'where'=>$info));
+				// 	if(sizeof($data)==0){
+				// 		$classId=$this->dbHandler->insertDataReturnId($table,$info);
+				// 	}else{
+				// 		$classId=$data[0]->id;
+				// 	}
+				// 	//添加专业
+				// 	$table="speciality";
+				// 	$info=array(
+				// 		"name"=>$data[4]
+				// 	);
+				// 	$data=$this->getdata->getData(array('table'=>$table,'where'=>$info));
+				// 	if(sizeof($data)==0){
+				// 		$info=array(
+				// 			"name"=>$data[4],
+				// 			"length"=>$data[5]
+				// 		);
+				// 		$specialityId=$this->dbHandler->insertDataReturnId($table,$info);
+				// 	}else{
+				// 		$specialityId=$data[0]->id;
+				// 	}
+				// 	//添加学生
+				// 	$table="student";
+				// 	$info=array(
+				// 		"number"=>$data[1]
+				// 	);
+				// 	$data=$this->getdata->getData(array('table'=>$table,'where'=>$info));
+				// 	if(sizeof($data)==0){
+				// 		$info=array(
+				// 			"class"=>$classId,
+				// 			"number"=>$data[1],
+				// 			"name"=>$data[2],
+				// 			"gender"=>$data[3]=="男"?0:1,
+				// 			"speciality"=>$specialityId,
+				// 			"address"=>$data[6],
+				// 			"nation"=>$data[7],
+				// 			"property"=>$data[8]
+				// 		);
+				// 		$studentId=$this->dbHandler->insertDataReturnId($table,$info);
+				// 	}else{
+				// 		$studentId=$data[0]->id;
+				// 	}
+				// 	//添加课程
+				// 	$table="course";
+				// 	$info=array(
+				// 		"code"=>$data[9]
+				// 	);
+				// 	$data=$this->getdata->getData(array('table'=>$table,'where'=>$info));
+				// 	if(sizeof($data)==0){
+				// 		$info=array(
+				// 			"code"=>$data[9],
+				// 			"name"=>$data[10]
+				// 		);
+				// 		$courseId=$this->dbHandler->insertDataReturnId($table,$info);
+				// 	}else{
+				// 		$courseId=$data[0]->id;
+				// 	}
+				// 	//添加学期
+				// 	$table="semester";
+				// 	$info=array(
+				// 		"name"=>$data[16]
+				// 	);
+				// 	$data=$this->getdata->getData(array('table'=>$table,'where'=>$info));
+				// 	if(sizeof($data)==0){
+				// 		$info=array(
+				// 			"name"=>$data[16]
+				// 		);
+				// 		$semesterId=$this->dbHandler->insertDataReturnId($table,$info);
+				// 	}else{
+				// 		$semesterId=$data[0]->id;
+				// 	}
+				// 	//添加挂科信息
+				// 	$table="upass";
+				// 	$info=array(
+				// 		"number"=>$data[1],
+				// 		"course"=>$classId
+				// 	);
+				// 	$data=$this->getdata->getData(array('table'=>$table,'where'=>$info));
+				// 	if(sizeof($data)==0){
+				// 		$info=array(
+				// 			"number"=>$studentId,
+				// 			"semester"=>$semesterId,
+				// 			"course"=>$courseId,
+				// 			"score_ordinary"=>$data[12],
+				// 			"score_term"=>$data[13],
+				// 			"score"=>$data[14],
+				// 			"bigclass"=>$data[11],
+				// 			"examproperty"=>$$data[15]
+				// 		);
+				// 		$upassId=$this->dbHandler->insertDataReturnId($table,$info);
+				// 	}else{
+				// 		$upassId=$data[0]->id;
+				// 	}
+				//  }
+				 fclose($file);
+			break;
+		}
+		// if($result==1)
+			echo json_encode(array("result"=>"success","message"=>"信息写入成功"));
+		// else echo json_encode(array("result"=>"failed","message"=>"信息写入失败"));
 	}
 	public function uploadImage(){
 		$result=upload("image");

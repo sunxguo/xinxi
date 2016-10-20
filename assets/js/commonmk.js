@@ -87,6 +87,33 @@ function getThumb(wraperId){
  * (object)postData
  * 默认值：callBack="NoCallBack",confirmMsg="NoConfirmation",refresh=false
  */
+function dataHandler2(funcType,dataType,postDataObj,callBack,confirmMsg,cancelCallBack,successMsg,refresh){
+	if(confirmMsg && !confirm(confirmMsg)){
+		if(cancelCallBack) cancelCallBack();
+		return false;
+	}
+	$.post(
+	"/common/"+funcType+"Info",
+	{
+		'info_type':dataType,
+		'data':JSON.stringify(postDataObj)
+	},
+	function(data){
+		var result=$.parseJSON(data);
+		if(result.result=="success"){
+			if(successMsg) showMsg(successMsg);
+			if(callBack) callBack(result.message);
+			if(refresh) location.reload();
+		}else{
+			alert(result.message);
+		}
+	});
+}
+/**
+ * 数据与后台交互
+ * (object)postData
+ * 默认值：callBack="NoCallBack",confirmMsg="NoConfirmation",refresh=false
+ */
 function dataHandler(url,postDataObj,confirmMsg,cancelCallBack,successMsg,callBack,refresh,ifShowWait){
 	if(confirmMsg && !confirm(confirmMsg)){
 		if(cancelCallBack) cancelCallBack();
@@ -137,6 +164,26 @@ function addImage(){
 // 	});
 // 	return false;
 // }
+
+function uploadImageAdvance(formId,beforeUpload,successHandler){
+	$(formId).ajaxSubmit({
+		success: function (data) {
+			var result=$.parseJSON(data);
+			if(result.code){
+				successHandler(result.message);
+			}else{
+				alert(result.message);
+			}
+		},
+		url: "/common/uploadImage",
+		data: $(formId).formSerialize(),
+		type: 'POST',
+		beforeSubmit: function () {
+			beforeUpload();
+		}
+	});
+	return false;
+}
 function uploadImage(formId,beforeUpload,successHandler){
 	$(formId).ajaxSubmit({
 		success: function (data) {

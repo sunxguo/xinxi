@@ -92,6 +92,44 @@ class Admin extends CI_Controller {
 
 		$this->adminCommonHandler($parameters);
 	}
+	public function upasslist(){
+		$upassParameters=array(
+			'result'=>'count',
+			// 'orderBy'=>array('edittime'=>'DESC')
+		);
+		// if(isset($_GET['startTime'])){
+		// 	$upassParameters['time']['begin']=$_GET['startTime'].' 00:00:00';
+		// }
+		// if(isset($_GET['endTime'])){
+		// 	$upassParameters['time']['end']=$_GET['endTime'].' 23:59:59';
+		// }
+		if(isset($_GET['keywords'])){
+			$upassParameters['keywords']=$_GET['keywords'];
+		}
+		$amount=$this->getdata->getUpass($upassParameters);
+		$baseUrl='/admin/upasslist?placeholder=true';
+		$selectUrl='/admin/upasslist?placeholder=true';
+		$currentPage=isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+		$amountPerPage=20;
+		$pageInfo=$this->getdata->getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount);
+		$upassParameters['result']='data';
+		// $upassParameters['limit']=$pageInfo['limit'];
+		$upass=$this->getdata->getUpass($upassParameters);
+
+		$parameters=array(
+			'view'=>'upass-list',
+			'data'=>array('upass'=>$upass,'pageInfo'=>$pageInfo)
+		);
+
+		$this->adminCommonHandler($parameters);
+	}
+	public function dataAdd(){
+		$parameters=array(
+			'view'=>'data-add',
+			'data'=>array()
+		);
+		$this->adminCommonHandler($parameters);
+	}
 	public function banneradd(){
 		$parameters=array(
 			'view'=>'banner-add',

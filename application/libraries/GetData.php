@@ -13,16 +13,16 @@ class GetData{
 	 */
 	public function getWebsiteConfig($info="ALLINFO"){
 		$condition=array(
-			'table'=>'websiteconfig',
+			'table'=>'website_config',
 			'result'=>'data'
 		);
-		if($info!="ALLINFO") $condition['where']=array('key_websiteconfig'=>$info);
+		if($info!="ALLINFO") $condition['where']=array('key'=>$info);
 		$result=$this->CI->dbHandler->selectData($condition);
-		if($info!="ALLINFO") return $result[0]->value_websiteconfig;
+		if($info!="ALLINFO") return $result[0]->value;
 		else {
 			$newArray=array();
 			foreach($result as $value){
-				$newArray[$value->key_websiteconfig]=$value->value_websiteconfig;
+				$newArray[$value->key]=$value->value;
 			}
 			return $newArray;
 		}
@@ -211,6 +211,44 @@ class GetData{
 		// 	}
 		// }
 		return $banners;
+	}
+	public function getUpass($parameters){
+		$condition=array(
+			'table'=>'upass',
+			'result'=>$parameters['result']
+		);
+		// if(isset($parameters['draft'])){
+		// 	$condition['where']=array('draft'=>$parameters['draft']);
+		// }
+		// if(isset($parameters['orderBy'])){
+		// 	$condition['order_by']=$parameters['orderBy'];
+		// }else{
+		// 	$condition['order_by']=array('order'=>'ASC');
+		// }
+		if(isset($parameters['keywords'])){
+			$condition['like']=array('course'=>$parameters['keywords']);
+		}
+		if(isset($parameters['keywords'])){
+			$condition['like']=array('course'=>$parameters['keywords']);
+		}
+		if(isset($parameters['limit'])){
+			$condition['limit']=$parameters['limit'];
+		}
+		// if(isset($parameters['time'])){
+		// 	if(isset($parameters['time']['begin'])){
+		// 		$condition['where']['addtime >=']=$parameters['time']['begin'];
+		// 	}
+		// 	if(isset($parameters['time']['end'])){
+		// 		$condition['where']['addtime <=']=$parameters['time']['end'];
+		// 	}
+		// }
+		$upass=$this->getData($condition);
+		// if($parameters['result']=='data'){
+		// 	foreach ($essays as $key => $value) {
+		// 		$value->columnName=$this->getContent('column',$value->column)->name;
+		// 	}
+		// }
+		return $upass;
 	}
 	public function getBuyers($parameters){
 		$condition=array(
