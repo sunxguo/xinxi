@@ -25,7 +25,7 @@
 <link href="/assets/css/H-ui.min.css" rel="stylesheet" type="text/css" />
 <link href="/assets/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
 <link href="/assets/skin/default/skin.css" rel="stylesheet" type="text/css" id="skin" />
-<link href="/assets/lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="/assets/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" type="text/css" />
 <link href="/assets/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
 <link href="/assets/css/style.css" rel="stylesheet" type="text/css" />
 <!--[if IE 6]>

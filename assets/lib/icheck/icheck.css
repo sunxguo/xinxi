@@ -1,6 +1,6 @@
 /* iCheck.js Minimal skin
 ----------------------------------- */
-.icheckbox,.iradio{display: block;margin: 0;padding: 0;width: 18px;height: 18px;background: url(/assets/lib/icheck/minimal.png) no-repeat;border: none;cursor: pointer}
+.icheckbox,.iradio{display: block;margin: 0;padding: 0;width: 18px;height: 18px;background: url(minimal.png) no-repeat;border: none;cursor: pointer}
 .icheckbox,.icheckbox.static:hover{background-position: 0 0}
 .icheckbox.hover,.icheckbox:hover{background-position: -20px 0}
 .icheckbox.checked{background-position: -40px 0}
@@ -13,12 +13,12 @@
 .iradio.checked.disabled{background-position: -180px 0}
 
 /* Retina support */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),  only screen and (-moz-min-device-pixel-ratio: 1.5),  only screen and (-o-min-device-pixel-ratio: 1.5),  only screen and (min-device-pixel-ratio: 1.5){.icheckbox,.iradio{background-image: url(/assets/lib/icheck/minimal@2x.png);
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),  only screen and (-moz-min-device-pixel-ratio: 1.5),  only screen and (-o-min-device-pixel-ratio: 1.5),  only screen and (min-device-pixel-ratio: 1.5){.icheckbox,.iradio{background-image: url(minimal@2x.png);
 	-webkit-background-size: 200px 20px;
 	background-size: 200px 20px}
 }
 /* red */
-.icheckbox-red,.iradio-red{display: block;margin: 0;padding: 0;width: 18px;height: 18px;background: url(/assets/lib/icheck/red.png) no-repeat;border: none;cursor: pointer}
+.icheckbox-red,.iradio-red{display: block;margin: 0;padding: 0;width: 18px;height: 18px;background: url(red.png) no-repeat;border: none;cursor: pointer}
 .icheckbox-red,.icheckbox-red.static:hover{background-position: 0 0}
 .icheckbox-red.hover,.icheckbox-red:hover{background-position: -20px 0}
 .icheckbox-red.checked{background-position: -40px 0}
@@ -31,12 +31,12 @@
 .iradio-red.checked.disabled{background-position: -180px 0}
 
 /* Retina support */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),  only screen and (-moz-min-device-pixel-ratio: 1.5),  only screen and (-o-min-device-pixel-ratio: 1.5),  only screen and (min-device-pixel-ratio: 1.5){.icheckbox-red,.iradio-red{background-image: url(/assets/lib/icheck/red@2x.png);
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),  only screen and (-moz-min-device-pixel-ratio: 1.5),  only screen and (-o-min-device-pixel-ratio: 1.5),  only screen and (min-device-pixel-ratio: 1.5){.icheckbox-red,.iradio-red{background-image: url(red@2x.png);
 	-webkit-background-size: 200px 20px;
 	background-size: 200px 20px}
 }
 /* green */
-.icheckbox-green,.iradio-green{display: block;margin: 0;padding: 0;width: 18px;height: 18px;background: url(/assets/lib/icheck/green.png) no-repeat;border: none;cursor: pointer}
+.icheckbox-green,.iradio-green{display: block;margin: 0;padding: 0;width: 18px;height: 18px;background: url(green.png) no-repeat;border: none;cursor: pointer}
 .icheckbox-green,.icheckbox-green.static:hover{background-position: 0 0}
 .icheckbox-green.hover,.icheckbox-green:hover{background-position: -20px 0}
 .icheckbox-green.checked{background-position: -40px 0}
@@ -49,12 +49,12 @@
 .iradio-green.checked.disabled{background-position: -180px 0}
 
 /* Retina support */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),  only screen and (-moz-min-device-pixel-ratio: 1.5),  only screen and (-o-min-device-pixel-ratio: 1.5),  only screen and (min-device-pixel-ratio: 1.5){.icheckbox-green,.iradio-green{background-image: url(/assets/lib/icheck/green@2x.png);
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),  only screen and (-moz-min-device-pixel-ratio: 1.5),  only screen and (-o-min-device-pixel-ratio: 1.5),  only screen and (min-device-pixel-ratio: 1.5){.icheckbox-green,.iradio-green{background-image: url(green@2x.png);
 	-webkit-background-size: 200px 20px;
 	background-size: 200px 20px}
 }
 /* blue */
-.icheckbox-blue,.iradio-blue{display: block;margin: 0;padding: 0;width: 18px;height: 18px;background: url(/assets/lib/icheck/blue.png) no-repeat;border: none;cursor: pointer}
+.icheckbox-blue,.iradio-blue{display: block;margin: 0;padding: 0;width: 18px;height: 18px;background: url(blue.png) no-repeat;border: none;cursor: pointer}
 .icheckbox-blue,.icheckbox-blue.static:hover{background-position: 0 0}
 .icheckbox-blue.hover,.icheckbox-blue:hover{background-position: -20px 0}
 .icheckbox-blue.checked{background-position: -40px 0}
@@ -67,12 +67,12 @@
 .iradio-blue.checked.disabled{background-position: -180px 0}
 
 /* Retina support */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),  only screen and (-moz-min-device-pixel-ratio: 1.5),  only screen and (-o-min-device-pixel-ratio: 1.5),  only screen and (min-device-pixel-ratio: 1.5){.icheckbox-blue,.iradio-blue{background-image: url(/assets/lib/icheck/blue@2x.png);
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),  only screen and (-moz-min-device-pixel-ratio: 1.5),  only screen and (-o-min-device-pixel-ratio: 1.5),  only screen and (min-device-pixel-ratio: 1.5){.icheckbox-blue,.iradio-blue{background-image: url(blue@2x.png);
 	-webkit-background-size: 200px 20px;
 	background-size: 200px 20px}
 }
 /* aero */
-.icheckbox-aero,.iradio-aero{display: block;margin: 0;padding: 0;width: 18px;height: 18px;background: url(/assets/lib/icheck/aero.png) no-repeat;border: none;cursor: pointer}
+.icheckbox-aero,.iradio-aero{display: block;margin: 0;padding: 0;width: 18px;height: 18px;background: url(aero.png) no-repeat;border: none;cursor: pointer}
 .icheckbox-aero,.icheckbox-aero.static:hover{background-position: 0 0}
 .icheckbox-aero.hover,.icheckbox-aero:hover{background-position: -20px 0}
 .icheckbox-aero.checked{background-position: -40px 0}
@@ -85,12 +85,12 @@
 .iradio-aero.checked.disabled{background-position: -180px 0}
 
 /* Retina support */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),  only screen and (-moz-min-device-pixel-ratio: 1.5),  only screen and (-o-min-device-pixel-ratio: 1.5),  only screen and (min-device-pixel-ratio: 1.5){.icheckbox-aero,.iradio-aero{background-image: url(/assets/lib/icheck/aero@2x.png);
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),  only screen and (-moz-min-device-pixel-ratio: 1.5),  only screen and (-o-min-device-pixel-ratio: 1.5),  only screen and (min-device-pixel-ratio: 1.5){.icheckbox-aero,.iradio-aero{background-image: url(aero@2x.png);
 	-webkit-background-size: 200px 20px;
 	background-size: 200px 20px}
 }
 /* grey */
-.icheckbox-grey,.iradio-grey{display: block;margin: 0;padding: 0;width: 18px;height: 18px;background: url(/assets/lib/icheck/grey.png) no-repeat;border: none;cursor: pointer}
+.icheckbox-grey,.iradio-grey{display: block;margin: 0;padding: 0;width: 18px;height: 18px;background: url(grey.png) no-repeat;border: none;cursor: pointer}
 .icheckbox-grey,.icheckbox-grey.static:hover{background-position: 0 0}
 .icheckbox-grey.hover,.icheckbox-grey:hover{background-position: -20px 0}
 .icheckbox-grey.checked{background-position: -40px 0}
@@ -103,12 +103,12 @@
 .iradio-grey.checked.disabled{background-position: -180px 0}
 
 /* Retina support */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),  only screen and (-moz-min-device-pixel-ratio: 1.5),  only screen and (-o-min-device-pixel-ratio: 1.5),  only screen and (min-device-pixel-ratio: 1.5){.icheckbox-grey,.iradio-grey{background-image: url(/assets/lib/icheck/grey@2x.png);
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),  only screen and (-moz-min-device-pixel-ratio: 1.5),  only screen and (-o-min-device-pixel-ratio: 1.5),  only screen and (min-device-pixel-ratio: 1.5){.icheckbox-grey,.iradio-grey{background-image: url(grey@2x.png);
 	-webkit-background-size: 200px 20px;
 	background-size: 200px 20px}
 }
 /* orange */
-.icheckbox-orange,.iradio-orange{display: block;margin: 0;padding: 0;width: 18px;height: 18px;background: url(/assets/lib/icheck/orange.png) no-repeat;border: none;cursor: pointer}
+.icheckbox-orange,.iradio-orange{display: block;margin: 0;padding: 0;width: 18px;height: 18px;background: url(orange.png) no-repeat;border: none;cursor: pointer}
 .icheckbox-orange,.icheckbox-orange.static:hover{background-position: 0 0}
 .icheckbox-orange.hover,.icheckbox-orange:hover{background-position: -20px 0}
 .icheckbox-orange.checked{background-position: -40px 0}
@@ -121,12 +121,12 @@
 .iradio-orange.checked.disabled{background-position: -180px 0}
 
 /* Retina support */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),  only screen and (-moz-min-device-pixel-ratio: 1.5),  only screen and (-o-min-device-pixel-ratio: 1.5),  only screen and (min-device-pixel-ratio: 1.5){.icheckbox-orange,.iradio-orange{background-image: url(/assets/lib/icheck/orange@2x.png);
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),  only screen and (-moz-min-device-pixel-ratio: 1.5),  only screen and (-o-min-device-pixel-ratio: 1.5),  only screen and (min-device-pixel-ratio: 1.5){.icheckbox-orange,.iradio-orange{background-image: url(orange@2x.png);
 	-webkit-background-size: 200px 20px;
 	background-size: 200px 20px}
 }
 /* yellow */
-.icheckbox-yellow,.iradio-yellow{display: block;margin: 0;padding: 0;width: 18px;height: 18px;background: url(/assets/lib/icheck/yellow.png) no-repeat;border: none;cursor: pointer}
+.icheckbox-yellow,.iradio-yellow{display: block;margin: 0;padding: 0;width: 18px;height: 18px;background: url(yellow.png) no-repeat;border: none;cursor: pointer}
 .icheckbox-yellow,.icheckbox-yellow.static:hover{background-position: 0 0}
 .icheckbox-yellow.hover,.icheckbox-yellow:hover{background-position: -20px 0}
 .icheckbox-yellow.checked{background-position: -40px 0}
@@ -139,12 +139,12 @@
 .iradio-yellow.checked.disabled{background-position: -180px 0}
 
 /* Retina support */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),  only screen and (-moz-min-device-pixel-ratio: 1.5),  only screen and (-o-min-device-pixel-ratio: 1.5),  only screen and (min-device-pixel-ratio: 1.5){.icheckbox-yellow,.iradio-yellow{background-image: url(/assets/lib/icheck/yellow@2x.png);
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),  only screen and (-moz-min-device-pixel-ratio: 1.5),  only screen and (-o-min-device-pixel-ratio: 1.5),  only screen and (min-device-pixel-ratio: 1.5){.icheckbox-yellow,.iradio-yellow{background-image: url(yellow@2x.png);
 	-webkit-background-size: 200px 20px;
 	background-size: 200px 20px}
 }
 /* pink */
-.icheckbox-pink,.iradio-pink{display: block;margin: 0;padding: 0;width: 18px;height: 18px;background: url(/assets/lib/icheck/pink.png) no-repeat;border: none;cursor: pointer}
+.icheckbox-pink,.iradio-pink{display: block;margin: 0;padding: 0;width: 18px;height: 18px;background: url(pink.png) no-repeat;border: none;cursor: pointer}
 .icheckbox-pink,.icheckbox-pink.static:hover{background-position: 0 0}
 .icheckbox-pink.hover,.icheckbox-pink:hover{background-position: -20px 0}
 .icheckbox-pink.checked{background-position: -40px 0}
@@ -157,12 +157,12 @@
 .iradio-pink.checked.disabled{background-position: -180px 0}
 
 /* Retina support */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),  only screen and (-moz-min-device-pixel-ratio: 1.5),  only screen and (-o-min-device-pixel-ratio: 1.5),  only screen and (min-device-pixel-ratio: 1.5){.icheckbox-pink,.iradio-pink{background-image: url(/assets/lib/icheck/pink@2x.png);
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),  only screen and (-moz-min-device-pixel-ratio: 1.5),  only screen and (-o-min-device-pixel-ratio: 1.5),  only screen and (min-device-pixel-ratio: 1.5){.icheckbox-pink,.iradio-pink{background-image: url(pink@2x.png);
 	-webkit-background-size: 200px 20px;
 	background-size: 200px 20px}
 }
 /* purple */
-.icheckbox-purple,.iradio-purple{display: block;margin: 0;padding: 0;width: 18px;height: 18px;background: url(/assets/lib/icheck/purple.png) no-repeat;border: none;cursor: pointer}
+.icheckbox-purple,.iradio-purple{display: block;margin: 0;padding: 0;width: 18px;height: 18px;background: url(purple.png) no-repeat;border: none;cursor: pointer}
 .icheckbox-purple,.icheckbox-purple.static:hover{background-position: 0 0}
 .icheckbox-purple.hover,.icheckbox-purple:hover{background-position: -20px 0}
 .icheckbox-purple.checked{background-position: -40px 0}
@@ -175,7 +175,7 @@
 .iradio-purple.checked.disabled{background-position: -180px 0}
 
 /* Retina support */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),  only screen and (-moz-min-device-pixel-ratio: 1.5),  only screen and (-o-min-device-pixel-ratio: 1.5),  only screen and (min-device-pixel-ratio: 1.5){.icheckbox-purple,.iradio-purple{background-image: url(/assets/lib/icheck/purple@2x.png);
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),  only screen and (-moz-min-device-pixel-ratio: 1.5),  only screen and (-o-min-device-pixel-ratio: 1.5),  only screen and (min-device-pixel-ratio: 1.5){.icheckbox-purple,.iradio-purple{background-image: url(purple@2x.png);
 	-webkit-background-size: 200px 20px;
 	background-size: 200px 20px}
 }

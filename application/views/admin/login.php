@@ -63,7 +63,7 @@
     </div>
   </div>
 </div>
-<div class="footer">Copyright fengdukeji.com</div>
+<div class="footer">Copyright NCUT</div>
 <div id="waitDiv"><img src="/assets/images/cms/loading.gif"></div>
 <div id="messageAlert" class="km-alert km-alert-dismissible fade in" style="width:40%;display:none;">
   <button type="button" class="km-close" onclick="$('#messageAlert').hide();"><span>×</span></button>

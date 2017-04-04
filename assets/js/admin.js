@@ -84,6 +84,178 @@ function searchBuyer(){
     }
     location.href="/admin/buyerlist"+extUrl;
 }
+function searchUpass(){
+    var extUrl='?placeholder=true';
+    if ($("#academy").val()!=-1) {
+         extUrl+='&academy='+$("#academy").val();
+    };
+    if ($("#speciality").val()!=-1) {
+         extUrl+='&speciality='+$("#speciality").val();
+    };
+    if ($("#class").val()!=-1) {
+         extUrl+='&class='+$("#class").val();
+    };
+    if ($("#gender").val()!=-1) {
+         extUrl+='&gender='+$("#gender").val();
+    };
+    if($("#student").val()!=''){
+        extUrl+='&student='+$("#student").val();
+    }
+    if($("#course").val()!=''){
+        extUrl+='&course='+$("#course").val();
+    }
+    location.href="/admin/upasslist"+extUrl;
+}
+function searchScore(){
+    var extUrl='?placeholder=true';
+    if ($("#academy").val()!=-1) {
+         extUrl+='&academy='+$("#academy").val();
+    };
+    if ($("#speciality").val()!=-1) {
+         extUrl+='&speciality='+$("#speciality").val();
+    };
+    if ($("#class").val()!=-1) {
+         extUrl+='&class='+$("#class").val();
+    };
+    if ($("#gender").val()!=-1) {
+         extUrl+='&gender='+$("#gender").val();
+    };
+    if ($("#unpass").val()!=-1) {
+         extUrl+='&unpass='+$("#unpass").val();
+    };
+    if($("#student").val()!=''){
+        extUrl+='&student='+$("#student").val();
+    }
+    if($("#course").val()!=''){
+        extUrl+='&course='+$("#course").val();
+    }
+    if($("#ispoor").val()!=''){
+        extUrl+='&ispoor='+$("#ispoor").val();
+    }
+    location.href="/admin/scorelist"+extUrl;
+}
+function searchGpa(){
+    var extUrl='?placeholder=true';
+    if ($("#academy").val()!=-1) {
+         extUrl+='&academy='+$("#academy").val();
+    };
+    if ($("#speciality").val()!=-1) {
+         extUrl+='&speciality='+$("#speciality").val();
+    };
+    if ($("#class").val()!=-1) {
+         extUrl+='&class='+$("#class").val();
+    };
+    if ($("#gpalower").val()!='') {
+         extUrl+='&gpalower='+$("#gpalower").val();
+    };
+    if ($("#gpaupper").val()!='') {
+         extUrl+='&gpaupper='+$("#gpaupper").val();
+    };
+    if($("#student").val()!=''){
+        extUrl+='&student='+$("#student").val();
+    }
+    if($("#speorder").val()!=''){
+        extUrl+='&speorder='+$("#speorder").val();
+    }
+    if($("#ispoor").val()!=''){
+        extUrl+='&ispoor='+$("#ispoor").val();
+    }
+    location.href="/admin/gpalist"+extUrl;
+}
+function searchScholarship(){
+    var extUrl='?placeholder=true';
+    if ($("#academy").val()!=-1) {
+         extUrl+='&academy='+$("#academy").val();
+    };
+    if ($("#speciality").val()!=-1) {
+         extUrl+='&speciality='+$("#speciality").val();
+    };
+    if ($("#class").val()!=-1) {
+         extUrl+='&class='+$("#class").val();
+    };
+    if ($("#scholarshiptype").val()!=-1) {
+         extUrl+='&scholarshiptype='+$("#scholarshiptype").val();
+    };
+    if ($("#scholarshiptime").val()!=-1) {
+         extUrl+='&scholarshiptime='+$("#scholarshiptime").val();
+    };
+    if($("#student").val()!=''){
+        extUrl+='&student='+$("#student").val();
+    }
+    if($("#ispoor").val()!=''){
+        extUrl+='&ispoor='+$("#ispoor").val();
+    }
+    location.href="/admin/scholarshiplist"+extUrl;
+}
+function searchMotiScholarship(){
+    var extUrl='?placeholder=true';
+    if ($("#academy").val()!=-1) {
+         extUrl+='&academy='+$("#academy").val();
+    };
+    if ($("#speciality").val()!=-1) {
+         extUrl+='&speciality='+$("#speciality").val();
+    };
+    if ($("#class").val()!=-1) {
+         extUrl+='&class='+$("#class").val();
+    };
+    if ($("#gender").val()!=-1) {
+         extUrl+='&gender='+$("#gender").val();
+    };
+    if($("#student").val()!=''){
+        extUrl+='&student='+$("#student").val();
+    }
+    if($("#ispoor").val()!=''){
+        extUrl+='&ispoor='+$("#ispoor").val();
+    }
+    location.href="/admin/motischolarshiplist"+extUrl;
+}
+function searchExpense(){
+    var extUrl='?placeholder=true';
+    if ($("#academy").val()!=-1) {
+         extUrl+='&academy='+$("#academy").val();
+    };
+    if ($("#speciality").val()!=-1) {
+         extUrl+='&speciality='+$("#speciality").val();
+    };
+    if ($("#class").val()!=-1) {
+         extUrl+='&class='+$("#class").val();
+    };
+    if ($("#gender").val()!=-1) {
+         extUrl+='&gender='+$("#gender").val();
+    };
+    if ($("#exprank").val()!=-1) {
+         extUrl+='&exprank='+$("#exprank").val();
+    };
+    if($("#student").val()!=''){
+        extUrl+='&student='+$("#student").val();
+    }
+    if($("#explower").val()!=''){
+        extUrl+='&explower='+$("#explower").val();
+    }
+    if($("#expupper").val()!=''){
+        extUrl+='&expupper='+$("#expupper").val();
+    }
+    location.href="/admin/expenselist"+extUrl;
+}
+function searchAssistantship(){
+    var extUrl='?placeholder=true';
+    if ($("#academy").val()!=-1) {
+         extUrl+='&academy='+$("#academy").val();
+    };
+    if ($("#speciality").val()!=-1) {
+         extUrl+='&speciality='+$("#speciality").val();
+    };
+    if ($("#class").val()!=-1) {
+         extUrl+='&class='+$("#class").val();
+    };
+    if ($("#gender").val()!=-1) {
+         extUrl+='&gender='+$("#gender").val();
+    };
+    if($("#student").val()!=''){
+        extUrl+='&student='+$("#student").val();
+    }
+    location.href="/admin/assistantshiplist"+extUrl;
+}
 function searchSellerMarket(){
     var extUrl='?placeholder=true';
     if($("#datemin").val()!=''){
@@ -405,27 +577,8 @@ function saveSuperMarket(isNew,callBack){
     }
     dataHandler('/common/'+method+'Info',supermarket,null,null,null,callBack,false,false);
 }
-function saveProduct(isNew,callBack){
-    showWait();
-    var product = new Object(); 
-    product.infoType = 'product';
-    product.sid = $("#supermarket").val();
-    product.categoryid = $("#category").val();
-    product.name = $("#name").val();
-    product.barcode = $("#barcode").val();
-    product.price = $("#price").val();
-    product.photo = $("#thumbnail").attr('src');
-    product.isedit = $("input[name='isedit']:checked").val();
-    product.status = $("input[name='status']:checked").val();
-    var method='add';
-    if(!isNew){
-        product.id = $("#id").val();
-        method = 'modify';
-    }
-    dataHandler('/common/'+method+'Info',product,null,null,null,callBack,false,false);
-}
 function saveCategory(isNew,callBack){
-     showWait();
+    showWait();
     var category = new Object(); 
     category.infoType = 'category';
     category.sid = $("#supermarket").val();
@@ -504,6 +657,53 @@ function setSupermarketLogo(){
 function getSupermarketSuccess(supermarket){
     $("#thumbnail").attr('src',supermarket.logo);
     closeWait();
+}
+function saveUpass(isNew){
+    showWait();
+    var upass = new Object();
+    var student = new Object();
+    upass.infoType = 'upass';
+    upass.score_ordinary = $("#score_ordinary").val();
+    upass.score_term = $("#score_term").val();
+    upass.score = $("#score").val();
+    student.id = $("#studentId").val();
+    student.number = $("#studentNumber").val();
+    student.name = $("#studentName").val();
+    student.gender = $("input[name='gender']:checked").val();
+    upass.student=student;
+    var method='add';
+    if(!isNew){
+        upass.id = $("#id").val();
+        method = 'modify';
+    }
+    dataHandler('/common/'+method+'Info',upass,null,null,null,addSuccessHandler,false,false);
+}
+function saveScore(isNew){
+    showWait();
+    var score = new Object();
+    var student = new Object();
+    score.infoType = 'score';
+    score.score_ordinary = $("#score_ordinary").val();
+    score.score_term = $("#score_term").val();
+    score.score = $("#score").val();
+    student.id = $("#studentId").val();
+    student.number = $("#studentNumber").val();
+    student.name = $("#studentName").val();
+    student.gender = $("input[name='gender']:checked").val();
+    score.student=student;
+    var method='add';
+    if(!isNew){
+        score.id = $("#id").val();
+        method = 'modify';
+    }
+    dataHandler('/common/'+method+'Info',score,null,null,null,addSuccessHandler,false,false);
+}
+function addSuccessHandler(){
+    $("#waitDiv").hide(100);
+    showAlert('success','保存成功！正在刷新...','');
+    setTimeout(function(){
+        location.reload();
+    },2000);
 }
 // function uploadThumb1(){
 //     uploadImageAdvance("#uploadImgThumb1",beforeUpload1,successHandler1);

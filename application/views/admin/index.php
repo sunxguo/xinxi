@@ -54,18 +54,22 @@
 	<input runat="server" id="divScrollValue" type="hidden" value="" />
 	<div class="menu_dropdown bk_2">
 		<dl id="menu-picture">
-			<dt><i class="Hui-iconfont">&#xe613;</i> 学习成绩管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe667;</i> 学习成绩管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="/admin/upasslist" href="javascript:void(0)">挂科名单</a></li>
+					<li><a _href="/admin/scorelist" href="javascript:void(0)">学习成绩</a></li>
+					<li><a _href="/admin/gpalist" href="javascript:void(0)">绩点</a></li>
+					<li><a _href="/admin/cetlist" href="javascript:void(0)">四六级成绩</a></li>
 				</ul>
 			</dd>
 		</dl>
 		<dl id="menu-member">
-			<dt><i class="Hui-iconfont">&#xe60d;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe6b7;</i> 奖助管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="/admin/buyerlist" href="javascript:;">用户列表</a></li>
+					<li><a _href="/admin/scholarshiplist" href="javascript:;">奖学金</a></li>
+					<li><a _href="/admin/motischolarshiplist" href="javascript:;">励志奖学金</a></li>
+					<li><a _href="/admin/assistantshiplist" href="javascript:;">助学金</a></li>
 					<!-- <li><a _href="member-del.html" href="javascript:;">删除的会员</a></li>
 					<li><a _href="member-level.html" href="javascript:;">等级管理</a></li>
 					<li><a _href="member-scoreoperation.html" href="javascript:;">积分管理</a></li>
@@ -76,27 +80,24 @@
 			</dd>
 		</dl>
 		<dl id="menu-product">
-			<dt><i class="Hui-iconfont">&#xe620;</i> 商品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe620;</i> 消费情况<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="/admin/productlist" href="javascript:void(0)">商品管理</a></li>
-					<!-- <li><a _href="/admin/productbrand" href="javascript:void(0)">品牌管理</a></li> -->
-					<li><a _href="/admin/categorylist" href="javascript:void(0)">分类管理</a></li>
+					<li><a _href="/admin/expenselist" href="javascript:void(0)">贫困生消费</a></li>
 				</ul>
 			</dd>
 		</dl>
-		<dl id="menu-admin">
-			<dt><i class="Hui-iconfont">&#xe62d;</i> 卖家管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+		<!-- <dl id="menu-admin">
+			<dt><i class="Hui-iconfont">&#xe62d;</i> 大四特有信息<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="/admin/supermarketlist" href="javascript:void(0)">超市管理</a></li>
-					<li><a _href="/admin/sellermarketlist" href="javascript:void(0)">超市账号管理</a></li>
-					<li><a _href="/admin/sellerdeliverylist" href="javascript:void(0)">物流账号管理</a></li>
-					<li><a _href="/admin/sellerpicklist" href="javascript:void(0)">拣货员账号管理</a></li>
+					<li><a _href="/admin/supermarketlist" href="javascript:void(0)">毕业成绩</a></li>
+					<li><a _href="/admin/sellermarketlist" href="javascript:void(0)">毕业资格</a></li>
+					<li><a _href="/admin/sellerdeliverylist" href="javascript:void(0)">毕业去向</a></li>
 				</ul>
 			</dd>
-		</dl>
-		<dl id="menu-article">
+		</dl> -->
+		<!-- <dl id="menu-article">
 			<dt><i class="Hui-iconfont">&#xe687;</i> 订单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
@@ -105,7 +106,7 @@
 					<li><a _href="/admin/commentlist" href="javascript:void(0)">评价管理</a></li>
 				</ul>
 			</dd>
-		</dl>
+		</dl> -->
 		<!--<dl id="menu-page">
 			<dt><i class="Hui-iconfont">&#xe626;</i> 页面管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
@@ -115,15 +116,15 @@
 				</ul>
 			</dd>
 		</dl>-->
-		<dl id="menu-comments">
+		<!-- <dl id="menu-comments">
 			<dt><i class="Hui-iconfont">&#xe6ca;</i> 优惠券管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
 					<li><a _href="/admin/couponlist" href="javascript:;">优惠券管理</a></li>
-					<!-- <li><a _href="feedback-list.html" href="javascript:void(0)">意见反馈</a></li> -->
+					<li><a _href="feedback-list.html" href="javascript:void(0)">意见反馈</a></li>
 				</ul>
 			</dd>
-		</dl>
+		</dl> -->
 		<!--<dl id="menu-order">
 			<dt><i class="Hui-iconfont">&#xe63a;</i> 财务管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>

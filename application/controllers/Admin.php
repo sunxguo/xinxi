@@ -103,30 +103,516 @@ class Admin extends CI_Controller {
 		// if(isset($_GET['endTime'])){
 		// 	$upassParameters['time']['end']=$_GET['endTime'].' 23:59:59';
 		// }
-		if(isset($_GET['keywords'])){
-			$upassParameters['keywords']=$_GET['keywords'];
+		if(isset($_GET['academy'])){
+			$upassParameters['academy']=$_GET['academy'];
 		}
-		$amount=$this->getdata->getUpass($upassParameters);
-		$baseUrl='/admin/upasslist?placeholder=true';
-		$selectUrl='/admin/upasslist?placeholder=true';
-		$currentPage=isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
-		$amountPerPage=20;
-		$pageInfo=$this->getdata->getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount);
+		if(isset($_GET['speciality'])){
+			$upassParameters['speciality']=$_GET['speciality'];
+		}
+		if(isset($_GET['class'])){
+			$upassParameters['class']=$_GET['class'];
+		}
+		if(isset($_GET['student'])){
+			$upassParameters['student']=$_GET['student'];
+		}
+		if(isset($_GET['course'])){
+			$upassParameters['course']=$_GET['course'];
+		}
+		if(isset($_GET['gender'])){
+			$upassParameters['gender']=$_GET['gender'];
+		}
+		$pageInfo['amount']=$this->getdata->getUpass($upassParameters);
+		// $baseUrl='/admin/upasslist?placeholder=true';
+		// $selectUrl='/admin/upasslist?placeholder=true';
+		// $currentPage=isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+		// $amountPerPage=20;
+		// $pageInfo=$this->getdata->getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount);
 		$upassParameters['result']='data';
 		// $upassParameters['limit']=$pageInfo['limit'];
 		$upass=$this->getdata->getUpass($upassParameters);
-
+		$students=$this->getdata->getStudentsByIndex();
+		$academies=$this->getdata->getAcademiesByIndex();
+		$specialities=$this->getdata->getSpecialitiesByIndex();
+		$classes=$this->getdata->getClassesByIndex();
+		$semesters=$this->getdata->getSemestersByIndex();
+		$courses=$this->getdata->getCoursesByIndex();
 		$parameters=array(
 			'view'=>'upass-list',
-			'data'=>array('upass'=>$upass,'pageInfo'=>$pageInfo)
+			'data'=>array('upass'=>$upass,'students'=>$students,'academies'=>$academies,'specialities'=>$specialities,'classes'=>$classes,'semesters'=>$semesters,'courses'=>$courses,'pageInfo'=>$pageInfo)
 		);
-
+		$this->adminCommonHandler($parameters);
+	}
+	public function scorelist(){
+		$scoreParameters=array(
+			'result'=>'count',
+			// 'orderBy'=>array('edittime'=>'DESC')
+		);
+		// if(isset($_GET['startTime'])){
+		// 	$upassParameters['time']['begin']=$_GET['startTime'].' 00:00:00';
+		// }
+		// if(isset($_GET['endTime'])){
+		// 	$upassParameters['time']['end']=$_GET['endTime'].' 23:59:59';
+		// }
+		if(isset($_GET['academy'])){
+			$scoreParameters['academy']=$_GET['academy'];
+		}
+		if(isset($_GET['speciality'])){
+			$scoreParameters['speciality']=$_GET['speciality'];
+		}
+		if(isset($_GET['class'])){
+			$scoreParameters['class']=$_GET['class'];
+		}
+		if(isset($_GET['student'])){
+			$scoreParameters['student']=$_GET['student'];
+		}
+		if(isset($_GET['course'])){
+			$scoreParameters['course']=$_GET['course'];
+		}
+		if(isset($_GET['gender'])){
+			$scoreParameters['gender']=$_GET['gender'];
+		}
+		if(isset($_GET['unpass'])){
+			$scoreParameters['unpass']=$_GET['unpass'];
+		}
+		if(isset($_GET['ispoor'])){
+			$scoreParameters['ispoor']=$_GET['ispoor'];
+		}
+		$pageInfo['amount']=$this->getdata->getScore($scoreParameters);
+		// $baseUrl='/admin/upasslist?placeholder=true';
+		// $selectUrl='/admin/upasslist?placeholder=true';
+		// $currentPage=isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+		// $amountPerPage=20;
+		// $pageInfo=$this->getdata->getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount);
+		$scoreParameters['result']='data';
+		// $scoreParameters['limit']=$pageInfo['limit'];
+		$score=$this->getdata->getScore($scoreParameters);
+		$students=$this->getdata->getStudentsByIndex();
+		$academies=$this->getdata->getAcademiesByIndex();
+		$specialities=$this->getdata->getSpecialitiesByIndex();
+		$classes=$this->getdata->getClassesByIndex();
+		$semesters=$this->getdata->getSemestersByIndex();
+		$courses=$this->getdata->getCoursesByIndex();
+		$parameters=array(
+			'view'=>'score-list',
+			'data'=>array('score'=>$score,'students'=>$students,'academies'=>$academies,'specialities'=>$specialities,'classes'=>$classes,'semesters'=>$semesters,'courses'=>$courses,'pageInfo'=>$pageInfo)
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function gpalist(){
+		$gpaParameters=array(
+			'result'=>'count',
+			// 'orderBy'=>array('edittime'=>'DESC')
+		);
+		// if(isset($_GET['startTime'])){
+		// 	$upassParameters['time']['begin']=$_GET['startTime'].' 00:00:00';
+		// }
+		// if(isset($_GET['endTime'])){
+		// 	$upassParameters['time']['end']=$_GET['endTime'].' 23:59:59';
+		// }
+		if(isset($_GET['academy'])){
+			$gpaParameters['academy']=$_GET['academy'];
+		}
+		if(isset($_GET['speciality'])){
+			$gpaParameters['speciality']=$_GET['speciality'];
+		}
+		if(isset($_GET['class'])){
+			$gpaParameters['class']=$_GET['class'];
+		}
+		if(isset($_GET['student'])){
+			$gpaParameters['student']=$_GET['student'];
+		}
+		if(isset($_GET['speorder'])){
+			$gpaParameters['speorder']=$_GET['speorder'];
+		}
+		// if(isset($_GET['gender'])){
+		// 	$gpaParameters['gender']=$_GET['gender'];
+		// }
+		if(isset($_GET['gpalower'])){
+			$gpaParameters['gpalower']=$_GET['gpalower'];
+		}
+		if(isset($_GET['gpaupper'])){
+			$gpaParameters['gpaupper']=$_GET['gpaupper'];
+		}
+		if(isset($_GET['ispoor'])){
+			$gpaParameters['ispoor']=$_GET['ispoor'];
+		}
+		$pageInfo['amount']=$this->getdata->getGpa($gpaParameters);
+		// $baseUrl='/admin/upasslist?placeholder=true';
+		// $selectUrl='/admin/upasslist?placeholder=true';
+		// $currentPage=isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+		// $amountPerPage=20;
+		// $pageInfo=$this->getdata->getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount);
+		$gpaParameters['result']='data';
+		// $scoreParameters['limit']=$pageInfo['limit'];
+		$gpa=$this->getdata->getGpa($gpaParameters);
+		$students=$this->getdata->getStudentsByIndex();
+		$academies=$this->getdata->getAcademiesByIndex();
+		$specialities=$this->getdata->getSpecialitiesByIndex();
+		$classes=$this->getdata->getClassesByIndex();
+		$semesters=$this->getdata->getSemestersByIndex();
+		$courses=$this->getdata->getCoursesByIndex();
+		$parameters=array(
+			'view'=>'gpa-list',
+			'data'=>array('gpa'=>$gpa,'students'=>$students,'academies'=>$academies,'specialities'=>$specialities,'classes'=>$classes,'semesters'=>$semesters,'courses'=>$courses,'pageInfo'=>$pageInfo)
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function scholarshiplist(){
+		$scholarshipParameters=array(
+			'result'=>'count',
+			// 'orderBy'=>array('edittime'=>'DESC')
+		);
+		// if(isset($_GET['startTime'])){
+		// 	$upassParameters['time']['begin']=$_GET['startTime'].' 00:00:00';
+		// }
+		// if(isset($_GET['endTime'])){
+		// 	$upassParameters['time']['end']=$_GET['endTime'].' 23:59:59';
+		// }
+		if(isset($_GET['academy'])){
+			$scholarshipParameters['academy']=$_GET['academy'];
+		}
+		if(isset($_GET['speciality'])){
+			$scholarshipParameters['speciality']=$_GET['speciality'];
+		}
+		if(isset($_GET['class'])){
+			$scholarshipParameters['class']=$_GET['class'];
+		}
+		if(isset($_GET['student'])){
+			$scholarshipParameters['student']=$_GET['student'];
+		}
+		// if(isset($_GET['speorder'])){
+		// 	$gpaParameters['speorder']=$_GET['speorder'];
+		// }
+		// if(isset($_GET['gender'])){
+		// 	$gpaParameters['gender']=$_GET['gender'];
+		// }
+		// if(isset($_GET['gpalower'])){
+		// 	$gpaParameters['gpalower']=$_GET['gpalower'];
+		// }
+		// if(isset($_GET['gpaupper'])){
+		// 	$gpaParameters['gpaupper']=$_GET['gpaupper'];
+		// }
+		if(isset($_GET['ispoor'])){
+			$scholarshipParameters['ispoor']=$_GET['ispoor'];
+		}
+		$pageInfo['amount']=$this->getdata->getScholarship($scholarshipParameters);
+		// $baseUrl='/admin/upasslist?placeholder=true';
+		// $selectUrl='/admin/upasslist?placeholder=true';
+		// $currentPage=isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+		// $amountPerPage=20;
+		// $pageInfo=$this->getdata->getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount);
+		$scholarshipParameters['result']='data';
+		// $scoreParameters['limit']=$pageInfo['limit'];
+		$scholarship=$this->getdata->getScholarship($scholarshipParameters);
+		$students=$this->getdata->getStudentsByIndex();
+		$academies=$this->getdata->getAcademiesByIndex();
+		$specialities=$this->getdata->getSpecialitiesByIndex();
+		$classes=$this->getdata->getClassesByIndex();
+		// $semesters=$this->getdata->getSemestersByIndex();
+		// $courses=$this->getdata->getCoursesByIndex();
+		$parameters=array(
+			'view'=>'scholarship-list',
+			'data'=>array('scholarship'=>$scholarship,'students'=>$students,'academies'=>$academies,'specialities'=>$specialities,'classes'=>$classes,'pageInfo'=>$pageInfo)
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function motischolarshiplist(){
+		$motischolarshipParameters=array(
+			'result'=>'count',
+			// 'orderBy'=>array('edittime'=>'DESC')
+		);
+		// if(isset($_GET['startTime'])){
+		// 	$upassParameters['time']['begin']=$_GET['startTime'].' 00:00:00';
+		// }
+		// if(isset($_GET['endTime'])){
+		// 	$upassParameters['time']['end']=$_GET['endTime'].' 23:59:59';
+		// }
+		if(isset($_GET['academy'])){
+			$motischolarshipParameters['academy']=$_GET['academy'];
+		}
+		if(isset($_GET['speciality'])){
+			$motischolarshipParameters['speciality']=$_GET['speciality'];
+		}
+		if(isset($_GET['class'])){
+			$motischolarshipParameters['class']=$_GET['class'];
+		}
+		if(isset($_GET['student'])){
+			$motischolarshipParameters['student']=$_GET['student'];
+		}
+		// if(isset($_GET['speorder'])){
+		// 	$gpaParameters['speorder']=$_GET['speorder'];
+		// }
+		if(isset($_GET['gender'])){
+			$motischolarshipParameters['gender']=$_GET['gender'];
+		}
+		// if(isset($_GET['gpalower'])){
+		// 	$gpaParameters['gpalower']=$_GET['gpalower'];
+		// }
+		// if(isset($_GET['gpaupper'])){
+		// 	$gpaParameters['gpaupper']=$_GET['gpaupper'];
+		// }
+		if(isset($_GET['ispoor'])){
+			$motischolarshipParameters['ispoor']=$_GET['ispoor'];
+		}
+		$pageInfo['amount']=$this->getdata->getMotischolarship($motischolarshipParameters);
+		// $baseUrl='/admin/upasslist?placeholder=true';
+		// $selectUrl='/admin/upasslist?placeholder=true';
+		// $currentPage=isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+		// $amountPerPage=20;
+		// $pageInfo=$this->getdata->getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount);
+		$motischolarshipParameters['result']='data';
+		// $scoreParameters['limit']=$pageInfo['limit'];
+		$motischolarship=$this->getdata->getMotischolarship($motischolarshipParameters);
+		$students=$this->getdata->getStudentsByIndex();
+		$academies=$this->getdata->getAcademiesByIndex();
+		$specialities=$this->getdata->getSpecialitiesByIndex();
+		$classes=$this->getdata->getClassesByIndex();
+		// $semesters=$this->getdata->getSemestersByIndex();
+		// $courses=$this->getdata->getCoursesByIndex();
+		$parameters=array(
+			'view'=>'motischolarship-list',
+			'data'=>array('motischolarship'=>$motischolarship,'students'=>$students,'academies'=>$academies,'specialities'=>$specialities,'classes'=>$classes,'pageInfo'=>$pageInfo)
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function expenselist(){
+		$expenseParameters=array(
+			'result'=>'count',
+			// 'orderBy'=>array('edittime'=>'DESC')
+		);
+		// if(isset($_GET['startTime'])){
+		// 	$upassParameters['time']['begin']=$_GET['startTime'].' 00:00:00';
+		// }
+		// if(isset($_GET['endTime'])){
+		// 	$upassParameters['time']['end']=$_GET['endTime'].' 23:59:59';
+		// }
+		if(isset($_GET['academy'])){
+			$expenseParameters['academy']=$_GET['academy'];
+		}
+		if(isset($_GET['speciality'])){
+			$expenseParameters['speciality']=$_GET['speciality'];
+		}
+		if(isset($_GET['class'])){
+			$expenseParameters['class']=$_GET['class'];
+		}
+		if(isset($_GET['student'])){
+			$expenseParameters['student']=$_GET['student'];
+		}
+		// if(isset($_GET['speorder'])){
+		// 	$gpaParameters['speorder']=$_GET['speorder'];
+		// }
+		if(isset($_GET['gender'])){
+			$expenseParameters['gender']=$_GET['gender'];
+		}
+		if(isset($_GET['explower'])){
+			$expenseParameters['explower']=$_GET['explower'];
+		}
+		if(isset($_GET['expupper'])){
+			$expenseParameters['expupper']=$_GET['expupper'];
+		}
+		// if(isset($_GET['ispoor'])){
+		// 	$scholarshipParameters['ispoor']=$_GET['ispoor'];
+		// }
+		$pageInfo['amount']=$this->getdata->getExpense($expenseParameters);
+		if(isset($_GET['exprank']) && $_GET['exprank']!=-1){
+			$expenseParameters['exprank']=$_GET['exprank'];
+			$pageInfo['amount']=ceil($pageInfo['amount'] * 0.2);
+			$expenseParameters['limit']=array("limit"=>$pageInfo['amount'],"offset"=>0);
+		}
+		// $baseUrl='/admin/upasslist?placeholder=true';
+		// $selectUrl='/admin/upasslist?placeholder=true';
+		// $currentPage=isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+		// $amountPerPage=20;
+		// $pageInfo=$this->getdata->getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount);
+		$expenseParameters['result']='data';
+		// $scoreParameters['limit']=$pageInfo['limit'];
+		$expense=$this->getdata->getExpense($expenseParameters);
+		$students=$this->getdata->getStudentsByIndex();
+		$academies=$this->getdata->getAcademiesByIndex();
+		$specialities=$this->getdata->getSpecialitiesByIndex();
+		$classes=$this->getdata->getClassesByIndex();
+		// $semesters=$this->getdata->getSemestersByIndex();
+		// $courses=$this->getdata->getCoursesByIndex();
+		$parameters=array(
+			'view'=>'expense-list',
+			'data'=>array('expense'=>$expense,'students'=>$students,'academies'=>$academies,'specialities'=>$specialities,'classes'=>$classes,'pageInfo'=>$pageInfo)
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function cetlist(){
+		$gpaParameters=array(
+			'result'=>'count',
+			// 'orderBy'=>array('edittime'=>'DESC')
+		);
+		// if(isset($_GET['startTime'])){
+		// 	$upassParameters['time']['begin']=$_GET['startTime'].' 00:00:00';
+		// }
+		// if(isset($_GET['endTime'])){
+		// 	$upassParameters['time']['end']=$_GET['endTime'].' 23:59:59';
+		// }
+		if(isset($_GET['academy'])){
+			$gpaParameters['academy']=$_GET['academy'];
+		}
+		if(isset($_GET['speciality'])){
+			$gpaParameters['speciality']=$_GET['speciality'];
+		}
+		if(isset($_GET['class'])){
+			$gpaParameters['class']=$_GET['class'];
+		}
+		if(isset($_GET['student'])){
+			$gpaParameters['student']=$_GET['student'];
+		}
+		if(isset($_GET['speorder'])){
+			$gpaParameters['speorder']=$_GET['speorder'];
+		}
+		// if(isset($_GET['gender'])){
+		// 	$gpaParameters['gender']=$_GET['gender'];
+		// }
+		if(isset($_GET['gpalower'])){
+			$gpaParameters['gpalower']=$_GET['gpalower'];
+		}
+		if(isset($_GET['gpaupper'])){
+			$gpaParameters['gpaupper']=$_GET['gpaupper'];
+		}
+		if(isset($_GET['ispoor'])){
+			$gpaParameters['ispoor']=$_GET['ispoor'];
+		}
+		$pageInfo['amount']=$this->getdata->getGpa($gpaParameters);
+		// $baseUrl='/admin/upasslist?placeholder=true';
+		// $selectUrl='/admin/upasslist?placeholder=true';
+		// $currentPage=isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+		// $amountPerPage=20;
+		// $pageInfo=$this->getdata->getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount);
+		$gpaParameters['result']='data';
+		// $scoreParameters['limit']=$pageInfo['limit'];
+		$gpa=$this->getdata->getGpa($gpaParameters);
+		$students=$this->getdata->getStudentsByIndex();
+		$academies=$this->getdata->getAcademiesByIndex();
+		$specialities=$this->getdata->getSpecialitiesByIndex();
+		$classes=$this->getdata->getClassesByIndex();
+		$semesters=$this->getdata->getSemestersByIndex();
+		$courses=$this->getdata->getCoursesByIndex();
+		$parameters=array(
+			'view'=>'cet-list',
+			'data'=>array('gpa'=>$gpa,'students'=>$students,'academies'=>$academies,'specialities'=>$specialities,'classes'=>$classes,'semesters'=>$semesters,'courses'=>$courses,'pageInfo'=>$pageInfo)
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function assistantshiplist(){
+		$assistantParameters=array(
+			'result'=>'count',
+			// 'orderBy'=>array('edittime'=>'DESC')
+		);
+		// if(isset($_GET['startTime'])){
+		// 	$upassParameters['time']['begin']=$_GET['startTime'].' 00:00:00';
+		// }
+		// if(isset($_GET['endTime'])){
+		// 	$upassParameters['time']['end']=$_GET['endTime'].' 23:59:59';
+		// }
+		if(isset($_GET['academy'])){
+			$assistantParameters['academy']=$_GET['academy'];
+		}
+		if(isset($_GET['speciality'])){
+			$assistantParameters['speciality']=$_GET['speciality'];
+		}
+		// if(isset($_GET['class'])){
+		// 	$assistantParameters['class']=$_GET['class'];
+		// }
+		if(isset($_GET['student'])){
+			$assistantParameters['student']=$_GET['student'];
+		}
+		if(isset($_GET['gender'])){
+			$assistantParameters['gender']=$_GET['gender'];
+		}
+		$pageInfo['amount']=$this->getdata->getAssistantship($assistantParameters);
+		// $baseUrl='/admin/upasslist?placeholder=true';
+		// $selectUrl='/admin/upasslist?placeholder=true';
+		// $currentPage=isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+		// $amountPerPage=20;
+		// $pageInfo=$this->getdata->getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount);
+		$assistantParameters['result']='data';
+		// $scoreParameters['limit']=$pageInfo['limit'];
+		$assistantship=$this->getdata->getAssistantship($assistantParameters);
+		$students=$this->getdata->getStudentsByIndex();
+		$academies=$this->getdata->getAcademiesByIndex();
+		$specialities=$this->getdata->getSpecialitiesByIndex();
+		$classes=$this->getdata->getClassesByIndex();
+		$parameters=array(
+			'view'=>'assistantship-list',
+			'data'=>array('assistantship'=>$assistantship,'students'=>$students,'academies'=>$academies,'specialities'=>$specialities,'classes'=>$classes,'pageInfo'=>$pageInfo)
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function upassEdit(){
+		if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
+			$this->load->view('redirect',array('info'=>'地址错误！'));
+			return false;
+		}
+		$upass=$this->getdata->getContent('upass',$_GET['id']);
+		$student=$this->getdata->getContent('student',$upass->stu_id);
+		$class=$this->getdata->getContent('class',$student->class);
+		$speciality=$this->getdata->getContent('speciality',$class->speciality);
+		$academy=$this->getdata->getContent('academy',$speciality->academy);
+		$semester=$this->getdata->getContent('semester',$upass->semester);
+		$course=$this->getdata->getContent('course',$upass->course);
+		$parameters=array(
+			'view'=>'upass-edit',
+			'data'=>array('upass'=>$upass,'student'=>$student,'class'=>$class,'speciality'=>$speciality,'academy'=>$academy,'semester'=>$semester,'course'=>$course)
+		);
+		// print_r($parameters);
+		$this->adminCommonHandler($parameters);
+	}
+	public function scoreEdit(){
+		if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
+			$this->load->view('redirect',array('info'=>'地址错误！'));
+			return false;
+		}
+		$score=$this->getdata->getContent('score',$_GET['id']);
+		$student=$this->getdata->getContent('student',$score->stu_id);
+		$class=$this->getdata->getContent('class',$student->class);
+		$speciality=$this->getdata->getContent('speciality',$class->speciality);
+		$academy=$this->getdata->getContent('academy',$speciality->academy);
+		$semester=$this->getdata->getContent('semester',$score->semester);
+		$course=$this->getdata->getContent('course',$score->course);
+		$parameters=array(
+			'view'=>'score-edit',
+			'data'=>array('score'=>$score,'student'=>$student,'class'=>$class,'speciality'=>$speciality,'academy'=>$academy,'semester'=>$semester,'course'=>$course)
+		);
+		// print_r($parameters);
+		$this->adminCommonHandler($parameters);
+	}
+	public function gpaEdit(){//未完成
+		if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
+			$this->load->view('redirect',array('info'=>'地址错误！'));
+			return false;
+		}
+		$gpa=$this->getdata->getContent('gpa',$_GET['id']);
+		$student=$this->getdata->getContent('student',$gpa->stu_id);
+		$class=$this->getdata->getContent('class',$student->class);
+		$speciality=$this->getdata->getContent('speciality',$class->speciality);
+		$academy=$this->getdata->getContent('academy',$speciality->academy);
+		$semester=$this->getdata->getContent('semester',$score->semester);
+		$course=$this->getdata->getContent('course',$score->course);
+		$parameters=array(
+			'view'=>'gpa-edit',
+			'data'=>array('gpa'=>$gpa,'student'=>$student,'class'=>$class,'speciality'=>$speciality,'academy'=>$academy,'semester'=>$semester,'course'=>$course)
+		);
+		// print_r($parameters);
 		$this->adminCommonHandler($parameters);
 	}
 	public function dataAdd(){
 		$parameters=array(
 			'view'=>'data-add',
 			'data'=>array()
+		);
+		$this->adminCommonHandler($parameters);
+	}
+	public function excelAdd(){
+		$type=$_GET['type'];
+		$warnning=$_GET['warnning'];
+		$parameters=array(
+			'view'=>'excel-add',
+			'data'=>array('data'=>array('type'=>$type,'warnning'=>$warnning))
 		);
 		$this->adminCommonHandler($parameters);
 	}

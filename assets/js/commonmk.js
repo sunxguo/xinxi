@@ -87,25 +87,36 @@ function getThumb(wraperId){
  * (object)postData
  * 默认值：callBack="NoCallBack",confirmMsg="NoConfirmation",refresh=false
  */
-function dataHandler2(funcType,dataType,postDataObj,callBack,confirmMsg,cancelCallBack,successMsg,refresh){
+function dataHandler2(funcType,dataType,postDataObj,callBack,confirmMsg,cancelCallBack,successMsg,refresh,ifShowWait=false,failedOperation=false){
 	if(confirmMsg && !confirm(confirmMsg)){
 		if(cancelCallBack) cancelCallBack();
 		return false;
 	}
+	if(ifShowWait){
+		showWait();
+	}
 	$.post(
 	"/common/"+funcType+"Info",
 	{
-		'info_type':dataType,
+		'infoType':dataType,
 		'data':JSON.stringify(postDataObj)
 	},
 	function(data){
 		var result=$.parseJSON(data);
 		if(result.result=="success"){
-			if(successMsg) showMsg(successMsg);
+			if(successMsg) layer.alert(successMsg);
 			if(callBack) callBack(result.message);
 			if(refresh) location.reload();
 		}else{
-			alert(result.message);
+			if(failedOperation){
+				confirm(result.message);
+				failedOperation();
+			}else{
+				alert(result.message);
+			}
+		}
+		if(ifShowWait){
+			closeWait();
 		}
 	});
 }
@@ -141,6 +152,41 @@ function dataHandler(url,postDataObj,confirmMsg,cancelCallBack,successMsg,callBa
 			}
 		});
 }
+
+function academyChange(){
+	var academy = new Object();
+	academy.infoType='specialities';
+	academy.id = $("#academy").val();
+	method='get';
+	dataHandler('/common/'+method+'Info',academy,null,null,null,updateSpecialities,null,null,null,false);
+	specialityChange();
+}
+function updateSpecialities(aspecialities){
+	var specialities=aspecialities;
+	var html_specialities='<option value="-1">所有</option>';
+	for(var index in specialities){
+        html_specialities+='<option value="'+specialities[index].id+'">'+specialities[index].name+'</option>';
+    }
+	$("#speciality").html(html_specialities);
+}
+
+function specialityChange(){
+	var speciality = new Object();
+	speciality.infoType='classes';
+	speciality.id = $("#speciality").val();
+	method='get';
+	dataHandler('/common/'+method+'Info',speciality,null,null,null,updateClasses,null,null,null,false);
+	//stSubCategoryChange();
+}
+function updateClasses(aupdateClasses){
+	var classes=aupdateClasses;
+	var html_classes='<option value="-1">所有</option>';
+	for(var index in classes){
+        html_classes+='<option value="'+classes[index].id+'">'+classes[index].name+'</option>';
+    }
+	$("#class").html(html_classes);
+}
+
 /*
 function addImage(){
 	$("#file").click();

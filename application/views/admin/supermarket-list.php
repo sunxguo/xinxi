@@ -118,7 +118,7 @@ $(function(){
 			$(this).removeClass('selected');
 		}
 		else {
-			table.$('tr.selected').removeClass('selected');
+			$('.table').$('tr.selected').removeClass('selected');
 			$(this).addClass('selected');
 		}
 	});

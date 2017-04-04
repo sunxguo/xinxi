@@ -36,7 +36,13 @@ class DbHandler extends CI_Model{
 		if(isset($condition['join'])){
 			foreach($condition['join'] as $key=>$value){
 				//Example:$this->db->join('comments', 'comments.id = blogs.id');
-				$this->db->join($condition['join'][$key],$condition['join'][$value]);
+				$this->db->join($key,$value);
+			}
+		}
+		if(isset($condition['right_join'])){
+			foreach($condition['right_join'] as $key=>$value){
+				//Example:$this->db->join('comments', 'comments.id = blogs.id');
+				$this->db->join($key,$value,'right');
 			}
 		}
 		if(isset($condition['sql'])){
@@ -94,6 +100,7 @@ class DbHandler extends CI_Model{
 		if(isset($condition['limit'])) $this->db->limit($condition['limit']['limit'],$condition['limit']['offset']);
 		//Example: $this->db->group_by("title"); OR $this->db->group_by(array("title", "date")); 
 		if(isset($condition['group_by'])) $this->db->group_by($condition['group_by']);
+		if(isset($condition['having'])) $this->db->having($condition['having']);
 		if(isset($condition['order_by'])){
 			foreach($condition['order_by'] as $key=>$value){
 				$this->db->order_by($key,$value);
@@ -101,7 +108,13 @@ class DbHandler extends CI_Model{
 		}
 		if(isset($condition['select'])) $this->db->select($condition['select']);
 	 	if($condition['result']=="data") return $this->db->get()->result();
-	 	elseif($condition['result']=="count") return $this->db->count_all_results();
+	 	elseif($condition['result']=="count"){
+	 		if (!isset($condition['having'])) {
+	 			return $this->db->count_all_results();
+	 		}else{
+	 			return sizeof($this->db->get()->result());
+	 		}
+	 	}
 	}
 	public function custom_query($sql){
 		$this->db->query($sql);

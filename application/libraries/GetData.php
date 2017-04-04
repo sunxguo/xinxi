@@ -122,6 +122,70 @@ class GetData{
 	public function getData($condition){
 		return $this->CI->dbHandler->selectData($condition);
 	}
+	public function getAcademiesByIndex(){
+		$Academies=$this->getData(array('table'=>'academy','result'=>'data'));
+		$AcademiesArray=array();
+		foreach ($Academies as $value) {
+			$AcademiesArray[$value->id]=$value;
+		}
+		return $AcademiesArray;
+	}
+	public function getSpecialitiesByIndex(){
+		$Specialities=$this->getData(array('table'=>'speciality','result'=>'data'));
+		$SpecialitiesArray=array();
+		foreach ($Specialities as $value) {
+			$SpecialitiesArray[$value->id]=$value;
+		}
+		return $SpecialitiesArray;
+	}
+	public function getClassesByIndex(){
+		$classes=$this->getData(array('table'=>'class','result'=>'data'));
+		$classArray=array();
+		foreach ($classes as $value) {
+			$classArray[$value->id]=$value;
+		}
+		return $classArray;
+	}
+	public function getSemestersByIndex(){
+		$semesters=$this->getData(array('table'=>'semester','result'=>'data'));
+		$semesterArray=array();
+		foreach ($semesters as $value) {
+			$semesterArray[$value->id]=$value;
+		}
+		return $semesterArray;
+	}
+	public function getCoursesByIndex(){
+		$courses=$this->getData(array('table'=>'course','result'=>'data'));
+		$courseArray=array();
+		foreach ($courses as $value) {
+			$courseArray[$value->id]=$value;
+		}
+		return $courseArray;
+	}
+	public function getStudentsByIndex(){
+		$classes=$this->getClassesByIndex();
+		$specialities=$this->getSpecialitiesByIndex();
+		$academies=$this->getAcademiesByIndex();
+		$students=$this->getData(array('table'=>'student','result'=>'data'));
+		$stuArray=array();
+		foreach ($students as $value) {
+			if (isset($value->class) && $classes[$value->class]) {
+				$value->classInfo=$classes[$value->class];
+			}
+			if (isset($value->classInfo->speciality) && $specialities[$value->classInfo->speciality]) {
+				$value->specialityInfo=$specialities[$value->classInfo->speciality];
+			}elseif (isset($value->speciality)) {
+				$value->specialityInfo=$specialities[$value->speciality];
+			}
+			if (isset($value->specialityInfo->academy) && $academies[$value->specialityInfo->academy]) {
+				$value->academyInfo=$academies[$value->specialityInfo->academy];
+			}elseif (isset($value->academy)) {
+				$value->academyInfo=$academies[$value->academy];
+			}
+			$stuArray[$value->id]=$value;
+		}
+		return $stuArray;
+	}
 	public function getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount){
 		$pageAmount=ceil($amount/$amountPerPage);
 		$page=array(
@@ -225,15 +289,67 @@ class GetData{
 		// }else{
 		// 	$condition['order_by']=array('order'=>'ASC');
 		// }
-		if(isset($parameters['keywords'])){
-			$condition['like']=array('course'=>$parameters['keywords']);
+		$students_parameters=array('result'=>'data');
+		
+		if(isset($parameters['student'])){
+			if(is_numeric($parameters['student'])){
+				$students_parameters['like_number']=$parameters['student'];
+			}else{
+				$students_parameters['like_name']=$parameters['student'];
+			}
+			// $students_parameters['student']=array('student'=>$parameters['student']);
 		}
-		if(isset($parameters['keywords'])){
-			$condition['like']=array('course'=>$parameters['keywords']);
+		if(isset($parameters['academy']) && $parameters['academy']!=-1){
+			$students_parameters['academy']=$parameters['academy'];
 		}
+		if(isset($parameters['speciality']) && $parameters['speciality']!=-1){
+			$students_parameters['speciality']=$parameters['speciality'];
+		}
+		if(isset($parameters['class']) && $parameters['class']!=-1){
+			$students_parameters['class']=$parameters['class'];
+		}
+		if(isset($parameters['gender'])){
+			$students_parameters['gender']=$parameters['gender'];
+		}
+		$students=$this->getStudents($students_parameters);
+
+		$courses_paremeters=array('result'=>'data');
+		if (isset($parameters['course'])) {
+			if(is_numeric($parameters['course'])){
+				$courses_paremeters['like_code']=$parameters['course'];
+			}else{
+				$courses_paremeters['like_name']=$parameters['course'];
+			}
+		}
+		$courses=$this->getCourses($courses_paremeters);
+
 		if(isset($parameters['limit'])){
 			$condition['limit']=$parameters['limit'];
 		}
+
+		if(sizeof($students_parameters)>1){
+			if (sizeof($students)==0) {
+				$condition['limit']=0;
+			}else{
+				$students_id=array();
+				foreach ($students as $value) {
+					$students_id[]=$value->id;
+				}
+				$condition['where_in']['stu_id']=$students_id;
+			}
+		}
+		if(sizeof($courses_paremeters)>1){
+			if (sizeof($courses)==0) {
+				$condition['limit']=0;
+			}else{
+				$courses_id=array();
+				foreach ($courses as $value) {
+					$courses_id[]=$value->id;
+				}
+				$condition['where_in']['course']=$courses_id;
+			}
+		}
+
 		// if(isset($parameters['time'])){
 		// 	if(isset($parameters['time']['begin'])){
 		// 		$condition['where']['addtime >=']=$parameters['time']['begin'];
@@ -250,469 +366,731 @@ class GetData{
 		// }
 		return $upass;
 	}
-	public function getBuyers($parameters){
+	public function getScore($parameters){
 		$condition=array(
-			'table'=>'buyer',
+			'table'=>'score',
 			'result'=>$parameters['result']
 		);
+		// if(isset($parameters['draft'])){
+		// 	$condition['where']=array('draft'=>$parameters['draft']);
+		// }
+		// if(isset($parameters['orderBy'])){
+		// 	$condition['order_by']=$parameters['orderBy'];
+		// }else{
+		// 	$condition['order_by']=array('order'=>'ASC');
+		// }
+		$students_parameters=array('result'=>'data');
+		
+		if(isset($parameters['student'])){
+			if(is_numeric($parameters['student'])){
+				$students_parameters['like_number']=$parameters['student'];
+			}else{
+				$students_parameters['like_name']=$parameters['student'];
+			}
+			// $students_parameters['student']=array('student'=>$parameters['student']);
+		}
+		if(isset($parameters['academy']) && $parameters['academy']!=-1){
+			$students_parameters['academy']=$parameters['academy'];
+		}
+		if(isset($parameters['speciality']) && $parameters['speciality']!=-1){
+			$students_parameters['speciality']=$parameters['speciality'];
+		}
+		if(isset($parameters['class']) && $parameters['class']!=-1){
+			$students_parameters['class']=$parameters['class'];
+		}
 		if(isset($parameters['gender'])){
-			$condition['where']['gender']=$parameters['gender']=="NULL"?NULL:$parameters['gender'];
+			$students_parameters['gender']=$parameters['gender'];
 		}
-		if(isset($parameters['orderBy'])){
-			$condition['order_by']=$parameters['orderBy'];
+		if(isset($parameters['ispoor'])){
+			$students_parameters['ispoor']=$parameters['ispoor'];
 		}
-		if(isset($parameters['keywords'])){
-			$condition['or_like_bracket']['alias']=$parameters['keywords'];
-			$condition['or_like_bracket']['phone']=$parameters['keywords'];
+		$students=$this->getStudents($students_parameters);
+
+		$courses_paremeters=array('result'=>'data');
+		if (isset($parameters['course'])) {
+			if(is_numeric($parameters['course'])){
+				$courses_paremeters['like_code']=$parameters['course'];
+			}else{
+				$courses_paremeters['like_name']=$parameters['course'];
+			}
+		}
+		$courses=$this->getCourses($courses_paremeters);
+
+		if(isset($parameters['limit'])){
+			$condition['limit']=$parameters['limit'];
+		}
+		if(sizeof($students_parameters)>1){
+			if (sizeof($students)==0) {
+				$condition['limit']=0;
+			}else{
+				$students_id=array();
+				foreach ($students as $value) {
+					$students_id[]=$value->id;
+				}
+				$condition['where_in']['stu_id']=$students_id;
+			}
+		}
+		if(sizeof($courses_paremeters)>1){
+			if (sizeof($courses)==0) {
+				$condition['limit']=0;
+			}else{
+				$courses_id=array();
+				foreach ($courses as $value) {
+					$courses_id[]=$value->id;
+				}
+				$condition['where_in']['course']=$courses_id;
+			}
+		}
+		if (isset($parameters['unpass']) && $parameters['unpass']!=-1) {
+			$condition['where']['score <']=60;
+			$condition['group_by']='stu_id';
+			if ($parameters['unpass']==1) {
+				$condition['having']['count(0) =']=1;
+			}elseif ($parameters['unpass']==2) {
+				$condition['having']['coun(0) =']=2;
+			}elseif ($parameters['unpass']==3) {
+				$condition['having']['count(0) =']=3;
+			}elseif ($parameters['unpass']==4) {
+				$condition['having']['count(0) >=']=4;
+			}
+		}
+		// if(isset($parameters['time'])){
+		// 	if(isset($parameters['time']['begin'])){
+		// 		$condition['where']['addtime >=']=$parameters['time']['begin'];
+		// 	}
+		// 	if(isset($parameters['time']['end'])){
+		// 		$condition['where']['addtime <=']=$parameters['time']['end'];
+		// 	}
+		// }
+		$score=$this->getData($condition);
+		// if($parameters['result']=='data'){
+		// 	foreach ($essays as $key => $value) {
+		// 		$value->columnName=$this->getContent('column',$value->column)->name;
+		// 	}
+		// }
+		return $score;
+	}
+	public function getGpa($parameters){
+		$condition=array(
+			'table'=>'gpa',
+			'result'=>$parameters['result']
+		);
+		// if(isset($parameters['draft'])){
+		// 	$condition['where']=array('draft'=>$parameters['draft']);
+		// }
+		// if(isset($parameters['orderBy'])){
+		// 	$condition['order_by']=$parameters['orderBy'];
+		// }else{
+		// 	$condition['order_by']=array('order'=>'ASC');
+		// }
+		$students_parameters=array('result'=>'data');
+		
+		if(isset($parameters['student'])){
+			if(is_numeric($parameters['student'])){
+				$students_parameters['like_number']=$parameters['student'];
+			}else{
+				$students_parameters['like_name']=$parameters['student'];
+			}
+			// $students_parameters['student']=array('student'=>$parameters['student']);
+		}
+		if(isset($parameters['academy']) && $parameters['academy']!=-1){
+			$students_parameters['academy']=$parameters['academy'];
+		}
+		if(isset($parameters['speciality']) && $parameters['speciality']!=-1){
+			$students_parameters['speciality']=$parameters['speciality'];
+		}
+		if(isset($parameters['class']) && $parameters['class']!=-1){
+			$students_parameters['class']=$parameters['class'];
+		}
+		// if(isset($parameters['gender'])){
+		// 	$students_parameters['gender']=$parameters['gender'];
+		// }
+		if(isset($parameters['ispoor'])){
+			$students_parameters['ispoor']=$parameters['ispoor'];
+		}
+		$students=$this->getStudents($students_parameters);
+
+		// $courses_paremeters=array('result'=>'data');
+		// if (isset($parameters['course'])) {
+		// 	if(is_numeric($parameters['course'])){
+		// 		$courses_paremeters['like_code']=$parameters['course'];
+		// 	}else{
+		// 		$courses_paremeters['like_name']=$parameters['course'];
+		// 	}
+		// }
+		// $courses=$this->getCourses($courses_paremeters);
+
+		if(isset($parameters['limit'])){
+			$condition['limit']=$parameters['limit'];
+		}
+		if(isset($parameters['speorder']) && is_numeric($parameters['speorder'])){
+			$condition['where']['speorder']=$parameters['speorder'];
+		}
+		if(isset($parameters['gpalower']) && is_numeric($parameters['gpalower'])){
+			$condition['where']['gpa >=']=$parameters['gpalower'];
+		}
+		if(isset($parameters['gpaupper']) && is_numeric($parameters['gpaupper'])){
+			$condition['where']['gpa <=']=$parameters['gpaupper'];
+		}
+		if(sizeof($students_parameters)>1){
+			if (sizeof($students)==0) {
+				$condition['where_in']['stu_id']=array("0");
+			}else{
+				$students_id=array();
+				foreach ($students as $value) {
+					$students_id[]=$value->id;
+				}
+				$condition['where_in']['stu_id']=$students_id;
+			}
+		}
+		// if(sizeof($courses_paremeters)>1){
+		// 	if (sizeof($courses)==0) {
+		// 		$condition['limit']=0;
+		// 	}else{
+		// 		$courses_id=array();
+		// 		foreach ($courses as $value) {
+		// 			$courses_id[]=$value->id;
+		// 		}
+		// 		$condition['where_in']['course']=$courses_id;
+		// 	}
+		// }
+		// if (isset($parameters['range']) && $parameters['unpass']!=-1) {
+		// 	$condition['where']['score <']=60;
+		// 	$condition['group_by']='stu_id';
+		// 	if ($parameters['unpass']==1) {
+		// 		$condition['having']['count(0) =']=1;
+		// 	}elseif ($parameters['unpass']==2) {
+		// 		$condition['having']['coun(0) =']=2;
+		// 	}elseif ($parameters['unpass']==3) {
+		// 		$condition['having']['count(0) =']=3;
+		// 	}elseif ($parameters['unpass']==4) {
+		// 		$condition['having']['count(0) >=']=4;
+		// 	}
+		// }
+		// if(isset($parameters['time'])){
+		// 	if(isset($parameters['time']['begin'])){
+		// 		$condition['where']['addtime >=']=$parameters['time']['begin'];
+		// 	}
+		// 	if(isset($parameters['time']['end'])){
+		// 		$condition['where']['addtime <=']=$parameters['time']['end'];
+		// 	}
+		// }
+		$score=$this->getData($condition);
+		// if($parameters['result']=='data'){
+		// 	foreach ($essays as $key => $value) {
+		// 		$value->columnName=$this->getContent('column',$value->column)->name;
+		// 	}
+		// }
+		return $score;
+	}
+	public function getExpense($parameters){
+		$condition=array(
+			'table'=>'expense',
+			'result'=>$parameters['result']
+		);
+		// if(isset($parameters['draft'])){
+		// 	$condition['where']=array('draft'=>$parameters['draft']);
+		// }
+		// if(isset($parameters['orderBy'])){
+		// 	$condition['order_by']=$parameters['orderBy'];
+		// }else{
+		// 	$condition['order_by']=array('order'=>'ASC');
+		// }
+		$students_parameters=array('result'=>'data');
+		
+		if(isset($parameters['student'])){
+			if(is_numeric($parameters['student'])){
+				$students_parameters['like_number']=$parameters['student'];
+			}else{
+				$students_parameters['like_name']=$parameters['student'];
+			}
+			// $students_parameters['student']=array('student'=>$parameters['student']);
+		}
+		if(isset($parameters['academy']) && $parameters['academy']!=-1){
+			$students_parameters['academy']=$parameters['academy'];
+		}
+		if(isset($parameters['speciality']) && $parameters['speciality']!=-1){
+			$students_parameters['speciality']=$parameters['speciality'];
+		}
+		if(isset($parameters['class']) && $parameters['class']!=-1){
+			$students_parameters['class']=$parameters['class'];
+		}
+		// if(isset($parameters['gender'])){
+		// 	$students_parameters['gender']=$parameters['gender'];
+		// }
+		if(isset($parameters['ispoor'])){
+			$students_parameters['ispoor']=$parameters['ispoor'];
+		}
+		$students=$this->getStudents($students_parameters);
+		// $courses_paremeters=array('result'=>'data');
+		// if (isset($parameters['course'])) {
+		// 	if(is_numeric($parameters['course'])){
+		// 		$courses_paremeters['like_code']=$parameters['course'];
+		// 	}else{
+		// 		$courses_paremeters['like_name']=$parameters['course'];
+		// 	}
+		// }
+		// $courses=$this->getCourses($courses_paremeters);
+
+		if(isset($parameters['limit'])){
+			$condition['limit']=$parameters['limit'];
+		}
+		if(isset($parameters['explower']) && is_numeric($parameters['explower'])){
+			$condition['where']['money >=']=$parameters['explower'];
+		}
+		if(isset($parameters['expupper']) && is_numeric($parameters['expupper'])){
+			$condition['where']['money <=']=$parameters['expupper'];
+		}
+		if(sizeof($students_parameters)>1){
+			if (sizeof($students)==0) {
+				$condition['where_in']['stu_id']=array("0");
+			}else{
+				$students_id=array();
+				foreach ($students as $value) {
+					$students_id[]=$value->id;
+				}
+				$condition['where_in']['stu_id']=$students_id;
+			}
+		}
+		if (isset($parameters['exprank']) && $parameters['exprank']!=-1) {
+			if ($parameters['exprank']==0) {
+				$condition['order_by']=array('money'=>'DESC');
+			}elseif ($parameters['exprank']==1) {
+				$condition['order_by']=array('money'=>'ASC');
+			}
+			$condition['limit']=$parameters['limit'];
+		}
+		$expense=$this->getData($condition);
+		// if($parameters['result']=='data'){
+		// 	foreach ($essays as $key => $value) {
+		// 		$value->columnName=$this->getContent('column',$value->column)->name;
+		// 	}
+		// }
+		return $expense;
+	}
+	public function getScholarship($parameters){
+		$condition=array(
+			'table'=>'scholarship',
+			'result'=>$parameters['result']
+		);
+		// if(isset($parameters['draft'])){
+		// 	$condition['where']=array('draft'=>$parameters['draft']);
+		// }
+		// if(isset($parameters['orderBy'])){
+		// 	$condition['order_by']=$parameters['orderBy'];
+		// }else{
+		// 	$condition['order_by']=array('order'=>'ASC');
+		// }
+		$students_parameters=array('result'=>'data');
+		
+		if(isset($parameters['student'])){
+			if(is_numeric($parameters['student'])){
+				$students_parameters['like_number']=$parameters['student'];
+			}else{
+				$students_parameters['like_name']=$parameters['student'];
+			}
+			// $students_parameters['student']=array('student'=>$parameters['student']);
+		}
+		if(isset($parameters['academy']) && $parameters['academy']!=-1){
+			$students_parameters['direct_acamedy']=$parameters['academy'];
+		}
+		if(isset($parameters['speciality']) && $parameters['speciality']!=-1){
+			$students_parameters['speciality']=$parameters['speciality'];
+		}
+		if(isset($parameters['class']) && $parameters['class']!=-1){
+			$students_parameters['class']=$parameters['class'];
+		}
+		// if(isset($parameters['gender'])){
+		// 	$students_parameters['gender']=$parameters['gender'];
+		// }
+		if(isset($parameters['ispoor'])){
+			$students_parameters['ispoor']=$parameters['ispoor'];
+		}
+		$students=$this->getStudents($students_parameters);
+
+		if(isset($parameters['scholarshiptype']) && $parameters['scholarshiptype']!=-1){
+			switch ($parameters['scholarshiptype']) {
+				case 0://思想品德奖学金
+					$scholarshiptype="moral";
+					break;
+				case 1://学习奖学金
+					$scholarshiptype="study";
+					break;
+				case 2://社会实践奖学金
+					$scholarshiptype="practice";
+					break;
+				case 3://体育奖学金
+					$scholarshiptype="sport";
+					break;
+				case 4://济困奖学金
+					$scholarshiptype="jikun";
+					break;
+				case 5://纯济困奖学金
+					$scholarshiptype="chunjikun";
+					break;
+				case 6://优秀学生奖学金
+					$scholarshiptype="youxiu";
+					break;
+				default:
+					# code...
+					break;
+			}
+			if (isset($parameters['scholarshipgrade']) && $parameters['scholarshipgrade']!=-1) {
+				switch ($parameters['scholarshipgrade']) {
+					case 0:
+						$condition['where'][$scholarshiptype]=1000;
+						break;
+					case 1:
+						$condition['where'][$scholarshiptype]=800;
+						break;
+					case 2:
+						$condition['where'][$scholarshiptype]=500;
+						break;
+					default:
+						# code...
+						break;
+				}
+			}else{
+				$condition['where'][$scholarshiptype.' >']=0;
+			}
+			
+		}elseif(isset($parameters['scholarshipgrade']) && $parameters['scholarshipgrade']!=-1){
+			switch ($parameters['scholarshipgrade']) {
+				case 0://一等奖
+					$condition['or_where']['moral']=1000;
+					$condition['or_where']['study']=1000;
+					$condition['or_where']['practice']=1000;
+					$condition['or_where']['sport']=1000;
+					$condition['or_where']['jikun']=1000;
+					$condition['or_where']['chunjikun']=1000;
+					$condition['or_where']['youxiu']=1000;
+					break;
+				case 1://二等奖
+					$condition['or_where']['moral']=800;
+					$condition['or_where']['study']=800;
+					$condition['or_where']['practice']=800;
+					$condition['or_where']['sport']=800;
+					$condition['or_where']['jikun']=800;
+					$condition['or_where']['chunjikun']=800;
+					$condition['or_where']['youxiu']=800;
+					break;
+				case 2://三等奖
+					$condition['or_where']['moral']=500;
+					$condition['or_where']['study']=500;
+					$condition['or_where']['practice']=500;
+					$condition['or_where']['sport']=500;
+					$condition['or_where']['jikun']=500;
+					$condition['or_where']['chunjikun']=500;
+					$condition['or_where']['youxiu']=500;
+					break;
+				default:
+					# code...
+					break;
+			}
+			
+		}
+		if (isset($parameters['scholarshiptime']) && $parameters['scholarshiptime']!=-1) {
+			$condition['group_by']='stu_id';
+			if ($parameters['scholarshiptime']==1) {
+				$condition['having']['count(0) =']=1;
+			}elseif ($parameters['scholarshiptime']==2) {
+				$condition['having']['coun(0) =']=2;
+			}elseif ($parameters['scholarshiptime']==3) {
+				$condition['having']['coun(0) =']=3;
+			}elseif ($parameters['scholarshiptime']==4) {
+				$condition['having']['coun(0) =']=4;
+			}
 		}
 		if(isset($parameters['limit'])){
 			$condition['limit']=$parameters['limit'];
 		}
-		if(isset($parameters['time'])){
-			if(isset($parameters['time']['begin'])){
-				$condition['where']['addtime >=']=$parameters['time']['begin'];
-			}
-			if(isset($parameters['time']['end'])){
-				$condition['where']['addtime <=']=$parameters['time']['end'];
+		// if(isset($parameters['speorder']) && is_numeric($parameters['speorder'])){
+		// 	$condition['where']['speorder']=$parameters['speorder'];
+		// }
+		// if(isset($parameters['gpalower']) && is_numeric($parameters['gpalower'])){
+		// 	$condition['where']['gpa >=']=$parameters['gpalower'];
+		// }
+		// if(isset($parameters['gpaupper']) && is_numeric($parameters['gpaupper'])){
+		// 	$condition['where']['gpa <=']=$parameters['gpaupper'];
+		// }
+		if(sizeof($students_parameters)>1){
+			if (sizeof($students)==0) {
+				$condition['where_in']['stu_id']=array("0");
+			}else{
+				$students_id=array();
+				foreach ($students as $value) {
+					$students_id[]=$value->id;
+				}
+				$condition['where_in']['stu_id']=$students_id;
 			}
 		}
-		$buyers=$this->getData($condition);
-		if($parameters['result']=='data'){
-			foreach ($buyers as $key => $value) {
-				$value->supermarket=$this->getContent('supermarket',$value->defaultsid);
-			}
-		}
-		return $buyers;
+		$scholarship=$this->getData($condition);
+		return $scholarship;
 	}
-	public function getProducts($parameters){
+	public function getAssistantship($parameters){
 		$condition=array(
-			'table'=>'goods',
+			'table'=>'assistantship',
 			'result'=>$parameters['result']
 		);
-		if(isset($parameters['sid'])){
-			$condition['where']['sid']=$parameters['sid'];
+		// if(isset($parameters['draft'])){
+		// 	$condition['where']=array('draft'=>$parameters['draft']);
+		// }
+		// if(isset($parameters['orderBy'])){
+		// 	$condition['order_by']=$parameters['orderBy'];
+		// }else{
+		// 	$condition['order_by']=array('order'=>'ASC');
+		// }
+		$students_parameters=array('result'=>'data');
+		
+		if(isset($parameters['student'])){
+			if(is_numeric($parameters['student'])){
+				$students_parameters['like_number']=$parameters['student'];
+			}else{
+				$students_parameters['like_name']=$parameters['student'];
+			}
+			// $students_parameters['student']=array('student'=>$parameters['student']);
 		}
-		if(isset($parameters['categoryid'])){
-			$condition['where']['categoryid']=$parameters['categoryid'];
+		if(isset($parameters['academy']) && $parameters['academy']!=-1){
+			$students_parameters['direct_acamedy']=$parameters['academy'];
 		}
-		if(isset($parameters['orderBy'])){
-			$condition['order_by']=$parameters['orderBy'];
+		if(isset($parameters['speciality']) && $parameters['speciality']!=-1){
+			$students_parameters['direct_speciality']=$parameters['speciality'];
 		}
-		if(isset($parameters['keywords'])){
-			$condition['or_like_bracket']['name']=$parameters['keywords'];
+		// if(isset($parameters['class']) && $parameters['class']!=-1){
+		// 	$students_parameters['class']=$parameters['class'];
+		// }
+		if(isset($parameters['gender'])){
+			$students_parameters['gender']=$parameters['gender'];
 		}
+		$students=$this->getStudents($students_parameters);
+
 		if(isset($parameters['limit'])){
 			$condition['limit']=$parameters['limit'];
 		}
-		if(isset($parameters['time'])){
-			if(isset($parameters['time']['begin'])){
-				$condition['where']['addtime >=']=$parameters['time']['begin'];
-			}
-			if(isset($parameters['time']['end'])){
-				$condition['where']['addtime <=']=$parameters['time']['end'];
-			}
-		}
-		$products=$this->getData($condition);
-		if($parameters['result']=='data'){
-			foreach ($products as $key => $value) {
-				$value->supermarket=$this->getContent('supermarket',$value->sid);
-				$value->category=$this->getContent('category',$value->categoryid);
+		if(sizeof($students_parameters)>1){
+			if (sizeof($students)==0) {
+				$condition['where_in']['stu_id']=array("0");
+			}else{
+				$students_id=array();
+				foreach ($students as $value) {
+					$students_id[]=$value->id;
+				}
+				$condition['where_in']['stu_id']=$students_id;
 			}
 		}
-		return $products;
+		// if(isset($parameters['time'])){
+		// 	if(isset($parameters['time']['begin'])){
+		// 		$condition['where']['addtime >=']=$parameters['time']['begin'];
+		// 	}
+		// 	if(isset($parameters['time']['end'])){
+		// 		$condition['where']['addtime <=']=$parameters['time']['end'];
+		// 	}
+		// }
+		$assistantship=$this->getData($condition);
+		// if($parameters['result']=='data'){
+		// 	foreach ($essays as $key => $value) {
+		// 		$value->columnName=$this->getContent('column',$value->column)->name;
+		// 	}
+		// }
+		return $assistantship;
 	}
-	public function getOrders($parameters){
+	public function getMotischolarship($parameters){
 		$condition=array(
-			'table'=>'order',
+			'table'=>'motischolarship',
 			'result'=>$parameters['result']
 		);
-		if(isset($parameters['sid'])){
-			$condition['where']['sid']=$parameters['sid'];
+		// if(isset($parameters['draft'])){
+		// 	$condition['where']=array('draft'=>$parameters['draft']);
+		// }
+		// if(isset($parameters['orderBy'])){
+		// 	$condition['order_by']=$parameters['orderBy'];
+		// }else{
+		// 	$condition['order_by']=array('order'=>'ASC');
+		// }
+		$students_parameters=array('result'=>'data');
+		
+		if(isset($parameters['student'])){
+			if(is_numeric($parameters['student'])){
+				$students_parameters['like_number']=$parameters['student'];
+			}else{
+				$students_parameters['like_name']=$parameters['student'];
+			}
+			// $students_parameters['student']=array('student'=>$parameters['student']);
 		}
-		if(isset($parameters['sellerid'])){
-			$condition['where']['sellerid']=$parameters['sellerid'];
+		if(isset($parameters['academy']) && $parameters['academy']!=-1){
+			$students_parameters['direct_acamedy']=$parameters['academy'];
 		}
-		if(isset($parameters['buyerid'])){
-			$condition['where']['buyerid']=$parameters['buyerid'];
+		if(isset($parameters['speciality']) && $parameters['speciality']!=-1){
+			$students_parameters['direct_speciality']=$parameters['speciality'];
 		}
-		if(isset($parameters['status'])){
-			$condition['where']['status']=$parameters['status'];
+		// if(isset($parameters['class']) && $parameters['class']!=-1){
+		// 	$students_parameters['class']=$parameters['class'];
+		// }
+		if(isset($parameters['gender'])){
+			$students_parameters['gender']=$parameters['gender'];
 		}
-		if(isset($parameters['isshared'])){
-			$condition['where']['isshared']=$parameters['isshared'];
-		}
-		if(isset($parameters['isdel'])){
-			$condition['where']['isdel']=$parameters['isdel'];
-		}
-		if(isset($parameters['orderBy'])){
-			$condition['order_by']=$parameters['orderBy'];
-		}
-		if(isset($parameters['keywords'])){
-			$condition['or_like_bracket']['orderno']=$parameters['keywords'];
-		}
+		$students=$this->getStudents($students_parameters);
+
 		if(isset($parameters['limit'])){
 			$condition['limit']=$parameters['limit'];
 		}
-		if(isset($parameters['time'])){
-			if(isset($parameters['time']['begin'])){
-				$condition['where']['addtime >=']=$parameters['time']['begin'];
-			}
-			if(isset($parameters['time']['end'])){
-				$condition['where']['addtime <=']=$parameters['time']['end'];
-			}
-		}
-		$orders=$this->getData($condition);
-		$status=$this->getOrderStatus();
-		if($parameters['result']=='data'){
-			foreach ($orders as $key => $value) {
-				$value->supermarket=$this->getContent('supermarket',$value->sid);
-				$value->buyer=$this->getContent('buyer',$value->buyerid);
-				$value->seller=$this->getContent('seller',$value->sellerid);
-				$value->address=$this->getContent('address',$value->addressid);
-				$value->coupon=$this->getContent('coupon',$value->couponid);
-				$value->details=$this->getOrderDetail($value->orderno);
-				$value->status_zn=$status[$value->status];
+		if(sizeof($students_parameters)>1){
+			if (sizeof($students)==0) {
+				$condition['where_in']['stu_id']=array("0");
+			}else{
+				$students_id=array();
+				foreach ($students as $value) {
+					$students_id[]=$value->id;
+				}
+				$condition['where_in']['stu_id']=$students_id;
 			}
 		}
-		return $orders;
+		// if(isset($parameters['time'])){
+		// 	if(isset($parameters['time']['begin'])){
+		// 		$condition['where']['addtime >=']=$parameters['time']['begin'];
+		// 	}
+		// 	if(isset($parameters['time']['end'])){
+		// 		$condition['where']['addtime <=']=$parameters['time']['end'];
+		// 	}
+		// }
+		$motischolarship=$this->getData($condition);
+		// if($parameters['result']=='data'){
+		// 	foreach ($essays as $key => $value) {
+		// 		$value->columnName=$this->getContent('column',$value->column)->name;
+		// 	}
+		// }
+		return $motischolarship;
 	}
-	public function getAddresses($parameters){
+	public function getStudents($parameters){
 		$condition=array(
-			'table'=>'address',
+			'table'=>'student',
 			'result'=>$parameters['result']
 		);
-		if(isset($parameters['orderBy'])){
-			$condition['order_by']=$parameters['orderBy'];
-		}
-		if(isset($parameters['keywords'])){
-			$condition['or_like_bracket']['name']=$parameters['keywords'];
-			$condition['or_like_bracket']['phone']=$parameters['keywords'];
-			$condition['or_like_bracket']['detailedarea']=$parameters['keywords'];
-		}
 		if(isset($parameters['limit'])){
 			$condition['limit']=$parameters['limit'];
 		}
-		if(isset($parameters['time'])){
-			if(isset($parameters['time']['begin'])){
-				$condition['where']['addtime >=']=$parameters['time']['begin'];
+		if(isset($parameters['class']) && $parameters['class']>0){
+			$condition['where']['class']=$parameters['class'];
+		}elseif (isset($parameters['speciality']) && $parameters['speciality']>0) {
+			$classes=$this->getClasses(array('result'=>'data','speciality'=>$parameters['speciality']));
+			$classes_id=array();
+			foreach ($classes as $value) {
+				$classes_id[]=$value->id;
 			}
-			if(isset($parameters['time']['end'])){
-				$condition['where']['addtime <=']=$parameters['time']['end'];
+			if (sizeof($classes_id)==0) {
+				$condition['where']['class']=0;
+			}else{
+				$condition['where_in']['class']=$classes_id;
 			}
-		}
-		$addresses=$this->getData($condition);
-		if($parameters['result']=='data'){
-			foreach ($addresses as $key => $value) {
-				$value->buyer=$this->getContent('buyer',$value->buyerid);
+		}elseif (isset($parameters['academy']) && $parameters['academy']>0) {
+			$specialities=$this->getSpecialities(array('result'=>'data','academy'=>$parameters['academy']));
+			$specialities_id=array();
+			foreach ($specialities as $value) {
+				$specialities_id[]=$value->id;
 			}
-		}
-		return $addresses;
-	}
-	public function getComments($parameters){
-		$condition=array(
-			'table'=>'comment',
-			'result'=>$parameters['result']
-		);
-		if(isset($parameters['orderBy'])){
-			$condition['order_by']=$parameters['orderBy'];
-		}
-		if(isset($parameters['keywords'])){
-			$condition['or_like_bracket']['orderno']=$parameters['keywords'];
-			$condition['or_like_bracket']['content']=$parameters['keywords'];
-		}
-		if(isset($parameters['limit'])){
-			$condition['limit']=$parameters['limit'];
-		}
-		if(isset($parameters['time'])){
-			if(isset($parameters['time']['begin'])){
-				$condition['where']['addtime >=']=$parameters['time']['begin'];
+			$classes=$this->getClasses(array('result'=>'data','specialities'=>$specialities_id));
+			$classes_id=array();
+			foreach ($classes as $value) {
+				$classes_id[]=$value->id;
 			}
-			if(isset($parameters['time']['end'])){
-				$condition['where']['addtime <=']=$parameters['time']['end'];
+			if (sizeof($classes_id)==0) {
+				$condition['where']['class']=0;
+			}else{
+				$condition['where_in']['class']=$classes_id;
 			}
+		}elseif (isset($parameters['direct_speciality']) && $parameters['direct_speciality']>0) {
+			$condition['where']['speciality']=$parameters['direct_speciality'];
+		}elseif (isset($parameters['direct_acamedy']) && $parameters['direct_acamedy']>0) {
+			$condition['where']['acamedy']=$parameters['direct_acamedy'];
 		}
-		$comments=$this->getData($condition);
-		if($parameters['result']=='data'){
-			foreach ($comments as $key => $value) {
-				$value->buyer=$this->getContent('buyer',$value->buyerid);
-			}
+		if (isset($parameters['ispoor']) && $parameters['ispoor']==0) {
+			$condition['right_join']['assistantship']='student.id = assistantship.stu_id';
 		}
-		return $comments;
-	}
-	public function getCoupons($parameters){
-		$condition=array(
-			'table'=>'coupon',
-			'result'=>$parameters['result']
-		);
-		if(isset($parameters['sid'])){
-			$condition['where']['sid']=$parameters['sid'];
-		}
-		if(isset($parameters['buyerid'])){
-			$condition['where']['buyerid']=$parameters['buyerid'];
+		if(isset($parameters['gender'])){
+			$condition['where']['gender']=$parameters['gender']=="NULL"?NULL:intval($parameters['gender']);
 		}
 		if(isset($parameters['orderBy'])){
 			$condition['order_by']=$parameters['orderBy'];
 		}
 		// if(isset($parameters['keywords'])){
-		// 	$condition['or_like_bracket']['orderno']=$parameters['keywords'];
-		// 	$condition['or_like_bracket']['content']=$parameters['keywords'];
+		// 	$condition['or_like_bracket']['alias']=$parameters['keywords'];
+		// 	$condition['or_like_bracket']['phone']=$parameters['keywords'];
 		// }
-		if(isset($parameters['limit'])){
-			$condition['limit']=$parameters['limit'];
+		if(isset($parameters['like_number'])){
+			$condition['like']=array('number'=>$parameters['like_number']);
 		}
-		if(isset($parameters['time'])){
-			if(isset($parameters['time']['begin'])){
-				$condition['where']['addtime >=']=$parameters['time']['begin'];
-			}
-			if(isset($parameters['time']['end'])){
-				$condition['where']['addtime <=']=$parameters['time']['end'];
-			}
+		if(isset($parameters['like_name'])){
+			$condition['like']=array('name'=>$parameters['like_name']);
 		}
-		$coupons=$this->getData($condition);
-		if($parameters['result']=='data'){
-			foreach ($coupons as $key => $value) {
-				$value->supermarket=$this->getContent('supermarket',$value->sid);
-				$value->buyer=$this->getContent('buyer',$value->buyerid);
-			}
-		}
-		return $coupons;
-	}
-	public function getAdvices($parameters){
-		$condition=array(
-			'table'=>'advice',
-			'result'=>$parameters['result']
-		);
-		if(isset($parameters['role'])){
-			$condition['where']['role']=$parameters['role'];
-		}
-		if(isset($parameters['uid'])){
-			$condition['where']['uid']=$parameters['uid'];
-		}
-		if(isset($parameters['orderBy'])){
-			$condition['order_by']=$parameters['orderBy'];
-		}
-		if(isset($parameters['keywords'])){
-			$condition['or_like_bracket']['content']=$parameters['keywords'];
-		}
-		if(isset($parameters['limit'])){
-			$condition['limit']=$parameters['limit'];
-		}
-		if(isset($parameters['time'])){
-			if(isset($parameters['time']['begin'])){
-				$condition['where']['addtime >=']=$parameters['time']['begin'];
-			}
-			if(isset($parameters['time']['end'])){
-				$condition['where']['addtime <=']=$parameters['time']['end'];
-			}
-		}
-		$advices=$this->getData($condition);
-		if($parameters['result']=='data'){
-			foreach ($advices as $key => $value) {
-				if($value->role==2){
-					$value->buyer=$this->getContent('buyer',$value->uid);
-				}else{
-					$value->seller=$this->getContent('seller',$value->uid);
-				}
-				
-			}
-		}
-		return $advices;
-	}
-	public function getAboutus($parameters){
-		$condition=array(
-			'table'=>'aboutus',
-			'result'=>$parameters['result']
-		);
-		if(isset($parameters['role'])){
-			$condition['where']['role']=$parameters['role'];
-		}
-		if(isset($parameters['orderBy'])){
-			$condition['order_by']=$parameters['orderBy'];
-		}
-		if(isset($parameters['keywords'])){
-			$condition['or_like_bracket']['content']=$parameters['keywords'];
-		}
-		if(isset($parameters['limit'])){
-			$condition['limit']=$parameters['limit'];
-		}
-		if(isset($parameters['time'])){
-			if(isset($parameters['time']['begin'])){
-				$condition['where']['addtime >=']=$parameters['time']['begin'];
-			}
-			if(isset($parameters['time']['end'])){
-				$condition['where']['addtime <=']=$parameters['time']['end'];
-			}
-		}
-		$aboutuss=$this->getData($condition);
-		// if($parameters['result']=='data'){
-		// 	foreach ($aboutuss as $key => $value) {
-		// 		if($value->role==2){
-		// 			$value->buyer=$this->getContent('buyer',$value->uid);
-		// 		}else{
-		// 			$value->seller=$this->getContent('seller',$value->uid);
-		// 		}
-				
+		// if(isset($parameters['time'])){
+		// 	if(isset($parameters['time']['begin'])){
+		// 		$condition['where']['addtime >=']=$parameters['time']['begin'];
+		// 	}
+		// 	if(isset($parameters['time']['end'])){
+		// 		$condition['where']['addtime <=']=$parameters['time']['end'];
 		// 	}
 		// }
-		return $aboutuss;
-	}
-	public function getOrderStatus(){
-		$status=array(
-			'0'=>'未完成扫描',
-			'1'=>'待付款',
-			'2'=>'未指派',
-			'3'=>'待发货',
-			'4'=>'运输中',
-			'5'=>'交易完成(未评价)',
-			'6'=>'交易完成(已评价)',
-			'-1'=>'已取消',
-			'7'=>'自提'
-		);
-		return $status;
-	}
-	public function getOrderDetail($orderno){
-		$parameters=array(
-						'table'=>'orderitem',
-						'result'=>'data',
-						'where'=>array('orderno'=>$orderno)
-						);
-		$details=$this->getData($parameters);
-		foreach ($details as $key => $value) {
-			$value->product=$this->getContent('goods',$value->goodsid);
-		}
-		return $details;
-	}
-	public function getSellers($parameters){
-		$condition=array(
-			'table'=>'seller',
-			'result'=>$parameters['result']
-		);
-		if(isset($parameters['gender'])){
-			$condition['where']['gender']=$parameters['gender']=="NULL"?NULL:$parameters['gender'];
-		}
-		if(isset($parameters['supermarket'])){
-			$condition['where']['sid']=$parameters['supermarket'];
-		}
-		if(isset($parameters['role'])){
-			$condition['where']['role']=$parameters['role'];
-		}
-		if(isset($parameters['keywords'])){
-			$condition['or_like_bracket']['workno']=$parameters['keywords'];
-			$condition['or_like_bracket']['name']=$parameters['keywords'];
-			$condition['or_like_bracket']['phone']=$parameters['keywords'];
-			// $condition['sql']="(`workno` LIKE '%".$parameters['keywords']."%' OR `name` LIKE '%".$parameters['keywords']."%' OR `pone` LIKE '%".$parameters['keywords']."%')";
-		}
-		if(isset($parameters['limit'])){
-			$condition['limit']=$parameters['limit'];
-		}
-		if(isset($parameters['time'])){
-			if(isset($parameters['time']['begin'])){
-				$condition['where']['addtime >=']=$parameters['time']['begin'];
-			}
-			if(isset($parameters['time']['end'])){
-				$condition['where']['addtime <=']=$parameters['time']['end'];
-			}
-		}
-		if(isset($parameters['orderBy'])){
-			$condition['order_by']=$parameters['orderBy'];
-		}
-		$sellers=$this->getData($condition);
-		if($parameters['result']=='data'){
-			foreach ($sellers as $key => $value) {
-				$value->supermarket=$this->getContent('supermarket',$value->sid);
-			}
-		}
-		return $sellers;
-	}
-	public function getAllSupermarkets($withSub=false,$asArray=false){
-		$parameters=array(
-			'result'=>'data',
-			'type'=>0,
-			'orderBy'=>array('name'=>'ASC')
-		);
-		$supermarkets=$this->getSupermarkets($parameters);//所有总店
-		if($withSub){
-			foreach ($supermarkets as $key => $value) {
-				$subParameters=array(
-					'result'=>'data',
-					'no'=>$value->no,
-					'type'=>1,
-				);
-				$value->subSupermarkets=$this->getSupermarkets($subParameters);//获取对应所有分店
-			}
-		}
-		if($asArray){
-			$supermarketsArray=array();
-			foreach ($supermarkets as $value) {
-				$supermarketsArray[$value->id]=$value;
-				foreach ($value->subSupermarkets as $v) {
-					$supermarketsArray[$v->id]=$v;
-				}
-			}
-			$supermarkets=$supermarketsArray;
-		}
-		return $supermarkets;
-	}
-	public function getSubSupermarkets($sid){
-		$supermarket=$this->getContent('supermarket',$sid);
-		if(!isset($supermarket->no)){
-			return array();
-		}
-		$subParameters=array(
-			'result'=>'data',
-			'no'=>$supermarket->no,
-			'type'=>1,
-		);
-		$subSupermarkets=$this->getSupermarkets($subParameters);//获取对应所有分店
-		return $subSupermarkets;
-	}
-	public function getSupermarkets($parameters){
-		$condition=array(
-			'table'=>'supermarket',
-			'result'=>$parameters['result']
-		);
-		if(isset($parameters['no'])){
-			$condition['where']['no']=$parameters['no'];
-		}
-		if(isset($parameters['sno'])){
-			$condition['where']['sno']=$parameters['sno'];
-		}
-		if(isset($parameters['type'])){
-			$condition['where']['type']=$parameters['type'];
-		}
-		if(isset($parameters['keywords'])){
-			$condition['or_like_bracket']['name']=$parameters['keywords'];
-			$condition['or_like_bracket']['sname']=$parameters['keywords'];
-		}
-		if(isset($parameters['limit'])){
-			$condition['limit']=$parameters['limit'];
-		}
-		if(isset($parameters['time'])){
-			if(isset($parameters['time']['begin'])){
-				$condition['where']['addtime >=']=$parameters['time']['begin'];
-			}
-			if(isset($parameters['time']['end'])){
-				$condition['where']['addtime <=']=$parameters['time']['end'];
-			}
-		}
-		if(isset($parameters['orderBy'])){
-			$condition['order_by']=$parameters['orderBy'];
-		}
-		$supermarkets=$this->getData($condition);
+		$students=$this->getData($condition);
 		// if($parameters['result']=='data'){
-		// 	foreach ($supermarkets as $key => $value) {
-		// 		$value->supermarket=$this->getContent('supermarket',$value->sid);
+		// 	foreach ($buyers as $key => $value) {
+		// 		$value->supermarket=$this->getContent('supermarket',$value->defaultsid);
 		// 	}
 		// }
-		return $supermarkets;
+		return $students;
 	}
-	public function getCategories($parameters){
+	public function getCourses($parameters){
 		$condition=array(
-			'table'=>'category',
+			'table'=>'course',
 			'result'=>$parameters['result']
 		);
-		if(isset($parameters['sid'])){
-			$condition['where']['sid']=$parameters['sid'];
+		if(isset($parameters['code']) && is_numeric($parameters['code'])){
+			$condition['where']['code']=$parameters['code'];
+		}
+		// if(isset($parameters['gender'])){
+		// 	$condition['where']['gender']=$parameters['gender']=="NULL"?NULL:$parameters['gender'];
+		// }
+		// if(isset($parameters['orderBy'])){
+		// 	$condition['order_by']=$parameters['orderBy'];
+		// }
+		// if(isset($parameters['keywords'])){
+		// 	$condition['or_like_bracket']['alias']=$parameters['keywords'];
+		// 	$condition['or_like_bracket']['phone']=$parameters['keywords'];
+		// }
+		if(isset($parameters['like_code'])){
+			$condition['like']=array('code'=>$parameters['like_code']);
+		}
+		if(isset($parameters['like_name'])){
+			$condition['like']=array('name'=>$parameters['like_name']);
+		}
+		if(isset($parameters['limit'])){
+			$condition['limit']=$parameters['limit'];
+		}
+		// if(isset($parameters['time'])){
+		// 	if(isset($parameters['time']['begin'])){
+		// 		$condition['where']['addtime >=']=$parameters['time']['begin'];
+		// 	}
+		// 	if(isset($parameters['time']['end'])){
+		// 		$condition['where']['addtime <=']=$parameters['time']['end'];
+		// 	}
+		// }
+		$courses=$this->getData($condition);
+		// if($parameters['result']=='data'){
+		// 	foreach ($buyers as $key => $value) {
+		// 		$value->supermarket=$this->getContent('supermarket',$value->defaultsid);
+		// 	}
+		// }
+		return $courses;
+	}
+	public function getSpecialities($parameters){
+		$condition=array(
+			'table'=>'speciality',
+			'result'=>$parameters['result']
+		);
+		if(isset($parameters['academy'])){
+			$condition['where']['academy']=$parameters['academy'];
+		}
+		if(isset($parameters['orderBy'])){
+			$condition['order_by']=$parameters['orderBy'];
 		}
 		if(isset($parameters['keywords'])){
 			$condition['or_like_bracket']['name']=$parameters['keywords'];
@@ -720,55 +1098,42 @@ class GetData{
 		if(isset($parameters['limit'])){
 			$condition['limit']=$parameters['limit'];
 		}
-		if(isset($parameters['time'])){
-			if(isset($parameters['time']['begin'])){
-				$condition['where']['addtime >=']=$parameters['time']['begin'];
-			}
-			if(isset($parameters['time']['end'])){
-				$condition['where']['addtime <=']=$parameters['time']['end'];
-			}
-		}
-		if(isset($parameters['orderBy'])){
-			$condition['order_by']=$parameters['orderBy'];
-		}
-		$categories=$this->getData($condition);
-		if($parameters['result']=='data'){
-			foreach ($categories as $key => $value) {
-				$value->supermarket=$this->getContent('supermarket',$value->sid);
-			}
-		}
-		return $categories;
+		$specialities=$this->getData($condition);
+		// if($parameters['result']=='data'){
+		// 	foreach ($specialities as $key => $value) {
+		// 		$value->supermarket=$this->getContent('supermarket',$value->defaultsid);
+		// 	}
+		// }
+		return $specialities;
 	}
-	// public function getColumns($type,$isOnlyId){
-	// 	switch ($type) {
-	// 		case 'home'://首页
-	// 			$columns = array(1,2,3);
-	// 			break;
-	// 		case 'products'://产品
-	// 			$columns = array(4);
-	// 			break;
-	// 		case 'forum'://论坛
-	// 			$columns = array(5);
-	// 			break;
-	// 		case 'activity'://品牌活动
-	// 			$columns = array(6);
-	// 			break;
-			
-	// 		default:
-				
-	// 			break;
-	// 	}
-	// 	$returnData=array();
-	// 	if($isOnlyId){
-	// 		$returnData=$columns;
-	// 	}else{
-	// 		foreach ($columns as $value) {
-	// 			$item=$this->getContent('column',$value);
-	// 			$returnData[]=$item;
-	// 		}
-	// 	}
-	// 	return $returnData;
-	// }
+	public function getClasses($parameters){
+		$condition=array(
+			'table'=>'class',
+			'result'=>$parameters['result']
+		);
+		if(isset($parameters['speciality'])){
+			$condition['where']['speciality']=$parameters['speciality'];
+		}
+		if (isset($parameters['specialities'])) {
+			$condition['where_in']['speciality']=$parameters['specialities'];
+		}
+		// if(isset($parameters['orderBy'])){
+		// 	$condition['order_by']=$parameters['orderBy'];
+		// }
+		if(isset($parameters['keywords'])){
+			$condition['or_like_bracket']['name']=$parameters['keywords'];
+		}
+		if(isset($parameters['limit'])){
+			$condition['limit']=$parameters['limit'];
+		}
+		$classes=$this->getData($condition);
+		// if($parameters['result']=='data'){
+		// 	foreach ($classes as $key => $value) {
+		// 		$value->supermarket=$this->getContent('supermarket',$value->defaultsid);
+		// 	}
+		// }
+		return $classes;
+	}
 
 	public function checkCode($code){
 		if(strcasecmp($code,$_SESSION['authcode'])==0){
