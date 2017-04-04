@@ -63,7 +63,7 @@
 		<span class="l">
 			<a href="javascript:;" onclick="member_del_bulk()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> 
 			<!-- <a href="javascript:;" onclick="member_add('上传挂科Excel','/admin/excelAdd?type=upass&warnning=确定添加所有的挂科数据项到数据库吗？','500','210')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 上传挂科Excel</a> -->
-			<a href="javascript:;" onclick="member_add('上传成绩Excel','/admin/excelAdd?type=score&warnning=确定添加所有的成绩数据项到数据库吗？','500','210')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 上传成绩Excel</a>
+			<a href="javascript:;" onclick="member_add('上传成绩Excel','/admin/excelAdd?type=score&warnning=确定添加所有的成绩数据项到数据库吗？','500','250')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 上传成绩Excel</a>
 		</span> 
 		<span class="r">共有数据：<strong><?php echo $pageInfo['amount'];?></strong> 条</span> 
 	</div>

@@ -16,9 +16,9 @@
 		<ul>
 			<li class="dropDown dropDown_click"><a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>
 				<ul class="dropDown-menu radius box-shadow">
-					<li><a href="javascript:;" onclick="picture_add('添加Banner','/admin/banneradd')"><i class="Hui-iconfont">&#xe613;</i> Banner</a></li>
-					<li><a href="javascript:;" onclick="product_add('添加商品','/admin/productadd')"><i class="Hui-iconfont">&#xe620;</i> 商品</a></li>
-					<li><a href="javascript:;" onclick="member_add('添加超市','/admin/supermarketadd','','510')"><i class="Hui-iconfont">&#xe60d;</i> 超市</a></li>
+					<li><a href="javascript:;" onclick="member_add('上传成绩Excel','/admin/excelAdd?type=score&warnning=确定添加所有的成绩数据项到数据库吗？','500','250')"><i class="Hui-iconfont">&#xe60d;</i> 成绩</a></li>
+					<li><a href="javascript:;" onclick="member_add('上传奖学金Excel','/admin/excelAdd?type=scholarship&warnning=确定添加所有的奖学金数据项到数据库吗？','500','250')"><i class="Hui-iconfont">&#xe613;</i> 奖学金</a></li>
+					<li><a href="javascript:;" onclick="member_add('上传消费Excel','/admin/excelAdd?type=expense&warnning=确定添加所有的数据项到数据库吗？','500','250')"><i class="Hui-iconfont">&#xe620;</i> 消费数据</a></li>
 				</ul>
 			</li>
 		</ul>
@@ -159,6 +159,7 @@
 				</ul>
 			</dd>
 		</dl> -->
+		<?php /*
 		<dl id="menu-system">
 			<dt><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
@@ -173,7 +174,7 @@
 					<!-- <li><a _href="system-base.html" href="javascript:void(0)">推送消息</a></li> -->
 				</ul>
 			</dd>
-		</dl>
+		</dl> */?>
 	</div>
 </aside>
 <div class="dislpayArrow"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
